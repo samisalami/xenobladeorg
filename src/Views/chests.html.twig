@@ -1,0 +1,238 @@
+{% extends '_layout.html.twig' %}
+
+{% block headline %}Truhen{% endblock %}
+{% block content %}
+    {#--}
+    $pcounter = 1;
+    $ChapterData = $xcdb->query("SELECT cid, name FROM xenoblade_chapters WHERE hasmap = 1 ORDER BY prio ASC");
+    while($ChapterRow = $xcdb->fetch_array($ChapterData))
+    {
+    $maids = array();
+    $MapData = $xcdb->query("SELECT maid FROM xenoblade_maps WHERE cid = '".$ChapterRow['cid']."'");
+    while($MapRow = $xcdb->fetch_array($MapData))
+    {
+    array_push($maids, $MapRow['maid']);
+    }
+    $maidstring = '';
+    for($i=0;$i<count($maids);$i++)
+    {
+    if($i==0) $maidstring .= "AND (maid = '".$maids[$i]."'";
+    else $maidstring .= " OR maid = '".$maids[$i]."'";
+    if($i==count($maids)-1) $maidstring .= ')';
+    }
+
+    $typeids = array();
+    $MappointData = $xcdb->query("SELECT typeid FROM xenoblade_mappoints WHERE type = 'chestid' ".$maidstring);
+    while($MappointRow = $xcdb->fetch_array($MappointData))
+    {
+    array_push($typeids, $MappointRow['typeid']);
+    }
+    $typeidstring = '';
+    for($i=0;$i<count($typeids);$i++)
+    {
+    if($i==0) $typeidstring .= "chestid = '".$typeids[$i]."'";
+    else $typeidstring .= " OR chestid = '".$typeids[$i]."'";
+    }
+
+    if(count($typeids)>0)
+    {
+    echo '<h2>'.$ChapterRow['name'].'</h2>';
+    ?>
+    #}
+    {% for chapter in chapters %}
+    {% endfor %}
+    <style type="text/css">
+        ul { float:left; margin:10px 10px 20px -5px; padding:0; }
+    </style>
+    <table class="guide-table">
+        <tr class="tablehead">
+            <td>
+                Name:
+            </td>
+            <td width="600">
+                Beschreibung:
+            </td>
+            <td>
+                Karte:
+            </td>
+            <td>
+                Items:
+            </td>
+        </tr>
+        <?php
+			$even = 'even';
+			$ChestData = $xcdb->query("SELECT * FROM xenoblade_chests WHERE ".$typeidstring." ORDER BY prio ASC");
+        while ($ChestRow = $xcdb->fetch_array($ChestData))
+        {
+        echo '<tr class="'.$even.'">';
+            echo '<td><a name="chestid'.$ChestRow['chestid'].'"></a>'.$ChestRow['name'].'</td>';
+            echo '<td>'.$ChestRow['description'].'</td>';
+            echo '<td>';
+                $mapq = $xcdb->query("SELECT * FROM xenoblade_mappoints WHERE type = 'chestid' AND typeid = '".$ChestRow['chestid']."'");
+                $mapr = $xcdb->fetch_array($mapq);
+                if($mapr['maid'])
+                {
+                $pointimg = get_bloginfo('template_directory').'/images/yellowpoint.png';
+                $mapspath = 'http://www.xenoblade.org/wp-content/uploads/maps/';
+                echo '<img style="cursor:pointer;" src="'.get_bloginfo('template_directory').'/images/mapicon_on.png" rel="#map'.$pcounter.'" alt="Karte" /> ';
+                ?>
+                <div class="apple_overlay" id="map<?=$pcounter?>">
+                    <div id="mapinputcontainer">
+                        <?php
+							for ($x=0; $x < count($mappoints); $x++)
+							{
+								if ($mappoints[$x]['chestid'] == $ChestRow['chestid'])
+								{
+								?>
+                        <div id="pointlabel_<?=$x?>" class="pointlabel"><?=$subrow['name']?> <?=$mappoints[$x]['name']?></div>
+                        <img id="pointimg_<?=$x?>" class="pointimg" src="<?=$pointimg?>" />
+                        <?php
+									for ($i=0; $i<count($maps); $i++)
+									{
+										if($mappoints[$x]['maid'] == $maps[$i]['maid'])
+										{
+										?>
+                        <h2><?=$maps[$i]['name']?></h2>
+                        <img src="<?php echo $mapspath.$maps[$i]['mapsrc'];?>" alt="<?=$maps[$i]['name']?>" />
+                        <?php
+										}
+									}
+									break;
+								}
+							}
+							?>
+                    </div>
+                </div>
+                <?php
+				}
+				else
+				{
+					echo '<img src="'.get_bloginfo('template_directory').'/images/mapicon_off.png" alt="Karte" /> ';
+                }
+                $pcounter++;
+                echo '</td>';
+            echo '<td class="borderLeft">';
+                $jewels = array();
+                $equip = array();
+                $crystals = array();
+                $weapons = array();
+                $material = array();
+                $skillbooks = array();
+                $jcounter = 0;
+                $ccounter = 0;
+                $ecounter = 0;
+                $wcounter = 0;
+                $macounter = 0;
+                $scounter = 0;
+                $ItemMonsterData = $xcdb->query("SELECT iid, stid FROM xenoblade_chestitems_r WHERE chestid = '".$ChestRow['chestid']."'");
+                while ($ItemMonsterRow = $xcdb->fetch_array($ItemMonsterData))
+                {
+                if($ItemMonsterRow['stid'])
+                {
+                for ($i=0;$i<count($items);$i++)
+                {
+                if ($items[$i]['stid'] == $ItemMonsterRow['stid'] && $items[$i]['iid'] == $ItemMonsterRow['iid'])
+                {
+                if($items[$i]['icid'] == 8)
+                {
+                $weapons[$wcounter]['name'] =  '<a href="http://www.xenoblade.org/waffen/#iid'.$items[$i]['iid'].'">'.$items[$i]['blankname'].'</a>';
+                $wcounter++;
+                }
+                else
+                {
+                $equip[$ecounter]['name'] =  '<a href="http://www.xenoblade.org/ausrustung/#iid'.$items[$i]['iid'].'">'.$items[$i]['blankname'].'</a>';
+                $ecounter++;
+                }
+
+                }
+                }
+                }
+                else
+                {
+                for ($i=0;$i<count($items);$i++)
+                {
+                if ($items[$i]['iid'] == $ItemMonsterRow['iid'])
+                {
+                if($items[$i]['icid'] != 14)
+                {
+                if($items[$i]['icid'] == 10)
+                {
+                $jewels[$jcounter]['name'] =  '<a href="http://www.xenoblade.org/item-box/juwelen/#jv'.$items[$i]['jvid'].'">'.$items[$i]['name'].'</a>';
+                $jcounter++;
+                }
+                else
+                {
+                $material[$macounter]['name'] =  '<a href="http://www.xenoblade.org/item-box/materialien/#iid'.$items[$i]['iid'].'">'.$items[$i]['name'].'</a>';
+                $macounter++;
+                }
+                }
+                else
+                {
+                $ItemData = $xcdb->query("SELECT sid, level FROM xenoblade_items WHERE iid = '".$items[$i]['iid']."'");
+                $ItemRow = $xcdb->fetch_array($ItemData);
+                $SkillData = $xcdb->query("SELECT name FROM xenoblade_skills WHERE sid = '".$ItemRow['sid']."'");
+                $SkillRow = $xcdb->fetch_array($SkillData);
+                $skillbooks[$scounter]['name'] =  '<a href="http://www.xenoblade.org/fertigkeiten/#sid'.$ItemRow['sid'].'">'.$SkillRow['name'].' '.$ItemRow['level'].'</a>';
+                $scounter++;
+                }
+                }
+                }
+                }
+                }
+                if (count($material) > 0)
+                {
+                echo '<div class="tableCell"><strong>Material:</strong><br/><ul>';
+                        for ($i=0; $i<count($material);$i++)
+                        {
+                        echo '<li>'.$material[$i]['name'].'</li>';
+                        }
+                        echo '</ul></div>';
+                }
+
+                if (count($equip) > 0)
+                {
+                echo '<div class="tableCell"><strong>Ausr&uuml;stung:</strong><br/><ul>';
+                        for ($i=0; $i<count($equip);$i++)
+                        {
+                        echo '<li>'.$equip[$i]['name'].'</li>';
+                        }
+                        echo '</ul></div>';
+                }
+
+                if (count($weapons) > 0)
+                {
+                echo '<div class="tableCell"><strong>Waffen:</strong><br/><ul>';
+                        for ($i=0; $i<count($weapons);$i++)
+                        {
+                        echo '<li>'.$weapons[$i]['name'].'</li>';
+                        }
+                        echo '</ul></div>';
+                }
+
+                if (count($skillbooks) > 0)
+                {
+                echo '<div class="tableCell"><strong>Techniken:</strong><br/><ul>';
+                        for ($i=0; $i<count($skillbooks);$i++)
+                        {
+                        echo '<li>'.$skillbooks[$i]['name'].'</li>';
+                        }
+                        echo '</ul></div>';
+                }
+
+                if (count($jewels) > 0)
+                {
+                echo '<div class="tableCell"><strong>Juwelen:</strong><br/><ul>';
+                        for ($i=0; $i<count($jewels);$i++)
+                        {
+                        echo '<li>'.$jewels[$i]['name'].'</li>';
+                        }
+                        echo '</ul></div>';
+                }
+                echo '</td>';
+            echo '</tr>';
+        if($even == 'even') $even = '';
+        else $even = 'even';
+        }
+        ?>
+    </table>
+{% endblock %}

@@ -1,0 +1,6 @@
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+chests:
+    path: /truhen
+    contoller: App\Controller\ChestController::index

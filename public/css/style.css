@@ -1,0 +1,360 @@
+/*
+Theme Name: Xenoblade Chronicles
+Theme URI: http://www.xenoblade.org
+Description: Xenoblade.org
+Author: Samjessa Lewy
+Version: 1.00
+Tags: xenoblade, chronicles, rpg, walkthorugh
+*/
+
+
+/* *********************************************************
+ *
+ *  GLOBAL ELEMENTS
+ *
+ ******************************************************** */
+
+html { zoom: 1 ;}
+body    { zoom: 1 ; font-family: Arial, 'Times new Roman', serif; font-size:14px; color:#333333; background-color:#e9ebef;line-height:15px; margin:0; padding:0; }
+table, div {border-collapse:collapse;}
+table td { padding:5px 5px 5px 0; }
+strong  { font-weight: bold; }
+em      { font-style: italic; }
+del     { text-decoration: line-through; }
+
+h1 { font-size:30px; font-weight:normal; margin-bottom:15px; color:#333333; }
+h2 { font-size:18px; font-weight:normal; margin:15px 0; color:#333333; }
+
+a { color:#333333; text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+.comment-text p { margin-bottom:10px !important; }
+.tableCell { float:left; }
+
+/* *********************************************************
+ *
+ *  LAYOUT
+ *
+ ******************************************************** */
+
+#page { width:100%; position:absolute; z-index:1; }
+
+#toparea { height:186px; }
+
+#header { width:100%; height:120px; border-top-style:none; }
+
+#header .headerbg{ width:100%; height:186px; position:absolute;  z-index:-1; top:0; left:0;}
+#header .logo{ position:absolute; z-index:90; margin-top:20px; left:25px;}
+#header .xclogo{ position:absolute; z-index:90; margin-top:5px; right:25px;}
+#logo_link { display:block;width:240px; height:86px; margin-left:758px; }
+
+#navi { left:0; min-height:66px; top:120px; position:absolute; z-index:50; background-color:#fff; min-height:66px; width:100%; overflow:visible; border-bottom:1px #bbbbbb solid;}
+#navi li { float:left; padding: 8px; }
+#navi #menu-xenoblade-org-menu { margin:0; padding:0; float:none;background-image:url(../../../_old/images/bg_nav.png); background-repeat:repeat; height:38px; padding-left:25px; font-size:14px; }
+#navi #menu-xenoblade-org-menu li li{ float:none; font-size:12px; padding:6px;}
+#navi #menu-xenoblade-org-menu li:hover { background-color:#37475f; }
+#navi #menu-xenoblade-org-menu li:hover li { background-color:#fff; }
+#navi #menu-xenoblade-org-menu li li:hover { background-color:#e9eff2; }
+#navi #menu-xenoblade-org-menu li.current_page_item { background-color:#37475f; }
+#navi #menu-xenoblade-org-menu li.current-menu-item { background-color:#37475f; }
+#navi #menu-xenoblade-org-menu li.current_page_parent { background-color:#37475f; }
+#navi #menu-xenoblade-org-menu li a { color:#fff; text-decoration:none;}
+#navi #menu-xenoblade-org-menu li li a { color:#37475f; text-decoration:none;}
+
+#navi .sub-menu { background-image:none; display:none; position:absolute; z-index:49; margin:8px 0 0 -10px; width:160px; background-color:#fff; border:1px #bcbcbc solid; height:auto; }
+#navi li:hover .sub-menu, #navi li .sub-menu:hover, #navi li:hover .sub-menu:hover  { display:block; }
+#navi .sub-menu li { float:none; text-align:left; height:auto;}
+
+#navi .submenu-rv { clear:both; background-image:none; margin:5px 0 0 0; padding-left:35px; font-size:14px; float:none; display:block; position:static; }
+#navi .submenu-rv  li { padding:0; margin:0 15px 8px 0; text-align:left;}
+#navi .submenu-rv  li:hover { background-color:transparent; text-decoration:underline }
+#navi .submenu-rv  li a{ color:#37475f; }
+#navi .submenu-rv  .submenu-item-current a{ text-decoration:underline; }
+
+#wrapper { min-height:902px; overflow:auto; padding-top:20px; width:100%; display:block; text-align:left; background-color:#E9EBEF; background-image:url(../../../_old/images/bg_footer.png); background-repeat:no-repeat; background-position:bottom right; background-attachment:fixed;}
+.pagecontent a { text-decoration:underline; color:#21759B;}
+.pagecontent ul { list-style-type:disc; padding-left:20px;}
+#wrapper .wp-polls-ul { list-style-type:none; padding-left:0px;}
+.pagecontent li { padding-left:10px;}
+
+.metanavi { background-color:#e9ebef; display:block; float:none; position:static; }
+
+#maincontent { width:100%; padding-top:30px;}
+
+#container { overflow: auto; }
+
+#content { width:100%;}
+#content h1 { padding-top:10px; }
+#content h3 { font-size:14px; font-weight:bold; margin:10px 0; }
+
+#content .guide-table{ border-bottom:1px #bbb solid; }
+#content .guide-table tr{ border-left:1px #bbb solid; border-right:1px #bbb solid; }
+#content .guide-table td { padding:5px; vertical-align:middle;}
+#content .guide-table li { padding-left:0; }
+#content .guide-table .even td { background-color:#f5f4e2; }
+#content .guide-table .tablehead td { font-weight:bold; border-top:1px #bbb solid; border-bottom:1px #bbb solid;}
+#content .guide-table .tableheadline { border-color:transparent; }
+#content .guide-table .borderLeft { border-left:1px #bbb solid; }
+
+#content .post-edit-link { margin-bottom:10px; display:block; }
+
+.xc_content_toggle_content { display:none; }
+
+/*.tooltip { display:none; background:transparent url(js/tooltip/white_arrow.png); font-size:12px; height:70px; width:160px; padding:25px; color:#000; }*/
+
+.post { margin-bottom:50px; border-bottom:1px #2d2022 solid; padding-bottom:15px; }
+
+.entry-head { border-bottom:1px #2d2022 solid; height:15px; margin-bottom:10px; }
+.entry-head .entry-title { float:left; padding-left:14px; background-image:url(../../../_old/images/arrow.gif); background-repeat:no-repeat; font-weight:bold; color:#333333 !important; text-decoration:none !important; }
+.entry-head .entry-title:hover { color:#cc0000 !important; }
+.entry-head .entry-author { float:right; }
+.entry-date { font-size:11px; font-style:italic; margin:-3px 0 10px 0; }
+
+.pagecontent { background-color:#fff; border:1px #bbb solid; padding:25px; margin:25px 120px 25px 1px; }
+
+.comment-link {float:right;}
+
+#comments ul { list-style-type:none; }
+.comment-edit-link {font-size:11px; }
+#comments-title { font-weight:bold; padding-bottom:15px; border-bottom: 1px #2d2022 solid; font-size:16px; }
+.commentbody { border-bottom: 1px #2d2022 solid; padding:10px; }
+.commentbody .comment-author img { float:left; margin:0 5px 5px 0; }
+.commentbody .author-name a{ font-weight:bold; color:#333333 !important; text-decoration:none !important;}
+.commentbody .comment-meta { margin:5px 0; }
+.commentbody .comment-meta .date { font-style:italic; font-size:11px; }
+
+#respond { margin-top:20px; }
+#respond h3 { margin-bottom:15px; font-size:16px; font-weight:bold; }
+#respond  input,textarea { display:block; margin-top:5px; }
+#respond  label {  font-weight:bold; }
+
+.wpf-table textarea { width:520px; }
+.update-table  td { padding-right:50px; line-height:15px; border-top:1px #000 solid; border-bottom:1px #000 solid;  }
+
+.checkbox { display:inline-block; height:5px; margin-right:0 !important;}
+
+.breadcrumbs { float:left; margin:0 0 15px 35px; font-size:12px; width:500px; overflow:visible; text-align:left;}
+.breadcrumbs a { color:#333333 !important; font-size:12px; text-decoration:none !important;}
+.breadcrumbs a:hover {text-decoration:underline !important;}
+
+.sharebuttons{ width:100%; text-align:right;}
+.sharebuttons div { float:right; }
+.contact { float:right; margin-right:25px;}
+.twitter-follow-button { margin:0 10px 0 0; }
+.fbshare { margin:3px 10px 0 0; }
+.fb-like { margin:2px 10px 0 0; }
+.gshare { overflow:hidden; width:75px;}
+.gsite { margin-right:10px;}
+.FlattrButton, .FlattrImg { margin:2px 5px 0 0;}
+
+.XenobladePartner ul { list-style-type: none; text-align:center;}
+
+
+#footer { bottom:0; left:50%; margin-left:-500px; z-index:-1; }
+
+
+/* *********************************************************
+ *
+ *  NEW LISTVIEW
+ *
+ ******************************************************** */
+  .xc_ItemWrapper { 
+	background-color:#fff;
+	border:1px #bbb solid;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright:5px;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-top-right-radius:5px;
+	-webkit-border-bottom-left-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+}
+
+.xc_ItemWrapper { margin-bottom:20px; min-height:20px; width:100%; }
+
+.xc_Headline { color: #333333; font-size: 20px; font-weight: normal;  }
+.xc_Headline .Inner { margin:0 auto; overflow:auto; }
+.xc_Headline .Inner * { display:inline-block; vertical-align: middle;}
+.xc_Headline .Inner * { 
+	*display: inline;  
+    *margin: 0 20px 0 20px;  
+}
+
+.xc_ItemWrapper .xc_ItemField { display:inline-block; vertical-align:middle;}
+
+.xc_ItemContent { display:table; width:100%; margin:10px 0; }
+.xc_ItemContent .xc_ItemContentLeft { display:table-cell; width:20%; text-align:left;vertical-align: middle; padding-left:10px; }
+.xc_ItemContent .xc_ItemContentLeft span { vertical-align:middle; }
+.xc_ItemContent .xc_ItemContentLeft img { margin-right:10px; }
+.xc_ItemContent .xc_ItemContentCenter { display:table-cell;width:20%; text-align:center; vertical-align: middle;}
+.xc_ItemContent .xc_ItemContentRight { text-align:right;width:60%; display:table-cell; vertical-align: middle; padding-right:10px;}
+.xc_ItemContent .xc_ItemArrow { display:inline-block; padding-left: 20px; vertical-align:middle; cursor:pointer;}
+
+.xc_ItemContentHidden p { margin-bottom:12px; }
+.xc_ItemContentHidden .coloured-table { border: 1px #bbbbbb dotted; margin-top:5px; }
+.xc_ItemContentHidden .coloured-table thead td { background-color:#f5f4e2;  }
+.xc_ItemContentHidden .coloured-table td { border: 1px #bbbbbb dotted; padding:5px; }
+ 
+.xc_ItemContentHidden { display:none; padding:10px; border-top:1px #bbb solid; }
+.xc_ItemContentHidden .xc_ItemField { vertical-align:top; margin-right:15px; }
+
+
+ /* *********************************************************
+ *
+ *  MONSTER
+ *
+ ******************************************************** */
+.pagecontent.Monster { background:none; border-style:none; }
+.pagecontent.Monster .ChapterIcon { position:absolute; width:70px; margin-top:-130px;}
+.entry-title.Monster{ position:absolute; margin:70px 0 0 115px;}
+
+.xc_Headline.Monster { width:100%; text-align:center; white-space: nowrap; overflow:hidden; margin-bottom:20px;}
+.xc_Headline.Monster .Text{ margin: 0 20px; }
+
+
+.xc_ItemContent .xc_ItemField.MonsterIcon { margin-right:10px; }
+.xc_ItemContent .xc_ItemField.MonsterName span { font-style:italic; font-size:10px; }
+.xc_ItemContent .xc_ItemField.MonsterDayTime { width:100%; }
+.xc_ItemContent .xc_ItemField.MonsterDayTime div { vertical-align:middle; display:inline-block; margin:-13px 0 0 5px;}
+.xc_ItemContent .xc_ItemField.MonsterMapDescription { width:auto; }
+.xc_ItemContent .xc_ItemField.MonsterMap { margin:0 15px; }
+.xc_ItemContent .xc_ItemField.MonsterLevel { margin-left:0px; text-align:right; width:50px;}
+.xc_ItemContent .xc_ItemField.MonsterLevel.individual { width:30px;}
+
+.xc_ItemContentHidden .MonsterImage { display:inline-block; margin: 0 20px 0 0; max-width:260px; }
+.xc_ItemContentHidden .MonsterStats { width:100%; margin-bottom:10px; }
+.xc_ItemContentHidden .MonsterSkills { margin-top:10px; }
+.xc_ItemContentHidden .MonsterDrop {display:inline-block; vertical-align:top; }
+.xc_ItemContentHidden .MonsterDropList{ float:left; margin-right:20px; }
+.xc_ItemContentHidden .MonsterDropList ul{ float:none; margin-top:3px; }
+
+
+ /* *********************************************************
+ *
+ *  ITEMBOX - KRISTALLE
+ *
+ ******************************************************** */ 
+.pagecontent.Kristalle { background:none; border-style:none; }
+.entry-title.Kristalle{ position:absolute; margin:30px 0 0 25px;}
+ 
+.Kristalle .xc_ItemContent .xc_ItemContentLeft { width:220px; }
+.Kristalle .xc_ItemContent .xc_ItemContentCenter { width: auto; text-align:left; }
+.Kristalle .xc_ItemContent .xc_ItemContentRight { width: auto; }
+ 
+ /* *********************************************************
+
+  /* *********************************************************
+ *
+ *  GUIDES - HANDLUNGSKÄMPFE
+ *
+ ******************************************************** */
+.pagecontent.Handlungskmpfe { background:none; border-style:none; }
+.entry-title.Handlungskmpfe{ position:absolute; margin:30px 0 0 25px;}
+
+.Handlungskmpfe .xc_ItemContent .xc_ItemContentLeft { width:400px; }
+.Handlungskmpfe .xc_ItemContent .xc_ItemContentLeft .xc_ItemField { margin-top:-10px; }
+.Handlungskmpfe .xc_ItemContent .xc_ItemContentCenter { width: auto; text-align:left; }
+.Handlungskmpfe .xc_ItemContent .xc_ItemContentRight { width: auto; }
+
+.Handlungskmpfe .xc_ItemContentBox { display:inline-table; margin-right:10px; }
+
+/* *********************************************************
+*
+*  ITEMBOX - SAMMELITEMS
+*
+******************************************************** */
+.pagecontent.Sammelitems { background:none; border-style:none; }
+.entry-title.Sammelitems{ position:absolute; margin:30px 0 0 25px;}
+
+.Sammelitems h2 { font-size: 22px; margin:50px 0 20px 0; }
+.Sammelitems .xc_ItemContent .xc_ItemContentLeft { width:350px;  }
+.Sammelitems .xc_ItemContent .xc_ItemContentCenter { width:auto; text-align:left; }
+.Sammelitems .xc_ItemContent .xc_ItemContentRight { width:auto; }
+
+.Sammelitems .xc_ItemContentHidden .coloured-table td { text-align:center; }
+
+
+/* *********************************************************
+*
+*  ITEMBOX - MATERIALIEN
+*
+******************************************************** */
+.pagecontent.Materialien { background:none; border-style:none; }
+.entry-title.Materialien{ position:absolute; margin:30px 0 0 25px;}
+ 
+.Materialien .xc_ItemContent .xc_ItemContentLeft { width:200px; }
+.Materialien .xc_ItemContent .xc_ItemContentCenter { width: auto; text-align:left; }
+.Materialien .xc_ItemContent .xc_ItemContentRight { width: auto; }
+ 
+ /* *********************************************************
+ *
+ *  ITEMBOX - WICHTIGES
+ *
+ ******************************************************** */
+.pagecontent.Wichtiges { background:none; border-style:none; }
+.entry-title.Wichtiges{ position:absolute; margin:30px 0 0 25px;}
+ 
+.Wichtiges .xc_ItemContent .xc_ItemContentLeft { width:200px; }
+.Wichtiges .xc_ItemContent .xc_ItemContentCenter { width: auto; text-align:left; }
+.Wichtiges .xc_ItemContent .xc_ItemContentRight  { width:50px; }
+ 
+/* *********************************************************
+ *
+ *  ARTICLE ITEMS
+ *
+ ******************************************************** */
+ 
+.clear { clear:both; }
+
+.alignleft      { float: left; }
+.aligncenter    { display: block; margin: 0 auto; }
+.alignright     { float: right; }
+.alignRight     { text-align:right;}
+
+.margintop { background-color:#fff; height:0px; margin:0 auto; width:1000px; }
+
+/* *********************************************************
+ *
+ *  MAPS
+ *
+ ******************************************************** */
+
+#content .chapters h3 { margin: 0 0 10px 10px; color: #cc0000; }
+
+.apple_overlay {
+	display:none;
+	padding:20px;
+	font-size:11px;
+	z-index:98;
+}
+.apple_overlay .close {
+    background-image:url(../../../_old/images/overlay/close.png);
+    position:absolute; right:5px; top:5px;
+    z-index:99;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}
+.apple_overlay h2 { font-size:14px; color:#fff; margin: 10px 0 0 10px; text-shadow: black 1px 1px; position:absolute; }
+
+.pointlabel, .shadow { font-weight:bold; text-shadow: black 1px 1px; text-decoration:none; }
+
+
+/* *********************************************************
+ *
+ *  FORUM
+ *
+ ******************************************************** */
+ 
+ .Forum.pagecontent  { padding:15px 0; }
+ .Forum .sharebuttons  { width:99%; margin:10px 15px 0 0; }
+ .Forum  #forumwrap { width:100%; }
+ .Forum  #forumwrap .navbar { width:99%;float:left;}
+ .Forum  #forumwrap #page-body { width:100%; float:left;}
+ .Forum  #toparea { margin-bottom:0; }
+ .Forum #wrapper li.header a { color:#fff; text-decoration:none; }
