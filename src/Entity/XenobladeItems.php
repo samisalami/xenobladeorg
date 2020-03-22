@@ -8,6 +8,22 @@ use Doctrine\ORM\Mapping as ORM;
  * XenobladeItems
  *
  * @ORM\Table(name="xenoblade_items")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="item_type", type="string")
+ * @ORM\DiscriminatorMap({
+ *      "item" = "XenobladeItems",
+        "jewel" = "XenobladeJewels",
+        "collectionitem" = "XenobladeCollectionItems",
+        "weapon" = "XenobladeWeapons",
+        "material" = "XenobladeMaterials",
+        "arms" = "XenobladeArms",
+        "body" = "XenobladeBodies",
+        "feet" = "XenobladeFeet",
+        "head" = "XenobladeHeads",
+        "important" = "XenobladeImportantItems",
+        "legs" = "XenobladeLegs",
+        "skillbook" = "XenobladeSkillbooks"
+ *     })
  * @ORM\Entity
  */
 class XenobladeItems
@@ -22,11 +38,12 @@ class XenobladeItems
     private $iid;
 
     /**
-     * @var int
+     * @var XenobladeItemcategories
      *
-     * @ORM\Column(name="icid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeItemcategories")
+     * @ORM\JoinColumn(name="icid", referencedColumnName="icid")
      */
-    private $icid;
+    private $itemcategory;
 
     /**
      * @var string|null
@@ -34,13 +51,6 @@ class XenobladeItems
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="jvid", type="integer", nullable=true)
-     */
-    private $jvid;
 
     /**
      * @var int|null
@@ -55,20 +65,6 @@ class XenobladeItems
      * @ORM\Column(name="sid", type="integer", nullable=true)
      */
     private $sid;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="charid", type="integer", nullable=true)
-     */
-    private $charid;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="colid", type="integer", nullable=true)
-     */
-    private $colid;
 
     /**
      * @var int|null
@@ -92,13 +88,6 @@ class XenobladeItems
     private $weighttype;
 
     /**
-     * @var bool|null
-     *
-     * @ORM\Column(name="rare", type="boolean", nullable=true)
-     */
-    private $rare;
-
-    /**
      * @var string|null
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=true)
@@ -108,51 +97,9 @@ class XenobladeItems
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_hidden", type="text", length=65535, nullable=true)
-     */
-    private $descriptionHidden;
-
-    /**
-     * @var string|null
-     *
      * @ORM\Column(name="level", type="string", length=255, nullable=true)
      */
     private $level;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="autoangriff", type="string", length=255, nullable=true)
-     */
-    private $autoangriff;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="autoangriff_min", type="integer", nullable=true)
-     */
-    private $autoangriffMin;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="autoangriff_max", type="integer", nullable=true)
-     */
-    private $autoangriffMax;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="collectiontype", type="string", length=255, nullable=true)
-     */
-    private $collectiontype;
-
-    /**
-     * @var bool|null
-     *
-     * @ORM\Column(name="collectionindex", type="boolean", nullable=true)
-     */
-    private $collectionindex;
 
     /**
      * @var int|null
@@ -204,83 +151,6 @@ class XenobladeItems
     private $aeta = '0';
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="blockrate", type="integer", nullable=false)
-     */
-    private $blockrate = '0';
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="kritrate", type="integer", nullable=false)
-     */
-    private $kritrate = '0';
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="jewelattribute", type="string", length=255, nullable=true)
-     */
-    private $jewelattribute;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="jewelchance", type="string", length=255, nullable=true)
-     */
-    private $jewelchance;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="harmonyshulk", type="string", length=11, nullable=false)
-     */
-    private $harmonyshulk;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="harmonyreyn", type="string", length=11, nullable=false)
-     */
-    private $harmonyreyn;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="harmonysharla", type="string", length=11, nullable=false)
-     */
-    private $harmonysharla;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="harmonydunban", type="string", length=11, nullable=false)
-     */
-    private $harmonydunban;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="harmonymeli", type="string", length=11, nullable=false)
-     */
-    private $harmonymeli;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="harmonyriki", type="string", length=11, nullable=false)
-     */
-    private $harmonyriki;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="harmonyperson7", type="string", length=11, nullable=false)
-     */
-    private $harmonyperson7;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
@@ -292,14 +162,14 @@ class XenobladeItems
         return $this->iid;
     }
 
-    public function getIcid(): ?int
+    public function getItemcategory(): XenobladeItemcategories
     {
-        return $this->icid;
+        return $this->itemcategory;
     }
 
-    public function setIcid(int $icid): self
+    public function setItemcategory(XenobladeItemcategories $itemcategory): self
     {
-        $this->icid = $icid;
+        $this->itemcategory = $itemcategory;
 
         return $this;
     }
@@ -312,18 +182,6 @@ class XenobladeItems
     public function setName(?string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getJvid(): ?int
-    {
-        return $this->jvid;
-    }
-
-    public function setJvid(?int $jvid): self
-    {
-        $this->jvid = $jvid;
 
         return $this;
     }
@@ -348,30 +206,6 @@ class XenobladeItems
     public function setSid(?int $sid): self
     {
         $this->sid = $sid;
-
-        return $this;
-    }
-
-    public function getCharid(): ?int
-    {
-        return $this->charid;
-    }
-
-    public function setCharid(?int $charid): self
-    {
-        $this->charid = $charid;
-
-        return $this;
-    }
-
-    public function getColid(): ?int
-    {
-        return $this->colid;
-    }
-
-    public function setColid(?int $colid): self
-    {
-        $this->colid = $colid;
 
         return $this;
     }
@@ -412,18 +246,6 @@ class XenobladeItems
         return $this;
     }
 
-    public function getRare(): ?bool
-    {
-        return $this->rare;
-    }
-
-    public function setRare(?bool $rare): self
-    {
-        $this->rare = $rare;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -436,18 +258,6 @@ class XenobladeItems
         return $this;
     }
 
-    public function getDescriptionHidden(): ?string
-    {
-        return $this->descriptionHidden;
-    }
-
-    public function setDescriptionHidden(?string $descriptionHidden): self
-    {
-        $this->descriptionHidden = $descriptionHidden;
-
-        return $this;
-    }
-
     public function getLevel(): ?string
     {
         return $this->level;
@@ -456,66 +266,6 @@ class XenobladeItems
     public function setLevel(?string $level): self
     {
         $this->level = $level;
-
-        return $this;
-    }
-
-    public function getAutoangriff(): ?string
-    {
-        return $this->autoangriff;
-    }
-
-    public function setAutoangriff(?string $autoangriff): self
-    {
-        $this->autoangriff = $autoangriff;
-
-        return $this;
-    }
-
-    public function getAutoangriffMin(): ?int
-    {
-        return $this->autoangriffMin;
-    }
-
-    public function setAutoangriffMin(?int $autoangriffMin): self
-    {
-        $this->autoangriffMin = $autoangriffMin;
-
-        return $this;
-    }
-
-    public function getAutoangriffMax(): ?int
-    {
-        return $this->autoangriffMax;
-    }
-
-    public function setAutoangriffMax(?int $autoangriffMax): self
-    {
-        $this->autoangriffMax = $autoangriffMax;
-
-        return $this;
-    }
-
-    public function getCollectiontype(): ?string
-    {
-        return $this->collectiontype;
-    }
-
-    public function setCollectiontype(?string $collectiontype): self
-    {
-        $this->collectiontype = $collectiontype;
-
-        return $this;
-    }
-
-    public function getCollectionindex(): ?bool
-    {
-        return $this->collectionindex;
-    }
-
-    public function setCollectionindex(?bool $collectionindex): self
-    {
-        $this->collectionindex = $collectionindex;
 
         return $this;
     }
@@ -604,138 +354,6 @@ class XenobladeItems
         return $this;
     }
 
-    public function getBlockrate(): ?int
-    {
-        return $this->blockrate;
-    }
-
-    public function setBlockrate(int $blockrate): self
-    {
-        $this->blockrate = $blockrate;
-
-        return $this;
-    }
-
-    public function getKritrate(): ?int
-    {
-        return $this->kritrate;
-    }
-
-    public function setKritrate(int $kritrate): self
-    {
-        $this->kritrate = $kritrate;
-
-        return $this;
-    }
-
-    public function getJewelattribute(): ?string
-    {
-        return $this->jewelattribute;
-    }
-
-    public function setJewelattribute(?string $jewelattribute): self
-    {
-        $this->jewelattribute = $jewelattribute;
-
-        return $this;
-    }
-
-    public function getJewelchance(): ?string
-    {
-        return $this->jewelchance;
-    }
-
-    public function setJewelchance(?string $jewelchance): self
-    {
-        $this->jewelchance = $jewelchance;
-
-        return $this;
-    }
-
-    public function getHarmonyshulk(): ?string
-    {
-        return $this->harmonyshulk;
-    }
-
-    public function setHarmonyshulk(string $harmonyshulk): self
-    {
-        $this->harmonyshulk = $harmonyshulk;
-
-        return $this;
-    }
-
-    public function getHarmonyreyn(): ?string
-    {
-        return $this->harmonyreyn;
-    }
-
-    public function setHarmonyreyn(string $harmonyreyn): self
-    {
-        $this->harmonyreyn = $harmonyreyn;
-
-        return $this;
-    }
-
-    public function getHarmonysharla(): ?string
-    {
-        return $this->harmonysharla;
-    }
-
-    public function setHarmonysharla(string $harmonysharla): self
-    {
-        $this->harmonysharla = $harmonysharla;
-
-        return $this;
-    }
-
-    public function getHarmonydunban(): ?string
-    {
-        return $this->harmonydunban;
-    }
-
-    public function setHarmonydunban(string $harmonydunban): self
-    {
-        $this->harmonydunban = $harmonydunban;
-
-        return $this;
-    }
-
-    public function getHarmonymeli(): ?string
-    {
-        return $this->harmonymeli;
-    }
-
-    public function setHarmonymeli(string $harmonymeli): self
-    {
-        $this->harmonymeli = $harmonymeli;
-
-        return $this;
-    }
-
-    public function getHarmonyriki(): ?string
-    {
-        return $this->harmonyriki;
-    }
-
-    public function setHarmonyriki(string $harmonyriki): self
-    {
-        $this->harmonyriki = $harmonyriki;
-
-        return $this;
-    }
-
-    public function getHarmonyperson7(): ?string
-    {
-        return $this->harmonyperson7;
-    }
-
-    public function setHarmonyperson7(string $harmonyperson7): self
-    {
-        $this->harmonyperson7 = $harmonyperson7;
-
-        return $this;
-    }
-
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
@@ -747,6 +365,5 @@ class XenobladeItems
 
         return $this;
     }
-
-
 }
+

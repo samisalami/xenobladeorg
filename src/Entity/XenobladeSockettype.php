@@ -22,23 +22,26 @@ class XenobladeSockettype
     private $stid;
 
     /**
-     * @var int|null
+     * @var XenobladeJewels | null
      *
-     * @ORM\Column(name="slot1", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="XenobladeJewels")
+     * @ORM\JoinColumn(name="slot1", referencedColumnName="iid")
      */
     private $slot1;
 
     /**
-     * @var int|null
+     * @var XenobladeJewels | null
      *
-     * @ORM\Column(name="slot2", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="XenobladeJewels")
+     * @ORM\JoinColumn(name="slot2", referencedColumnName="iid")
      */
     private $slot2;
 
     /**
-     * @var int|null
+     * @var XenobladeJewels | null
      *
-     * @ORM\Column(name="slot3", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="XenobladeJewels")
+     * @ORM\JoinColumn(name="slot3", referencedColumnName="iid")
      */
     private $slot3;
 
@@ -61,36 +64,36 @@ class XenobladeSockettype
         return $this->stid;
     }
 
-    public function getSlot1(): ?int
+    public function getSlot1(): ?XenobladeJewels
     {
         return $this->slot1;
     }
 
-    public function setSlot1(?int $slot1): self
+    public function setSlot1(XenobladeJewels $slot1): self
     {
         $this->slot1 = $slot1;
 
         return $this;
     }
 
-    public function getSlot2(): ?int
+    public function getSlot2(): ?XenobladeJewels
     {
         return $this->slot2;
     }
 
-    public function setSlot2(?int $slot2): self
+    public function setSlot2(XenobladeJewels $slot2): self
     {
         $this->slot2 = $slot2;
 
         return $this;
     }
 
-    public function getSlot3(): ?int
+    public function getSlot3(): ?XenobladeJewels
     {
         return $this->slot3;
     }
 
-    public function setSlot3(?int $slot3): self
+    public function setSlot3(XenobladeJewels $slot3): self
     {
         $this->slot3 = $slot3;
 

@@ -1,0 +1,16 @@
+{% if not mapPoint is empty %}
+    <label>
+        <img style="cursor:pointer;" src="{{ asset('/images/mapicon_on.png') }}" alt="Karte" />
+        <input type="checkbox" class="overlay-trigger"/>
+        <div class="overlay">
+            <div class="map wrapper">
+                <div class="pointlabel" style="left: {{ mapPoint.xpos + 15 }}px; top: {{ mapPoint.ypos - 2 }}px; color: {{ color }}">{{ name }}</div>
+                <img class="pointimg" style="left: {{ mapPoint.xpos }}px; top: {{ mapPoint.ypos }}px" src="{{ asset('/images/'~ color ~'point.png') }}" />
+                <h2>{{ map.name }}</h2>
+                <img src="{{ asset('/images/maps/' ~ map.imgsrc) }}" alt="{{ map.name }}" />
+            </div>
+        </div>
+    </label>
+{% else %}
+    <img src="{{ asset('/images/mapicon_off.png') }}" alt="Karte" />
+{% endif %}

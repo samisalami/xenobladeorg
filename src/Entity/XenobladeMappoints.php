@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * XenobladeMappoints
  *
  * @ORM\Table(name="xenoblade_mappoints")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\MapPointsRepository")
  */
 class XenobladeMappoints
 {

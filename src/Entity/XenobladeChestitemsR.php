@@ -22,18 +22,20 @@ class XenobladeChestitemsR
     private $chestitemsid;
 
     /**
-     * @var int
+     * @var XenobladeItems
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $item;
 
     /**
-     * @var int
+     * @var XenobladeSockettype | null
      *
-     * @ORM\Column(name="stid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeSockettype")
+     * @ORM\JoinColumn(name="stid", referencedColumnName="stid")
      */
-    private $stid;
+    private $sockettype;
 
     /**
      * @var int
@@ -54,26 +56,26 @@ class XenobladeChestitemsR
         return $this->chestitemsid;
     }
 
-    public function getIid(): ?int
+    public function getItem(): XenobladeItems
     {
-        return $this->iid;
+        return $this->item;
     }
 
-    public function setIid(int $iid): self
+    public function setItem(XenobladeItems $item): self
     {
-        $this->iid = $iid;
+        $this->item = $item;
 
         return $this;
     }
 
-    public function getStid(): ?int
+    public function getSockettype(): ?XenobladeSockettype
     {
-        return $this->stid;
+        return $this->sockettype;
     }
 
-    public function setStid(int $stid): self
+    public function setSockettype(XenobladeSockettype $sockettype): self
     {
-        $this->stid = $stid;
+        $this->sockettype = $sockettype;
 
         return $this;
     }

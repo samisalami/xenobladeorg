@@ -50,7 +50,7 @@ a:hover { text-decoration:underline; }
 
 #navi { left:0; min-height:66px; top:120px; position:absolute; z-index:50; background-color:#fff; min-height:66px; width:100%; overflow:visible; border-bottom:1px #bbbbbb solid;}
 #navi li { float:left; padding: 8px; }
-#navi #menu-xenoblade-org-menu { margin:0; padding:0; float:none;background-image:url(../../../_old/images/bg_nav.png); background-repeat:repeat; height:38px; padding-left:25px; font-size:14px; }
+#navi #menu-xenoblade-org-menu { margin:0; padding:0; float:none;background-image:url(../images/bg_nav.png); background-repeat:repeat; height:38px; padding-left:25px; font-size:14px; }
 #navi #menu-xenoblade-org-menu li li{ float:none; font-size:12px; padding:6px;}
 #navi #menu-xenoblade-org-menu li:hover { background-color:#37475f; }
 #navi #menu-xenoblade-org-menu li:hover li { background-color:#fff; }
@@ -326,25 +326,6 @@ a:hover { text-decoration:underline; }
 
 #content .chapters h3 { margin: 0 0 10px 10px; color: #cc0000; }
 
-.apple_overlay {
-	display:none;
-	padding:20px;
-	font-size:11px;
-	z-index:98;
-}
-.apple_overlay .close {
-    background-image:url(../../../_old/images/overlay/close.png);
-    position:absolute; right:5px; top:5px;
-    z-index:99;
-    cursor:pointer;
-    height:35px;
-    width:35px;
-}
-.apple_overlay h2 { font-size:14px; color:#fff; margin: 10px 0 0 10px; text-shadow: black 1px 1px; position:absolute; }
-
-.pointlabel, .shadow { font-weight:bold; text-shadow: black 1px 1px; text-decoration:none; }
-
-
 /* *********************************************************
  *
  *  FORUM
@@ -358,3 +339,44 @@ a:hover { text-decoration:underline; }
  .Forum  #forumwrap #page-body { width:100%; float:left;}
  .Forum  #toparea { margin-bottom:0; }
  .Forum #wrapper li.header a { color:#fff; text-decoration:none; }
+
+/* *********************************************************
+*
+*  REMAKE
+*
+******************************************************** */
+
+.overlay-trigger {
+	display: none;
+}
+
+.overlay {
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color: rgba(0,0,0,.5);
+	visibility: hidden;
+	color: white;
+	text-align:center;
+}
+
+.overlay > .wrapper {
+	position: relative;
+	display: inline-block;
+	margin-top: 50px;
+}
+
+.overlay .map .pointlabel, .overlay .map .pointimg {
+	position: absolute;
+	font-weight:bold; text-shadow: black 1px 1px; text-decoration:none;
+}
+
+.overlay .map h2 {
+	font-size:20px; color:#fff; margin: 10px 0 0 10px; text-shadow: black 1px 1px; position:absolute;
+}
+
+.overlay-trigger:checked + .overlay {
+	visibility: visible;
+}

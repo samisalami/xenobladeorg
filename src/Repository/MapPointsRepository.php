@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\XenobladeMappoints;
+use App\Entity\XenobladeMaps;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -13,12 +14,13 @@ class MapPointsRepository extends ServiceEntityRepository
         parent::__construct($registry, XenobladeMappoints::class);
     }
 
-    public function findAllChestPoints(): array
+    public function findAllChestPointsByMap(XenobladeMaps $map): array
     {
         $qb = $this->createQueryBuilder('m')
-            ->where('m.type = "chest"')
-            ->andWhere('m.typeid > 0');
-        $query = $qb->getQuery();
-        return $query->execute();
+            ->where("m.type = 'chestid'")
+            ->andWhere('m.typeid > 0')
+            ->andWhere('m.maid = '.$map->getMaid())
+        ;
+        return $qb->getQuery()->execute();
     }
 }

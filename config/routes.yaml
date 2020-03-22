@@ -1,6 +1,11 @@
 index:
     path: /
-    controller: App\Controller\DefaultController::index
+    controller: 'App\Controller\DefaultController::index'
+
 chests:
-    path: /truhen
-    contoller: App\Controller\ChestController::index
+    path: items/truhen
+    controller: 'App\Controller\ChestsController::index'
+
+harmonyitems:
+    path: items/harmoniegeschenke
+    controller: 'App\Controller\HarmonyItemsController::index'
