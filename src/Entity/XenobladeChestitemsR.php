@@ -38,11 +38,12 @@ class XenobladeChestitemsR
     private $sockettype;
 
     /**
-     * @var int
+     * @var XenobladeChests
      *
-     * @ORM\Column(name="chestid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeChests", inversedBy="itemRelationShips")
+     * @ORM\JoinColumn(name="chestid", referencedColumnName="chestid")
      */
-    private $chestid;
+    private $chest;
 
     /**
      * @var \DateTime
@@ -80,14 +81,14 @@ class XenobladeChestitemsR
         return $this;
     }
 
-    public function getChestid(): ?int
+    public function getChest(): ?XenobladeChests
     {
-        return $this->chestid;
+        return $this->chest;
     }
 
-    public function setChestid(int $chestid): self
+    public function setChest(XenobladeChests $chest): self
     {
-        $this->chestid = $chestid;
+        $this->chest = $chest;
 
         return $this;
     }

@@ -2,9 +2,9 @@
 
 {% block headline %}Truhen{% endblock %}
 {% block content %}
-    {% for data in viewData %}
-        {% if not data is empty %}
-            <h2>{{ data[0].map.name }}</h2>
+    {% for chapter, chestPoints in viewData %}
+        {% if not chestPoints is empty %}
+            <h2>{{ chapter }}</h2>
             <style type="text/css">
                 ul { float:left; margin:10px 10px 20px -5px; padding:0; }
             </style>
@@ -23,26 +23,28 @@
                         Items:
                     </td>
                 </tr>
-                {% for chestData in data %}
-                    {% if not chestData.chest is empty  %}
+                {% for chestPoint in chestPoints %}
+                    {% if not chestPoint.chest is empty  %}
                     <tr class="{{ loop.index is odd ? "odd" : "even" }}">
                         <td>
-                            <a name="{{ chestData.chest.chestid }}"></a>
-                            {{ chestData.chest.name }}
+                            <a name="{{ chestPoint.chest.chestid }}"></a>
+                            {{ chestPoint.chest.name }}
                         </td>
                         <td>
-                            {{ chestData.chest.description|raw }}
+                            {{ chestPoint.chest.description|raw }}
                         </td>
                         <td>
                             {% include '_map.html.twig' with {
-                                'map': chestData.map,
-                                'mapPoint': chestData.mapPoint,
-                                'name': chestData.chest.name,
+                                'map': chestPoint.map,
+                                'mapPoint': chestPoint,
+                                'name': chestPoint.chest.name,
                                 'color': 'yellow'
                             } %}
                         </td>
                         <td class="borderLeft">
-                            {% include '_items.html.twig' with { 'items': chestData.items } %}
+                            {{ render(controller('App\\Controller\\ItemsController::itemLootList',
+                            { 'chestItemRelations': chestPoint.chest.itemRelationShips }
+                            ))}}
                         </td>
                     </tr>
                     {% endif %}

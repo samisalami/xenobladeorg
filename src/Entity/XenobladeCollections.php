@@ -22,46 +22,46 @@ class XenobladeCollections
     private $colid;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="field1", type="string", length=255, nullable=false)
+     * @var XenobladeCollectionfieldtypes
+     * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
+     * @ORM\JoinColumn(name="field1", referencedColumnName="colftid")
      */
-    private $field1;
+    private $field1CollectionType;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="field2", type="string", length=255, nullable=false)
+     * @var XenobladeCollectionfieldtypes
+     * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
+     * @ORM\JoinColumn(name="field2", referencedColumnName="colftid")
      */
-    private $field2;
+    private $field2CollectionType;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="field3", type="string", length=255, nullable=false)
+     * @var XenobladeCollectionfieldtypes
+     * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
+     * @ORM\JoinColumn(name="field3", referencedColumnName="colftid")
      */
-    private $field3;
+    private $field3CollectionType;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="field4", type="string", length=255, nullable=false)
+     * @var XenobladeCollectionfieldtypes
+     * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
+     * @ORM\JoinColumn(name="field4", referencedColumnName="colftid")
      */
-    private $field4;
+    private $field4CollectionType;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="field5", type="string", length=255, nullable=false)
+     * @var XenobladeCollectionfieldtypes
+     * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
+     * @ORM\JoinColumn(name="field5", referencedColumnName="colftid")
      */
-    private $field5;
+    private $field5CollectionType;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="field6", type="string", length=255, nullable=false)
+     * @var XenobladeCollectionfieldtypes
+     * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
+     * @ORM\JoinColumn(name="field6", referencedColumnName="colftid")
      */
-    private $field6;
+    private $field6CollectionType;
 
     /**
      * @var XenobladeChapters|null
@@ -72,18 +72,20 @@ class XenobladeCollections
     private $chapter;
 
     /**
-     * @var int
+     * @var XenobladeItems|null
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $rewardItem;
 
     /**
-     * @var int|null
+     * @var XenobladeSockettype|null
      *
-     * @ORM\Column(name="stid", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="XenobladeSockettype")
+     * @ORM\JoinColumn(name="stid", referencedColumnName="stid")
      */
-    private $stid;
+    private $rewardSockettype;
 
     /**
      * @var int
@@ -104,74 +106,74 @@ class XenobladeCollections
         return $this->colid;
     }
 
-    public function getField1(): ?string
+    public function getField1CollectionType(): ?XenobladeCollectionfieldtypes
     {
-        return $this->field1;
+        return $this->field1CollectionType;
     }
 
-    public function setField1(string $field1): self
+    public function setField1CollectionType(XenobladeCollectionfieldtypes $field1CollectionType): self
     {
-        $this->field1 = $field1;
+        $this->field1CollectionType = $field1CollectionType;
 
         return $this;
     }
 
-    public function getField2(): ?string
+    public function getField2CollectionType(): ?XenobladeCollectionfieldtypes
     {
-        return $this->field2;
+        return $this->field2CollectionType;
     }
 
-    public function setField2(string $field2): self
+    public function setField2CollectionType(XenobladeCollectionfieldtypes $field2CollectionType): self
     {
-        $this->field2 = $field2;
+        $this->field2CollectionType = $field2CollectionType;
 
         return $this;
     }
 
-    public function getField3(): ?string
+    public function getField3CollectionType(): ?XenobladeCollectionfieldtypes
     {
-        return $this->field3;
+        return $this->field3CollectionType;
     }
 
-    public function setField3(string $field3): self
+    public function setField3CollectionType(XenobladeCollectionfieldtypes $field3CollectionType): self
     {
-        $this->field3 = $field3;
+        $this->field3CollectionType = $field3CollectionType;
 
         return $this;
     }
 
-    public function getField4(): ?string
+    public function getField4CollectionType(): ?XenobladeCollectionfieldtypes
     {
-        return $this->field4;
+        return $this->field4CollectionType;
     }
 
-    public function setField4(string $field4): self
+    public function setField4CollectionType(XenobladeCollectionfieldtypes $field4CollectionType): self
     {
-        $this->field4 = $field4;
+        $this->field4CollectionType = $field4CollectionType;
 
         return $this;
     }
 
-    public function getField5(): ?string
+    public function getField5CollectionType(): ?XenobladeCollectionfieldtypes
     {
-        return $this->field5;
+        return $this->field5CollectionType;
     }
 
-    public function setField5(string $field5): self
+    public function setField5CollectionType(XenobladeCollectionfieldtypes $field5CollectionType): self
     {
-        $this->field5 = $field5;
+        $this->field5CollectionType = $field5CollectionType;
 
         return $this;
     }
 
-    public function getField6(): ?string
+    public function getField6CollectionType(): ?XenobladeCollectionfieldtypes
     {
-        return $this->field6;
+        return $this->field6CollectionType;
     }
 
-    public function setField6(string $field6): self
+    public function setField6CollectionType(XenobladeCollectionfieldtypes $field6CollectionType): self
     {
-        $this->field6 = $field6;
+        $this->field6CollectionType = $field6CollectionType;
 
         return $this;
     }
@@ -188,26 +190,26 @@ class XenobladeCollections
         return $this;
     }
 
-    public function getIid(): ?int
+    public function getRewardItem(): ?XenobladeItems
     {
-        return $this->iid;
+        return $this->rewardItem;
     }
 
-    public function setIid(int $iid): self
+    public function setRewardItem(XenobladeItems $rewardItem): self
     {
-        $this->iid = $iid;
+        $this->rewardItem = $rewardItem;
 
         return $this;
     }
 
-    public function getStid(): ?int
+    public function getRewardSockettype(): ?XenobladeSockettype
     {
-        return $this->stid;
+        return $this->rewardSockettype;
     }
 
-    public function setStid(?int $stid): self
+    public function setRewardSockettype(?XenobladeSockettype $rewardSockettype): self
     {
-        $this->stid = $stid;
+        $this->rewardSockettype = $rewardSockettype;
 
         return $this;
     }

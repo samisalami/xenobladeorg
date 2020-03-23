@@ -9,22 +9,24 @@
     Zudem gibt es auch noch das Kollektikon, in dem die Sammelitems in der entsprechenden Ansicht des Spiels aufgelistet und verlinkt sind: <a href="http://www.xenoblade.org/item-box/kollektion/">Kollektikon &raquo;</a><br/>
     <br/>
     <br/>
+    {% for item in items %}
     <div class="xc_ItemWrapper">
         <div class="xc_ItemContent">
             <div class="xc_ItemContentLeft">
                 <div class="xc_ItemField">
-                    <img style="vertical-align: middle;" width="20" src="/icons/" />
+                    <img style="vertical-align: middle;" width="20" src="{{ asset('images/icons/' ~ item.collectionFieldType.icon) }}" />
                 </div>
                 <div class="xc_ItemField">
-                    <a name="iid"></a>name
+                    <a name="iid{{ item.iid }}"></a>{{ item.name }}
+                    <i>{{ item.collection.chapter.name }}</i>
                 </div>
             </div>
             <div class="xc_ItemContentCenter">
-                description
+                {{ item.description }}
             </div>
             <div class="xc_ItemContentRight">
                 <div class="xc_ItemField">
-                    wert G
+                    {{ item.wert }} G
                 </div>
                 <div class="xc_ItemArrow">
                     <img src="/images/arrow_down.png" />
@@ -100,4 +102,5 @@
             </div>
         </div>
     </div>
+    {% endfor %}
 {% endblock %}

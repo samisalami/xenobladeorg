@@ -78,13 +78,6 @@ class XenobladeSkills
     private $img;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="monster", type="boolean", nullable=false)
-     */
-    private $monster = '0';
-
-    /**
      * @var int
      *
      * @ORM\Column(name="prio", type="integer", nullable=false)

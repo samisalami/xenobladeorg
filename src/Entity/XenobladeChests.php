@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * XenobladeChests
@@ -48,6 +50,16 @@ class XenobladeChests
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var XenobladeItems[]
+     * @OneToMany(targetEntity="XenobladeChestitemsR", mappedBy="chest")
+     */
+    private $itemRelationShips;
+
+    public function __construct() {
+        $this->itemRelationShips = new ArrayCollection();
+    }
 
     public function getChestid(): ?int
     {
@@ -102,5 +114,13 @@ class XenobladeChests
         return $this;
     }
 
+    public function getItemRelationShips(): array {
+        return $this->itemRelationShips->toArray();
+    }
 
+    public function getItems(): array {
+        return array_map(function(XenobladeChestitemsR $relation) {
+            return $relation->getItem();
+        }, $this->itemRelationShips->toArray());
+    }
 }

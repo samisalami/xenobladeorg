@@ -5,12 +5,28 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * XenobladeMappoints
+ * XenobladeMapPoints
  *
  * @ORM\Table(name="xenoblade_mappoints")
- * @ORM\Entity(repositoryClass="App\Repository\MapPointsRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({
+ *     "mappoint" = "XenobladeMapPoints",
+ *     "chestid" = "XenobladeChestMapPoints",
+ *     "gp" = "XenobladeSecretLocationMapPoints",
+ *     "evid" = "XenobladeEtherVeinMapPoints",
+ *     "info" = "XenobladeInfoMapPoints",
+ *     "merid" = "XenobladeMerchantMapPoints",
+ *     "mid" = "XenobladeMissionMapPoints",
+ *     "moid" = "XenobladeMonsterMapPoints",
+ *     "pid" = "XenobladePersonMapPoints",
+ *     "rp" = "XenobladeRegionMapPoints",
+ *     "sfid" = "XenobladeStoryFightMapPoints",
+ *     "storynoteid" = "XenobladeStoryNoteMapPoints",
+ * })
+ * @ORM\Entity
  */
-class XenobladeMappoints
+class XenobladeMapPoints
 {
     /**
      * @var int
@@ -22,11 +38,11 @@ class XenobladeMappoints
     private $mpid;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="maid", type="integer", nullable=false)
+     * @var XenobladeMaps|null
+     * @ORM\ManyToOne(targetEntity="XenobladeMaps")
+     * @ORM\JoinColumn(name="maid", referencedColumnName="maid")
      */
-    private $maid;
+    private $map;
 
     /**
      * @var int
@@ -41,20 +57,6 @@ class XenobladeMappoints
      * @ORM\Column(name="ypos", type="integer", nullable=false)
      */
     private $ypos;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255, nullable=false)
-     */
-    private $type;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="typeid", type="integer", nullable=false)
-     */
-    private $typeid;
 
     /**
      * @var \DateTime
@@ -89,14 +91,14 @@ class XenobladeMappoints
         return $this->mpid;
     }
 
-    public function getMaid(): ?int
+    public function getMap(): ?XenobladeMaps
     {
-        return $this->maid;
+        return $this->map;
     }
 
-    public function setMaid(int $maid): self
+    public function setMap(XenobladeMaps $map): self
     {
-        $this->maid = $maid;
+        $this->map = $map;
 
         return $this;
     }
@@ -121,30 +123,6 @@ class XenobladeMappoints
     public function setYpos(int $ypos): self
     {
         $this->ypos = $ypos;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getTypeid(): ?int
-    {
-        return $this->typeid;
-    }
-
-    public function setTypeid(int $typeid): self
-    {
-        $this->typeid = $typeid;
 
         return $this;
     }

@@ -11,18 +11,18 @@ use Doctrine\ORM\Mapping as ORM;
 class XenobladeCollectionItems extends XenobladeItems
 {
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="colid", type="integer", nullable=true)
+     * @var XenobladeCollections
+     * @ORM\ManyToOne(targetEntity="XenobladeCollections")
+     * @ORM\JoinColumn(name="colid", referencedColumnName="colid")
      */
-    private $colid;
+    private $collection;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="collectiontype", type="string", length=255, nullable=true)
+     * @var XenobladeCollectionfieldtypes
+     * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
+     * @ORM\JoinColumn(name="colftid", referencedColumnName="colftid")
      */
-    private $collectiontype;
+    private $collectionFieldType;
 
     /**
      * @var bool|null
@@ -80,26 +80,26 @@ class XenobladeCollectionItems extends XenobladeItems
      */
     private $harmonyperson7;
 
-    public function getColid(): ?int
+    public function getCollection(): ?XenobladeCollections
     {
-        return $this->colid;
+        return $this->collection;
     }
 
-    public function setColid(?int $colid): self
+    public function setCollection(?XenobladeCollections $collection): self
     {
-        $this->colid = $colid;
+        $this->collection = $collection;
 
         return $this;
     }
 
-    public function getCollectiontype(): ?string
+    public function getCollectionFieldType(): ?XenobladeCollectionfieldtypes
     {
-        return $this->collectiontype;
+        return $this->collectionFieldType;
     }
 
-    public function setCollectiontype(?string $collectiontype): self
+    public function setCollectionFieldType(?XenobladeCollectionfieldtypes $collectionFieldType): self
     {
-        $this->collectiontype = $collectiontype;
+        $this->collectionFieldType = $collectionFieldType;
 
         return $this;
     }

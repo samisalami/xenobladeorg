@@ -64,9 +64,9 @@ class XenobladeMissions
     private $cid = '1';
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="nextmission", type="integer", nullable=false)
+     * @var XenobladeMissions|null
+     * @ORM\ManyToOne(targetEntity="XenobladeMissions")
+     * @ORM\JoinColumn(name="nextmission", referencedColumnName="mid")
      */
     private $nextmission;
 
@@ -75,7 +75,7 @@ class XenobladeMissions
      *
      * @ORM\Column(name="startmission", type="boolean", nullable=false)
      */
-    private $startmission = '0';
+    private $isStartMission = false;
 
     /**
      * @var string
@@ -245,26 +245,26 @@ class XenobladeMissions
         return $this;
     }
 
-    public function getNextmission(): ?int
+    public function getNextmission(): ?XenobladeMissions
     {
         return $this->nextmission;
     }
 
-    public function setNextmission(int $nextmission): self
+    public function setNextmission(XenobladeMissions $nextmission): self
     {
         $this->nextmission = $nextmission;
 
         return $this;
     }
 
-    public function getStartmission(): ?bool
+    public function getIsStartMission(): ?bool
     {
-        return $this->startmission;
+        return $this->isStartMission;
     }
 
-    public function setStartmission(bool $startmission): self
+    public function setIsStartMission(bool $isStartMission): self
     {
-        $this->startmission = $startmission;
+        $this->isStartMission = $isStartMission;
 
         return $this;
     }

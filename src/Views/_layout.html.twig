@@ -8,7 +8,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/xenobladeorg.js') }}"></script>
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset('css/reset.css') }}" />
-    <link rel="stylesheet" type="text/css" media="all" href="/css/style.css?bale=2" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/style.css?bale=3" />
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset('css/jquery-ui-1.10.3.custom.min.css') }}" />
     <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
     {% block head %}{% endblock %}
@@ -30,10 +30,10 @@
                     <a href="#">Items</a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="/items/harmoniegeschenke">Harmonie Geschenke</a>
+                            <a href="{{ path('harmonyitems') }}">Harmonie Geschenke</a>
                         </li>
                         <li>
-                            <a href="/items/truhen">Truhen</a>
+                            <a href="{{ path('chests') }}">Truhen</a>
                         </li>
                     </ul>
                 </li>
@@ -84,15 +84,17 @@
             </div>
             <div id="container">
                 <div id="content" role="main">
-                    <h1 class="entry-title">{% block headline %}{% endblock %}</h1>
-                    <div class="pagecontent">
-                        <div class="sharebuttons">
-                            <div class="fb-like">
-                                <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FXenobladeOrg&amp;send=false&amp;layout=button_count&amp;width=101&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; float:right; width:101px;" allowTransparency="true"></iframe>
-                            </div>
-                            <a href="https://twitter.com/XenobladeOrg" class="twitter-follow-button" data-show-count="false" data-lang="de">@XenobladeOrg folgen</a><br /><br />
-                            <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+                    <div>
+                    <div class="sharebuttons">
+                        <div class="fb-like">
+                            <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FXenobladeOrg&amp;send=false&amp;layout=button_count&amp;width=101&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; float:right; width:101px;" allowTransparency="true"></iframe>
                         </div>
+                        <a href="https://twitter.com/XenobladeOrg" class="twitter-follow-button" data-show-count="false" data-lang="de">@XenobladeOrg folgen</a><br /><br />
+                        <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+                    </div>
+                    <h1 class="entry-title">{% block headline %}{% endblock %}</h1>
+                    </div>
+                    <div class="pagecontent clear">
                         {% block content %}
                         {% endblock %}
                     </div>
