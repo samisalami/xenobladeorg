@@ -1,6 +1,9 @@
 {% extends '_layout.html.twig' %}
 
 {% block headline %}Truhen{% endblock %}
+{% block submenu %}
+    {% include 'items/_submenu.html.twig' %}
+{% endblock %}
 {% block content %}
     {% for chapter, chestPoints in viewData %}
         {% if not chestPoints is empty %}

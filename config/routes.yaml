@@ -8,6 +8,6 @@ chests:
 
 collectionitems:
     path: items/sammelitems/{character}
-    controller: 'App\Controller\HarmonyItemsController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         character: null

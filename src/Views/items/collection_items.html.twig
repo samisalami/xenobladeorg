@@ -1,6 +1,9 @@
 {% extends '_layout.html.twig' %}
 
 {% block headline %}Harmonie Geschenke{% endblock %}
+{% block submenu %}
+    {% include 'items/_submenu.html.twig' %}
+{% endblock %}
 {% block content %}
     <div class="Sammelitems">
         Hier sind alle Sammelitems samt Tauschpartner aufgeführt, in den Tabellen ist die Harmoniesteigerung bei den Charakteren angegeben, wenn man diese als Geschenke nutzt.<br/>

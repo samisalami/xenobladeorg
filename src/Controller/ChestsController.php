@@ -49,7 +49,7 @@ class ChestsController extends AbstractController
             return $mapPointsByChapter;
         }, $chestData);
 
-        return $this->render('chests.html.twig', [
+        return $this->render('items/chests.html.twig', [
             'viewData' => $viewData
         ]);
     }

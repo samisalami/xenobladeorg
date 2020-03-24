@@ -27,7 +27,7 @@ class CollectionItemsController extends AbstractController
             });
         }
 
-        return $this->render('collection_items.html.twig', [
+        return $this->render('items/collection_items.html.twig', [
             'items' => $items,
             'characters' => $characters,
             'character' => $character
