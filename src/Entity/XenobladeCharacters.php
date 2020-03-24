@@ -43,6 +43,13 @@ class XenobladeCharacters
     private $prio;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isStory", type="boolean", nullable=false)
+     */
+    private $isStory;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
@@ -102,5 +109,8 @@ class XenobladeCharacters
         return $this;
     }
 
-
+    public function isStory(): bool
+    {
+        return $this->isStory;
+    }
 }

@@ -6,6 +6,8 @@ chests:
     path: items/truhen
     controller: 'App\Controller\ChestsController::index'
 
-harmonyitems:
-    path: items/harmoniegeschenke
+collectionitems:
+    path: items/sammelitems/{character}
     controller: 'App\Controller\HarmonyItemsController::index'
+    defaults:
+        character: null

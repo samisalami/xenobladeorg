@@ -276,6 +276,8 @@ a:hover { text-decoration:underline; }
 .Sammelitems .xc_ItemContent .xc_ItemContentRight { width:auto; }
 
 .Sammelitems .xc_ItemContentHidden .coloured-table td { text-align:center; }
+.Sammelitems .xc_ItemContentHidden .coloured-table .hearts4, .hearts3 { background-color: #ecfad8 }
+.Sammelitems .xc_ItemContentHidden .coloured-table .hearts0 { background-color: #fae1d8 }
 
 
 /* *********************************************************

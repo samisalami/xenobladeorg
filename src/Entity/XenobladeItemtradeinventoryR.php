@@ -22,18 +22,18 @@ class XenobladeItemtradeinventoryR
     private $itiid;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="tiid", type="integer", nullable=false)
+     * @var XenobladeTradeinventory | null
+     * @ORM\ManyToOne(targetEntity="XenobladeTradeinventory")
+     * @ORM\JoinColumn(name="tiid", referencedColumnName="tiid")
      */
-    private $tiid;
+    private $tradeInventory;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @var XenobladeItems | null
+     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $item;
 
     /**
      * @var int
@@ -61,26 +61,26 @@ class XenobladeItemtradeinventoryR
         return $this->itiid;
     }
 
-    public function getTiid(): ?int
+    public function getTradeInventory(): ?XenobladeTradeinventory
     {
-        return $this->tiid;
+        return $this->tradeInventory;
     }
 
-    public function setTiid(int $tiid): self
+    public function setTradeInventory(XenobladeTradeinventory $tradeInventory): self
     {
-        $this->tiid = $tiid;
+        $this->tradeInventory = $tradeInventory;
 
         return $this;
     }
 
-    public function getIid(): ?int
+    public function getItem(): ?XenobladeItems
     {
-        return $this->iid;
+        return $this->item;
     }
 
-    public function setIid(int $iid): self
+    public function setItem(XenobladeItems $item): self
     {
-        $this->iid = $iid;
+        $this->item = $item;
 
         return $this;
     }

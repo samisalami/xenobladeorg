@@ -1,0 +1,88 @@
+{% extends '_layout.html.twig' %}
+
+{% block headline %}Harmonie Geschenke{% endblock %}
+{% block content %}
+    <div class="Sammelitems">
+        Hier sind alle Sammelitems samt Tauschpartner aufgeführt, in den Tabellen ist die Harmoniesteigerung bei den Charakteren angegeben, wenn man diese als Geschenke nutzt.<br/>
+        Zu diesem Vorgang gibt es auch einen Guide: <a href="http://www.xenoblade.org/guides/anleitung-sammelitems-verschenken/">Harmoniesteigerung durch Geschenke &raquo;</a><br/>
+        Zudem gibt es auch noch das Kollektikon, in dem die Sammelitems in der entsprechenden Ansicht des Spiels aufgelistet und verlinkt sind: <a href="http://www.xenoblade.org/item-box/kollektion/">Kollektikon &raquo;</a><br/>
+        <br/>
+        <strong>Filter:</strong><br/>
+        <i>Zeigt Items an, die dem Character mind. 2 Herzen geben</i>
+        <ul>
+            {% for character in characters %}
+                <li>
+                    <a href="{{ path('collectionitems', {'character': character.charid}) }}">{{ character.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if not character is empty %}
+            <h2>{{ character.name }}</h2>
+        {% endif %}
+        {% set chapterName = '' %}
+        {% for item in items %}
+            {% if not chapterName is same as(item.collection.chapter.name) and character is empty %}
+                {% set chapterName = item.collection.chapter.name %}
+                <a name="colid{{ item.collection.colid }}"></a><h2>{{ chapterName }}</h2>
+        {% endif %}
+        <div class="xc_ItemWrapper">
+            <div class="xc_ItemContent">
+                <div class="xc_ItemContentLeft">
+                    <div class="xc_ItemField">
+                        <img style="vertical-align: middle;" width="20" src="{{ asset('images/icons/' ~ item.collectionFieldType.icon) }}" />
+                    </div>
+                    <div class="xc_ItemField">
+                        <a name="iid{{ item.iid }}"></a>{{ item.name }}
+                        {% if not character is empty %}
+                            <i>{{ item.collection.chapter.name }}</i>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="xc_ItemContentCenter">
+                    {{ item.description }}
+                </div>
+                <div class="xc_ItemContentRight">
+                    <div class="xc_ItemField">
+                        {{ item.wert }} G
+                    </div>
+                    <div class="xc_ItemArrow">
+                        <img src="{{ asset("/images/arrow_down.png") }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="xc_ItemContentHidden">
+                <div style="display:inline-block; vertical-align: top;">
+                    <strong>Tausch:</strong>
+                    {% for relation in item.tradeRelations %}
+                        <br/><a href="#p{{ relation.tradeInventory.person.pid }}">{{ relation.tradeInventory.person.name }} ({{ relation.reqharmony }}*, {{ relation.tradeInventory.person.chapter.name }})</a>
+                    {% endfor %}
+                </div>
+                <div style="display:inline-block;vertical-align: top; margin-left: 20px;">
+                    <strong>Harmonie Geschenke:</strong>
+                    <table class="coloured-table harmony-table">
+                        <thead>
+                            <tr>
+                                {% for character in characters %}
+                                    <td style="text-align: center;">
+                                        <img height="40" src="{{ asset('images/personicons/' ~ character.img) }}" />
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for character in characters %}
+                                    <td class="hearts{{  attribute(item.harmonies, character.name)|hearts }}" style="text-align: center;">
+                                        <span>{{ attribute(item.harmonies, character.name) }}</span><br/>
+                                        <img src="{{ asset('/images/hearts_'~ attribute(item.harmonies, character.name)|hearts ~'.png') }}" /><br/>
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

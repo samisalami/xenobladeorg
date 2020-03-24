@@ -52,7 +52,7 @@ class XenobladeChests
     private $date = 'CURRENT_TIMESTAMP';
 
     /**
-     * @var XenobladeItems[]
+     * @var XenobladeChestitemsR[]
      * @OneToMany(targetEntity="XenobladeChestitemsR", mappedBy="chest")
      */
     private $itemRelationShips;

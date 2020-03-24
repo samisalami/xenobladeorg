@@ -29,11 +29,11 @@ class XenobladeTradeinventory
     private $description;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="pid", type="integer", nullable=false)
+     * @var XenobladePersons | null
+     * @ORM\ManyToOne(targetEntity="XenobladePersons")
+     * @ORM\JoinColumn(name="pid", referencedColumnName="pid")
      */
-    private $pid;
+    private $person;
 
     /**
      * @var \DateTime
@@ -59,14 +59,14 @@ class XenobladeTradeinventory
         return $this;
     }
 
-    public function getPid(): ?int
+    public function getPerson(): ?XenobladePersons
     {
-        return $this->pid;
+        return $this->person;
     }
 
-    public function setPid(int $pid): self
+    public function setPerson(XenobladePersons $person): self
     {
-        $this->pid = $pid;
+        $this->person = $person;
 
         return $this;
     }
