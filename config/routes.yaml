@@ -2,6 +2,10 @@ index:
     path: /
     controller: 'App\Controller\DefaultController::index'
 
+missions:
+    path: /missionen
+    controller: 'App\Controller\MissionsController::index'
+
 chests:
     path: items/truhen
     controller: 'App\Controller\ChestsController::index'

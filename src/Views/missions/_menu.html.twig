@@ -1,0 +1,7 @@
+<ul class="sub-menu">
+{% for chapter in chapters %}
+    <li>
+        <a href="{{ path('missions', {chapter: chapter.id}) }}">{{ chapter.name }}</a>
+    </li>
+{% endfor %}
+</ul>

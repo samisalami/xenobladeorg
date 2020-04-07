@@ -1,0 +1,232 @@
+{% extends '_layout.html.twig' %}
+
+{% block headline %}Missionen{% endblock %}
+{% block submenu %}
+{% endblock %}
+{% block content %}
+    <a href="http://www.xenoblade.org/extra-talente/">Missionen f&uuml;r freischaltbare Talente &raquo;</a><br/>
+    <br />
+    <br />
+    <table class="guide-table" align="center">
+        <tr class="tablehead">
+            <td>
+                Name:
+            </td>
+            <td>
+                Ort:
+            </td>
+            <td>
+                L&ouml;sung:
+            </td>
+            <td>
+                Person:
+            </td>
+            <td>
+                Verf&auml;llt nach:
+            </td>
+            <td>
+                Belohnung:
+            </td>
+            <td style="text-align:center">
+                Harmonie:
+            </td>
+        </tr>
+
+        // GET CHAPTER
+        if ($row['location'] != '')
+        {
+        $location = ', '.$row['location'];
+        }
+        else
+        {
+        $location = '';
+        }
+        $ChapterData = $xcdb->query("SELECT name FROM xenoblade_chapters WHERE cid = ".$row['cid']."");
+        $ChapterRow = $xcdb->fetch_array($ChapterData);
+
+        // GET EXTRA SKILLS
+        $subsubresult = $xcdb->query("SELECT * FROM xenoblade_extraskills WHERE mid = '".$row['mid']."'");
+        if($xcdb->num_rows($subsubresult) > 0)
+        {
+        $subsubrow = $xcdb->fetch_array($subsubresult);
+        $skillname = $subsubrow['name'];
+        if ($subsubrow['skill4']) $skillcount = '4';
+        else $skillcount = '5';
+        $subsubresult = $xcdb->query("SELECT name FROM xenoblade_characters WHERE charid = '".$subsubrow['charid']."'");
+        $subsubrow = $xcdb->fetch_array($subsubresult);
+        $charname = $subsubrow['name'];
+        $missionarray[$counter]['extraskill'] = '- <i>Diese Mission schaltet '.$charname.'s '.$skillcount.'. Charakterzug "'.$skillname.'" frei</i><br/><br/>';
+        }
+        else
+        {
+        $missionarray[$counter]['extraskill'] = '';
+        }
+
+
+        // WRITE ARRAY
+        $missionarray[$counter]['mid'] = $row['mid'];
+        $missionarray[$counter]['nextmid'] = $row['nextmission'];
+        $missionarray[$counter]['startmission'] = $row['startmission'];
+        $missionarray[$counter]['name'] = $row['name'].'<a name="m'.$row['mid'].'"></a>';
+        $missionarray[$counter]['location'] = $ChapterRow['name'].$location;
+        $missionarray[$counter]['solution'] = $row['solution'];
+        if($PersonRow['spoiler']) $url = 'http://www.xenoblade.org/personen/personen-nach-mechonis-kern/';
+        else $url = 'http://www.xenoblade.org/personen/';
+        $missionarray[$counter]['person'] = '<a href="'.$url.'#p'.$PersonRow['pid'].'">'.$PersonRow['name'].'</a>';
+        if($row['timelimit']) $missionarray[$counter]['timelimit'] = $row['timelimit'];
+        else $missionarray[$counter]['timelimit'] = '-';
+        $missionarray[$counter]['ep'] = $row['ep'];
+        $missionarray[$counter]['money'] = $row['money'];
+        $missionarray[$counter]['harmonychange'] = $row['harmonychange'];
+
+        $subresult = $xcdb->query("SELECT iid, eqstid FROM xenoblade_itemmission_r WHERE mid = '".$row['mid']."'");
+        while ($subrow = $xcdb->fetch_array($subresult))
+        {
+        if($subrow['eqstid'])
+        {
+        for ($i=0;$i<count($items);$i++)
+        {
+        if ($items[$i]['eqstid'] == $subrow['eqstid'])
+        {
+        if($items[$i]['icid'] != 8)
+        {
+        $missionarray[$counter]['bonus'] .= '<li><a href="http://www.xenoblade.org/ausrustung/#iid'.$items[$i]['iid'].'">'.$items[$i]['name'].'</a></li>';
+        }
+        else
+        {
+        $missionarray[$counter]['bonus'] .= '<li><a href="http://www.xenoblade.org/waffen/#iid'.$items[$i]['iid'].'">'.$items[$i]['name'].'</a></li>';
+        }
+        }
+        }
+        }
+        else
+        {
+        for ($i=0;$i<count($items);$i++)
+        {
+        if ($items[$i]['iid'] == $subrow['iid'])
+        {
+        if($items[$i]['icid'] == 10)
+        {
+        $subsubresult = $xcdb->query("SELECT jvid FROM xenoblade_items WHERE iid = '".$items[$i]['iid']."'");
+        $subsubrow = $xcdb->fetch_array($subsubresult);
+        $jvid = $subsubrow['jvid'];
+        $missionarray[$counter]['bonus'] .= '<li><a href="http://www.xenoblade.org/juwelen/#jv'.$jvid.'">'.$items[$i]['name'].'</a></li>';
+        }
+        else
+        {
+        $missionarray[$counter]['bonus'] .= '<li>'.$items[$i]['name'].'</li>';
+        }
+        }
+        }
+        }
+
+        }
+        $counter++;
+        }
+
+        switch($showCid)
+        {
+        case 1:
+        $firstmission = 2;
+        break;
+        case 2:
+        $firstmission = 59;
+        break;
+        case 3:
+        $firstmission = 115;
+        break;
+        case 4:
+        $firstmission = 67;
+        break;
+        case 11:
+        $firstmission = 113;
+        break;
+        case 12:
+        $firstmission = 233;
+        break;
+        case 13:
+        $firstmission = 149;
+        break;
+        case 14:
+        $firstmission = 174;
+        break;
+        case 15:
+        $firstmission = 310;
+        break;
+        case 17:
+        $firstmission = 254;
+        break;
+        case 18:
+        $firstmission = 309;
+        break;
+        case 19:
+        $firstmission = 320;
+        break;
+        case 20:
+        $firstmission = 342;
+        break;
+        case 22:
+        $firstmission = 369;
+        break;
+        case 101:
+        $firstmission = 425;
+        break;
+        case 102:
+        $firstmission = 433;
+        break;
+        case 104:
+        $firstmission = 481;
+        break;
+        default:
+        $firstmission = 2;
+        break;
+        }
+
+        $indexarray = array();
+
+        // FIRST MISSION
+        for ($i = 0; $i < count($missionarray); $i++)
+        {
+        if ($missionarray[$i]['mid'] == $firstmission)
+        {
+        $indexarray[0] = $i;
+        $nextmid = $missionarray[$i]['nextmid'];
+        }
+        }
+
+
+        // ALL MISSIONS
+        for ($i = 1; $i < count($missionarray); $i++)
+        {
+        for ($x = 0; $x < count($missionarray); $x++)
+        {
+        if ($missionarray[$x]['mid'] == $nextmid)
+        {
+        $indexarray[$i] = $x;
+        $nextmid = $missionarray[$x]['nextmid'];
+        break;
+        }
+        }
+        }
+
+        <tr class="'.$even.'">
+            <td>'.$missionarray[$indexarray[$i]]['name'].'</td>
+            <td>'.$missionarray[$indexarray[$i]]['location'].'</td>
+            <td>'.$missionarray[$indexarray[$i]]['extraskill'].$missionarray[$indexarray[$i]]['solution'].'</td>';
+            <td>'.$missionarray[$indexarray[$i]]['person'].'</td>';
+            <td><center>'.$missionarray[$indexarray[$i]]['timelimit'].'</center></td>';
+            <td><ul>';
+                    if(!$missionarray[$indexarray[$i]]['ep'] && !$missionarray[$indexarray[$i]]['money'] && !$missionarray[$indexarray[$i]]['bonus'])
+                    {
+                    echo '<li>0 EP</li><li>0 G</li><li>---</li>';
+                    }
+                    if ($missionarray[$indexarray[$i]]['ep']) echo '<li>'.$missionarray[$indexarray[$i]]['ep'].' EP</li>';
+                    if ($missionarray[$indexarray[$i]]['money']) echo '<li>'.$missionarray[$indexarray[$i]]['money'].' G</li>';
+                    echo $missionarray[$indexarray[$i]]['bonus'];
+                    echo '</ul></td>';
+            if($missionarray[$indexarray[$i]]['harmonychange']) $harmonychange = $missionarray[$indexarray[$i]]['harmonychange'].' *';
+            else $harmonychange = '?';
+            <td style="text-align:center">'.$harmonychange.'</td>
+        </tr>
+    </table>
+{% endblock %}

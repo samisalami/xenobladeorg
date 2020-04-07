@@ -36,11 +36,12 @@ class XenobladeMissions
     private $solution;
 
     /**
-     * @var int
+     * @var XenobladePersons
      *
-     * @ORM\Column(name="pid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladePersons")
+     * @ORM\JoinColumn(name="pid", referencedColumnName="pid")
      */
-    private $pid;
+    private $person;
 
     /**
      * @var string
@@ -57,11 +58,12 @@ class XenobladeMissions
     private $location;
 
     /**
-     * @var int
+     * @var XenobladeChapters
      *
-     * @ORM\Column(name="cid", type="integer", nullable=false, options={"default"="1"})
+     * @ORM\ManyToOne(targetEntity="XenobladeChapters")
+     * @ORM\JoinColumn(name="cid", referencedColumnName="cid")
      */
-    private $cid = '1';
+    private $chapter;
 
     /**
      * @var XenobladeMissions|null
@@ -115,16 +117,16 @@ class XenobladeMissions
     /**
      * @var bool
      *
-     * @ORM\Column(name="skill4", type="boolean", nullable=false)
+     * @ORM\Column(name="skill4", type="boolean")
      */
-    private $skill4 = '0';
+    private $skill4;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="skill5", type="boolean", nullable=false)
+     * @ORM\Column(name="skill5", type="boolean")
      */
-    private $skill5 = '0';
+    private $skill5;
 
     /**
      * @var int
@@ -197,14 +199,14 @@ class XenobladeMissions
         return $this;
     }
 
-    public function getPid(): ?int
+    public function getPerson(): ?XenobladePersons
     {
-        return $this->pid;
+        return $this->person;
     }
 
-    public function setPid(int $pid): self
+    public function setPerson(XenobladePersons $person): self
     {
-        $this->pid = $pid;
+        $this->person = $person;
 
         return $this;
     }
@@ -233,14 +235,14 @@ class XenobladeMissions
         return $this;
     }
 
-    public function getCid(): ?int
+    public function getChapter(): ?XenobladeChapters
     {
-        return $this->cid;
+        return $this->chapter;
     }
 
-    public function setCid(int $cid): self
+    public function setChapter(XenobladeChapters $chapter): self
     {
-        $this->cid = $cid;
+        $this->chapter = $chapter;
 
         return $this;
     }
