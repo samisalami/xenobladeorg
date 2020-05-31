@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * XenobladeMissions
@@ -80,11 +82,11 @@ class XenobladeMissions
     private $isStartMission = false;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="ep", type="string", length=255, nullable=false)
+     * @ORM\Column(name="ep", type="integer", nullable=false)
      */
-    private $ep;
+    private $ep = 0;
 
     /**
      * @var string
@@ -96,9 +98,9 @@ class XenobladeMissions
     /**
      * @var string
      *
-     * @ORM\Column(name="money", type="string", length=255, nullable=false)
+     * @ORM\Column(name="money", type="integer", nullable=false)
      */
-    private $money;
+    private $money = 0;
 
     /**
      * @var string
@@ -164,11 +166,29 @@ class XenobladeMissions
     private $story = '0';
 
     /**
+     * @var XenobladeExtraskills[]
+     * @OneToMany(targetEntity="XenobladeExtraskills", mappedBy="mission")
+     */
+    private $extraSkills;
+
+    /**
+     * @var XenobladeItemMissionR[]
+     * @OneToMany(targetEntity="XenobladeItemMissionR", mappedBy="mission")
+     */
+    private $itemRelations;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date = 'CURRENT_TIMESTAMP';
+
+    public function __construct()
+    {
+        $this->extraSkills = new ArrayCollection();
+        $this->itemRelations = new ArrayCollection();
+    }
 
     public function getMid(): ?int
     {
@@ -271,12 +291,12 @@ class XenobladeMissions
         return $this;
     }
 
-    public function getEp(): ?string
+    public function getEp(): ?int
     {
         return $this->ep;
     }
 
-    public function setEp(string $ep): self
+    public function setEp(int $ep): self
     {
         $this->ep = $ep;
 
@@ -295,12 +315,12 @@ class XenobladeMissions
         return $this;
     }
 
-    public function getMoney(): ?string
+    public function getMoney(): ?int
     {
         return $this->money;
     }
 
-    public function setMoney(string $money): self
+    public function setMoney(int $money): self
     {
         $this->money = $money;
 
@@ -427,5 +447,13 @@ class XenobladeMissions
         return $this;
     }
 
+    public function getExtraSkills(): array
+    {
+        return $this->extraSkills->toArray();
+    }
 
+    public function getItemRelations(): array
+    {
+        return $this->itemRelations->toArray();
+    }
 }

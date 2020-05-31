@@ -36,11 +36,12 @@ class XenobladeExtraskills
     private $name;
 
     /**
-     * @var int
+     * @var XenobladeMissions
      *
-     * @ORM\Column(name="mid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeMissions")
+     * @ORM\JoinColumn(name="mid", referencedColumnName="mid")
      */
-    private $mid;
+    private $mission;
 
     /**
      * @var int
@@ -99,14 +100,14 @@ class XenobladeExtraskills
         return $this;
     }
 
-    public function getMid(): ?int
+    public function getMission(): ?XenobladeMissions
     {
-        return $this->mid;
+        return $this->mission;
     }
 
-    public function setMid(int $mid): self
+    public function setMission(XenobladeMissions $mission): self
     {
-        $this->mid = $mid;
+        $this->mission = $mission;
 
         return $this;
     }

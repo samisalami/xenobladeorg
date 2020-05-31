@@ -6,6 +6,9 @@
 {% block content %}
     <a href="http://www.xenoblade.org/extra-talente/">Missionen f&uuml;r freischaltbare Talente &raquo;</a><br/>
     <br />
+    {% if not chapter is empty %}
+        <h2>{{ chapter.name }}</h2>
+    {% endif %}
     <br />
     <table class="guide-table" align="center">
         <tr class="tablehead">
@@ -31,7 +34,7 @@
                 Harmonie:
             </td>
         </tr>
-
+        {#
         // GET CHAPTER
         if ($row['location'] != '')
         {
@@ -115,118 +118,30 @@
         else
         {
         $missionarray[$counter]['bonus'] .= '<li>'.$items[$i]['name'].'</li>';
-        }
-        }
-        }
-        }
 
-        }
-        $counter++;
-        }
-
-        switch($showCid)
-        {
-        case 1:
-        $firstmission = 2;
-        break;
-        case 2:
-        $firstmission = 59;
-        break;
-        case 3:
-        $firstmission = 115;
-        break;
-        case 4:
-        $firstmission = 67;
-        break;
-        case 11:
-        $firstmission = 113;
-        break;
-        case 12:
-        $firstmission = 233;
-        break;
-        case 13:
-        $firstmission = 149;
-        break;
-        case 14:
-        $firstmission = 174;
-        break;
-        case 15:
-        $firstmission = 310;
-        break;
-        case 17:
-        $firstmission = 254;
-        break;
-        case 18:
-        $firstmission = 309;
-        break;
-        case 19:
-        $firstmission = 320;
-        break;
-        case 20:
-        $firstmission = 342;
-        break;
-        case 22:
-        $firstmission = 369;
-        break;
-        case 101:
-        $firstmission = 425;
-        break;
-        case 102:
-        $firstmission = 433;
-        break;
-        case 104:
-        $firstmission = 481;
-        break;
-        default:
-        $firstmission = 2;
-        break;
-        }
-
-        $indexarray = array();
-
-        // FIRST MISSION
-        for ($i = 0; $i < count($missionarray); $i++)
-        {
-        if ($missionarray[$i]['mid'] == $firstmission)
-        {
-        $indexarray[0] = $i;
-        $nextmid = $missionarray[$i]['nextmid'];
-        }
-        }
-
-
-        // ALL MISSIONS
-        for ($i = 1; $i < count($missionarray); $i++)
-        {
-        for ($x = 0; $x < count($missionarray); $x++)
-        {
-        if ($missionarray[$x]['mid'] == $nextmid)
-        {
-        $indexarray[$i] = $x;
-        $nextmid = $missionarray[$x]['nextmid'];
-        break;
-        }
-        }
-        }
-
-        <tr class="'.$even.'">
-            <td>'.$missionarray[$indexarray[$i]]['name'].'</td>
-            <td>'.$missionarray[$indexarray[$i]]['location'].'</td>
-            <td>'.$missionarray[$indexarray[$i]]['extraskill'].$missionarray[$indexarray[$i]]['solution'].'</td>';
-            <td>'.$missionarray[$indexarray[$i]]['person'].'</td>';
-            <td><center>'.$missionarray[$indexarray[$i]]['timelimit'].'</center></td>';
-            <td><ul>';
-                    if(!$missionarray[$indexarray[$i]]['ep'] && !$missionarray[$indexarray[$i]]['money'] && !$missionarray[$indexarray[$i]]['bonus'])
-                    {
-                    echo '<li>0 EP</li><li>0 G</li><li>---</li>';
-                    }
-                    if ($missionarray[$indexarray[$i]]['ep']) echo '<li>'.$missionarray[$indexarray[$i]]['ep'].' EP</li>';
-                    if ($missionarray[$indexarray[$i]]['money']) echo '<li>'.$missionarray[$indexarray[$i]]['money'].' G</li>';
-                    echo $missionarray[$indexarray[$i]]['bonus'];
-                    echo '</ul></td>';
-            if($missionarray[$indexarray[$i]]['harmonychange']) $harmonychange = $missionarray[$indexarray[$i]]['harmonychange'].' *';
-            else $harmonychange = '?';
-            <td style="text-align:center">'.$harmonychange.'</td>
+        $firstmission = 2;#}
+        {% for mission in missions %}
+        <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+            <td>{{ mission.name }}</td>
+            <td>{{ mission.chapter.name }}</td>
+            <td><i>Diese Mission schaltet '.$charname.'s '.$skillcount.'. Charakterzug "'.$skillname.'" frei</i>{{ mission.solution|raw }}</td>
+            <td><a href="/personen/#p{{ mission.person.pid }}">{{ mission.person.name }}</a></td>
+            <td><center>{{ mission.timelimit }}</center></td>
+            <td>
+                <ul>
+                    <li>
+                        {{ mission.ep }}
+                    </li>
+                    <li>
+                        {{ mission.money }}
+                    </li>
+                    <li>
+                        items
+                    </li>
+                </ul>
+            </td>
+            <td style="text-align:center">{{ mission.harmonychange }} {% if not mission.harmonychange is empty %}*{% endif %}</td>
         </tr>
+        {% endfor %}
     </table>
 {% endblock %}
