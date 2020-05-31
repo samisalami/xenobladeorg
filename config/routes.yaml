@@ -17,3 +17,7 @@ collectionitems:
     controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         character: null
+
+storyfights:
+    path: guides/handlungskampfe
+    controller: 'App\Controller\StoryFightsController::index'
