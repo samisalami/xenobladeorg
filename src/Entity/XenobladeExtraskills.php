@@ -38,7 +38,7 @@ class XenobladeExtraskills
     /**
      * @var XenobladeMissions
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeMissions")
+     * @ORM\ManyToOne(targetEntity="XenobladeMissions", inversedBy="extraSkills")
      * @ORM\JoinColumn(name="mid", referencedColumnName="mid")
      */
     private $mission;

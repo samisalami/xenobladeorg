@@ -1,9 +1,7 @@
 <?php
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * Class XenobladeCollectionItems
@@ -25,12 +23,6 @@ class XenobladeCollectionItems extends XenobladeItems
      * @ORM\JoinColumn(name="colftid", referencedColumnName="colftid")
      */
     private $collectionFieldType;
-
-    /**
-     * @var XenobladeItemtradeinventoryR[]
-     * @OneToMany(targetEntity="XenobladeItemtradeinventoryR", mappedBy="item")
-     */
-    private $tradeRelations;
 
     /**
      * @var bool|null
@@ -87,10 +79,6 @@ class XenobladeCollectionItems extends XenobladeItems
      * @ORM\Column(name="harmonyperson7", type="string", length=11, nullable=false)
      */
     private $harmonyperson7;
-
-    public function __construct() {
-        $this->tradeRelations = new ArrayCollection();
-    }
 
     public function getCollection(): ?XenobladeCollections
     {
@@ -210,11 +198,6 @@ class XenobladeCollectionItems extends XenobladeItems
         $this->harmonyperson7 = $harmonyperson7;
 
         return $this;
-    }
-
-    public function getTradeRelations(): array
-    {
-        return $this->tradeRelations->toArray();
     }
 
     public function getHarmonies(): array {

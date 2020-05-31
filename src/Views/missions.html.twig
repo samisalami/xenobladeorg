@@ -126,7 +126,7 @@
             <td>{{ mission.chapter.name }}</td>
             <td><i>Diese Mission schaltet '.$charname.'s '.$skillcount.'. Charakterzug "'.$skillname.'" frei</i>{{ mission.solution|raw }}</td>
             <td><a href="/personen/#p{{ mission.person.pid }}">{{ mission.person.name }}</a></td>
-            <td><center>{{ mission.timelimit }}</center></td>
+            <td><center>{{ mission.timelimit|raw }}{% if mission.timelimit is empty %}-{% endif %}</center></td>
             <td>
                 <ul>
                     <li>
@@ -139,6 +139,9 @@
                         items
                     </li>
                 </ul>
+                {{ render(controller('App\\Controller\\ItemsController::missionLootList',
+                    { 'missionItemRelations': mission.itemRelations }
+                ))}}
             </td>
             <td style="text-align:center">{{ mission.harmonychange }} {% if not mission.harmonychange is empty %}*{% endif %}</td>
         </tr>

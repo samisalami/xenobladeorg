@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * XenobladeItems
@@ -36,6 +38,12 @@ class XenobladeItems
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $iid;
+
+    /**
+     * @var XenobladeItemtradeinventoryR[]
+     * @OneToMany(targetEntity="XenobladeItemtradeinventoryR", mappedBy="item")
+     */
+    private $tradeRelations;
 
     /**
      * @var XenobladeItemcategories
@@ -156,6 +164,10 @@ class XenobladeItems
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date = 'CURRENT_TIMESTAMP';
+
+    public function __construct() {
+        $this->tradeRelations = new ArrayCollection();
+    }
 
     public function getIid(): ?int
     {
@@ -364,6 +376,11 @@ class XenobladeItems
         $this->date = $date;
 
         return $this;
+    }
+
+    public function getTradeRelations(): array
+    {
+        return $this->tradeRelations->toArray();
     }
 }
 

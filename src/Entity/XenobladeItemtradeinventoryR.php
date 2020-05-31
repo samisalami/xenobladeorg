@@ -30,7 +30,7 @@ class XenobladeItemtradeinventoryR
 
     /**
      * @var XenobladeItems | null
-     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\ManyToOne(targetEntity="XenobladeItems", inversedBy="tradeRelations")
      * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
     private $item;

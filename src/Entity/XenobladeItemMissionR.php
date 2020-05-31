@@ -24,7 +24,7 @@ class XenobladeItemMissionR
     /**
      * @var XenobladeMissions
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeMissions")
+     * @ORM\ManyToOne(targetEntity="XenobladeMissions", inversedBy="itemRelations")
      * @ORM\JoinColumn(name="mid", referencedColumnName="mid")
      */
     private $mission;

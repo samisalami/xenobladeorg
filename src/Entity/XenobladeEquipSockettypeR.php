@@ -22,11 +22,12 @@ class XenobladeEquipSockettypeR
     private $eqstid;
 
     /**
-     * @var int
+     * @var XenobladeItems
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $item;
 
     /**
      * @var int
@@ -47,14 +48,14 @@ class XenobladeEquipSockettypeR
         return $this->eqstid;
     }
 
-    public function getIid(): ?int
+    public function getItem(): ?XenobladeItems
     {
-        return $this->iid;
+        return $this->item;
     }
 
-    public function setIid(int $iid): self
+    public function setItem(XenobladeItems $item): self
     {
-        $this->iid = $iid;
+        $this->item = $item;
 
         return $this;
     }
