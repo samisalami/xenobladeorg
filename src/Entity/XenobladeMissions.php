@@ -184,6 +184,13 @@ class XenobladeMissions
      */
     private $date = 'CURRENT_TIMESTAMP';
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="order", type="integer", nullable=false)
+     */
+    private $order = 0;
+
     public function __construct()
     {
         $this->extraSkills = new ArrayCollection();

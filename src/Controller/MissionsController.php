@@ -15,10 +15,16 @@ class MissionsController extends AbstractController
     public function index(?XenobladeChapters $chapter)
     {
         if ($chapter) {
-            $missions = $this->getDoctrine()->getRepository(XenobladeMissions::class)->findBy(['chapter' => $chapter]);
+            $missions = $this->getDoctrine()->getRepository(XenobladeMissions::class)->findBy(
+                ['chapter' => $chapter],
+                ['order' => 'ASC']
+            );
         } else {
-            $missions = $this->getDoctrine()->getRepository(XenobladeMissions::class)->findAll();
+            $missions = $this->getDoctrine()->getRepository(XenobladeMissions::class)->findBy([], [
+                'order' => 'ASC'
+            ]);
         }
+
         return $this->render('missions.html.twig', [
             'chapter' => $chapter,
             'missions' => $missions
