@@ -34,97 +34,17 @@
                 Harmonie:
             </td>
         </tr>
-        {#
-        // GET CHAPTER
-        if ($row['location'] != '')
-        {
-        $location = ', '.$row['location'];
-        }
-        else
-        {
-        $location = '';
-        }
-        $ChapterData = $xcdb->query("SELECT name FROM xenoblade_chapters WHERE cid = ".$row['cid']."");
-        $ChapterRow = $xcdb->fetch_array($ChapterData);
-
-        // GET EXTRA SKILLS
-        $subsubresult = $xcdb->query("SELECT * FROM xenoblade_extraskills WHERE mid = '".$row['mid']."'");
-        if($xcdb->num_rows($subsubresult) > 0)
-        {
-        $subsubrow = $xcdb->fetch_array($subsubresult);
-        $skillname = $subsubrow['name'];
-        if ($subsubrow['skill4']) $skillcount = '4';
-        else $skillcount = '5';
-        $subsubresult = $xcdb->query("SELECT name FROM xenoblade_characters WHERE charid = '".$subsubrow['charid']."'");
-        $subsubrow = $xcdb->fetch_array($subsubresult);
-        $charname = $subsubrow['name'];
-        $missionarray[$counter]['extraskill'] = '- <i>Diese Mission schaltet '.$charname.'s '.$skillcount.'. Charakterzug "'.$skillname.'" frei</i><br/><br/>';
-        }
-        else
-        {
-        $missionarray[$counter]['extraskill'] = '';
-        }
-
-
-        // WRITE ARRAY
-        $missionarray[$counter]['mid'] = $row['mid'];
-        $missionarray[$counter]['nextmid'] = $row['nextmission'];
-        $missionarray[$counter]['startmission'] = $row['startmission'];
-        $missionarray[$counter]['name'] = $row['name'].'<a name="m'.$row['mid'].'"></a>';
-        $missionarray[$counter]['location'] = $ChapterRow['name'].$location;
-        $missionarray[$counter]['solution'] = $row['solution'];
-        if($PersonRow['spoiler']) $url = 'http://www.xenoblade.org/personen/personen-nach-mechonis-kern/';
-        else $url = 'http://www.xenoblade.org/personen/';
-        $missionarray[$counter]['person'] = '<a href="'.$url.'#p'.$PersonRow['pid'].'">'.$PersonRow['name'].'</a>';
-        if($row['timelimit']) $missionarray[$counter]['timelimit'] = $row['timelimit'];
-        else $missionarray[$counter]['timelimit'] = '-';
-        $missionarray[$counter]['ep'] = $row['ep'];
-        $missionarray[$counter]['money'] = $row['money'];
-        $missionarray[$counter]['harmonychange'] = $row['harmonychange'];
-
-        $subresult = $xcdb->query("SELECT iid, eqstid FROM xenoblade_itemmission_r WHERE mid = '".$row['mid']."'");
-        while ($subrow = $xcdb->fetch_array($subresult))
-        {
-        if($subrow['eqstid'])
-        {
-        for ($i=0;$i<count($items);$i++)
-        {
-        if ($items[$i]['eqstid'] == $subrow['eqstid'])
-        {
-        if($items[$i]['icid'] != 8)
-        {
-        $missionarray[$counter]['bonus'] .= '<li><a href="http://www.xenoblade.org/ausrustung/#iid'.$items[$i]['iid'].'">'.$items[$i]['name'].'</a></li>';
-        }
-        else
-        {
-        $missionarray[$counter]['bonus'] .= '<li><a href="http://www.xenoblade.org/waffen/#iid'.$items[$i]['iid'].'">'.$items[$i]['name'].'</a></li>';
-        }
-        }
-        }
-        }
-        else
-        {
-        for ($i=0;$i<count($items);$i++)
-        {
-        if ($items[$i]['iid'] == $subrow['iid'])
-        {
-        if($items[$i]['icid'] == 10)
-        {
-        $subsubresult = $xcdb->query("SELECT jvid FROM xenoblade_items WHERE iid = '".$items[$i]['iid']."'");
-        $subsubrow = $xcdb->fetch_array($subsubresult);
-        $jvid = $subsubrow['jvid'];
-        $missionarray[$counter]['bonus'] .= '<li><a href="http://www.xenoblade.org/juwelen/#jv'.$jvid.'">'.$items[$i]['name'].'</a></li>';
-        }
-        else
-        {
-        $missionarray[$counter]['bonus'] .= '<li>'.$items[$i]['name'].'</li>';
-
-        $firstmission = 2;#}
         {% for mission in missions %}
         <tr class="{{ loop.index is odd ? "odd" : "even" }}">
             <td>{{ mission.name }}</td>
             <td>{{ mission.chapter.name }}</td>
-            <td><i>Diese Mission schaltet '.$charname.'s '.$skillcount.'. Charakterzug "'.$skillname.'" frei</i>{{ mission.solution|raw }}</td>
+            <td>
+                {% if not mission.extraSkills is empty %}
+                    {% for skill in mission.extraSkills %}
+                        <i>Diese Mission schaltet {{ skill.character.name }} {% if skill.skill4 %}4{% else %}5{% endif %}. Charakterzug {{ skill.name }} frei</i><br/>
+                    {% endfor %}
+                {% endif %}
+                {{ mission.solution|raw }}</td>
             <td><a href="/personen/#p{{ mission.person.pid }}">{{ mission.person.name }}</a></td>
             <td><center>{{ mission.timelimit|raw }}{% if mission.timelimit is empty %}-{% endif %}</center></td>
             <td>
