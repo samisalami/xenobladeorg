@@ -117,18 +117,6 @@ class XenobladeStoryfight
         return $this;
     }
 
-    public function getCid(): ?int
-    {
-        return $this->cid;
-    }
-
-    public function setCid(int $cid): self
-    {
-        $this->cid = $cid;
-
-        return $this;
-    }
-
     public function getChapter(): ?XenobladeChapters
     {
         return $this->chapter;
