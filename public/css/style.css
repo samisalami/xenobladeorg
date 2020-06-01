@@ -22,7 +22,7 @@ strong  { font-weight: bold; }
 em      { font-style: italic; }
 del     { text-decoration: line-through; }
 
-h1.entry-title { font-size:30px; font-weight:normal; margin:0 0 0 25px; color:#333333; line-height: normal; float: left; }
+h1.entry-title { font-size:30px; font-weight:normal; margin:0 0 0 75px; color:#333333; line-height: normal; float: left; }
 h2 { font-size:18px; font-weight:normal; margin:15px 0; color:#333333; }
 
 a { color:#333333; text-decoration:none; }
@@ -109,7 +109,7 @@ a:hover { text-decoration:underline; }
 .entry-head .entry-author { float:right; }
 .entry-date { font-size:11px; font-style:italic; margin:-3px 0 10px 0; }
 
-.pagecontent { padding:25px; margin:25px 120px 25px 1px; }
+.pagecontent { padding:25px; margin:25px 100px 25px 50px; }
 
 .comment-link {float:right;}
 
