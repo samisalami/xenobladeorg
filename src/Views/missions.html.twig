@@ -4,6 +4,9 @@
     Missionen{% if not chapter is empty %} - {{ chapter.name }}{% endif %}
 {% endblock %}
 {% block submenu %}
+    <ul class="submenu-rv">
+        {{ render(controller('App\\Controller\\MissionsController::menu'))}}
+    </ul>
 {% endblock %}
 {% block content %}
     <a href="http://www.xenoblade.org/extra-talente/">Missionen f&uuml;r freischaltbare Talente &raquo;</a><br/>
@@ -14,9 +17,11 @@
             <td>
                 Name:
             </td>
-            <td>
-                Ort:
-            </td>
+            {% if chapter is empty %}
+                <td>
+                    Ort:
+                </td>
+            {% endif %}
             <td>
                 L&ouml;sung:
             </td>
@@ -36,7 +41,9 @@
         {% for mission in missions %}
         <tr class="{{ loop.index is odd ? "odd" : "even" }}">
             <td>{{ mission.name }}</td>
-            <td>{{ mission.chapter.name }}</td>
+            {% if chapter is empty %}
+                <td>{{ mission.chapter.name }}</td>
+            {% endif %}
             <td>
                 {% if not mission.extraSkills is empty %}
                     {% for skill in mission.extraSkills %}

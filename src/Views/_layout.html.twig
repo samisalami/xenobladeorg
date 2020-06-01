@@ -28,7 +28,9 @@
                 </li>
                 <li>
                     <a href="{{ path('missions') }}">Missionen</a>
-                    {{ render(controller('App\\Controller\\MissionsController::menu'))}}
+                    <ul class="sub-menu">
+                        {{ render(controller('App\\Controller\\MissionsController::menu'))}}
+                    </ul>
                 </li>
                 <li>
                     <a href="#">Items</a>

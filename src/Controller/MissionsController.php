@@ -31,10 +31,6 @@ class MissionsController extends AbstractController
         ]);
     }
 
-    public function subMenu() {
-        return $this->render('missions/_submenu.html.twig');
-    }
-
     public function menu() {
         $chapters = $this->getDoctrine()->getRepository(XenobladeChapters::class)->findBy(
             ['missionChapter' => true],
