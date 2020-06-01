@@ -22,18 +22,20 @@ class XenobladeSkillmonsterR
     private $sidmoid;
 
     /**
-     * @var int
+     * @var XenobladeSkills
      *
-     * @ORM\Column(name="sid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeSkills")
+     * @ORM\JoinColumn(name="sid", referencedColumnName="sid", nullable=false)
      */
-    private $sid;
+    private $skill;
 
     /**
-     * @var int
+     * @var XenobladeMonsters
      *
-     * @ORM\Column(name="moid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeMonsters")
+     * @ORM\JoinColumn(name="moid", referencedColumnName="moid", nullable=false)
      */
-    private $moid;
+    private $monster;
 
     /**
      * @var \DateTime
@@ -47,26 +49,26 @@ class XenobladeSkillmonsterR
         return $this->sidmoid;
     }
 
-    public function getSid(): ?int
+    public function getSkill(): ?XenobladeSkills
     {
-        return $this->sid;
+        return $this->skill;
     }
 
-    public function setSid(int $sid): self
+    public function setSkill(XenobladeSkills $skill): self
     {
-        $this->sid = $sid;
+        $this->sid = $skill;
 
         return $this;
     }
 
-    public function getMoid(): ?int
+    public function getMonster(): ?XenobladeMonsters
     {
-        return $this->moid;
+        return $this->monster;
     }
 
-    public function setMoid(int $moid): self
+    public function setMonster(XenobladeMonsters $monster): self
     {
-        $this->moid = $moid;
+        $this->monster = $monster;
 
         return $this;
     }

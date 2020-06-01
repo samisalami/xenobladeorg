@@ -1,0 +1,142 @@
+{% extends '_layout.html.twig' %}
+
+{% block headline %}Handlungskämpfe{% endblock %}
+{% block submenu %}
+    {% include 'guides/_submenu.html.twig' %}
+{% endblock %}
+{% block content %}
+    <div class="Handlungskmpfe">
+        {% set chapterName = '' %}
+
+        {% for fight in fights %}
+
+            {% if not chapterName is same as(fight.chapter.name) %}
+                {% set chapterName = fight.chapter.name %}
+                <h2> {{ fight.chapter.name }} </h2>
+            {% endif %}
+
+            <div class="xc_ItemWrapper">
+                <div class="xc_ItemContent">
+                    <div class="xc_ItemContentLeft">
+                        <div class="xc_ItemField">
+
+                            {% for fightPoint in fightPoints %}
+                                {% if fightPoint.storyFight is same as(fight)  %}
+                                    {% include '_map.html.twig' with {
+                                     'map': fightPoint.map,
+                                     'mapPoint': fightPoint,
+                                     'name': fight.name,
+                                     'color': 'yellow'
+                                    } %}
+                                {% endif %}
+                            {% endfor %}
+
+
+                        {# BETTER WOULD BE TO HAVE fightPoint as an index in storyFight
+                           But it must be checked, if Storyfight and Storypoints are really OneToOne
+                         #}
+
+
+                        </div>
+                        <div class="xc_ItemField">
+                        <span><strong><a name=""></a>{{ fight.name }}</strong></span>
+                        </div>
+                    </div>
+                    <div class="xc_ItemContentRight">
+                        <div class="xc_ItemArrow">
+                            <img src="{{ asset('images/arrow_down.png') }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="xc_ItemContentHidden">
+                    {% for monster_link in monster_links %}
+                        {% if monster_link.storyFight is same as(fight)  %}
+                            {% set monster = monster_link.monster %}
+                            <div class="xc_ItemContentBox">
+                                <table class="coloured-table">
+                                    <thead>
+                                        <tr>
+                                            <td align="center">
+                                                <p style="font-size:7px; line-height:7px; float: left; font-weight: bold;">L<br/>V
+                                                </p>
+                                                <span style="font-size:16px; font-weight: bold;">{{ monster.levelFrom }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {{ monster.name }}<br/>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align: center" colspan="2">
+                                                {% include 'monsters/_monster_image.html.twig' with {
+                                                    'monster': monster
+                                                } %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                KP:
+                                            </td>
+                                            <td>
+                                                {{ monster.kp }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                EP:
+                                            </td>
+                                            <td>
+                                                {{ monster.ep }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                TeP:
+                                            </td>
+                                            <td>
+                                                {{ monster.tep }}
+                                            </td>
+                                        </tr>
+                                        {# We could presort the skill_monster_links to contain only links to story fight monsters #}
+                                        {% for skill_monster_link in skill_monster_links %}
+                                            {% if skill_monster_link.monster is same as(monster)  %}
+                                                {% set skill = skill_monster_link.skill %}
+                                                <tr>
+                                                    <td colspan="2">
+                                                    {% include '_skill_link.html.twig' with {
+                                                    'skill': skill_monster_link.skill
+                                                    } %}
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="clear"></div>
+                    <br/>
+                    <br/>
+
+                    <div style="max-width:800px;">
+                        {{ fight.description | raw }}
+                    </div>
+
+                    {% if not fight.video is empty %}
+                        <br/>
+                        <br/>
+                        {{ fight.video | raw }}
+                        <br/>
+                        <i>Dieses Video wird von uns als Hilfe empfohlen und wurde nicht von uns erstellt.</i>
+                    {% endif %}
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

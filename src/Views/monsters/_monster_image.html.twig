@@ -1,0 +1,5 @@
+{% if not monster.img is empty %}
+    <img style="max-width:150px; max-height: 150px;" src="{{ asset('/images/icons/' ~ monster.img) }}" alt="{{ monster.name }}" />
+{% else %}
+    <img width="150" src="{{ asset('/images/monster_noimage.jpg') }}" alt="Kein Bild verfügbar" />
+{% endif %}

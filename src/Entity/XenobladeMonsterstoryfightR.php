@@ -22,18 +22,20 @@ class XenobladeMonsterstoryfightR
     private $mosfid;
 
     /**
-     * @var int
+     * @var XenobladeMonsters
      *
-     * @ORM\Column(name="moid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeMonsters")
+     * @ORM\JoinColumn(name="moid", referencedColumnName="moid", nullable=false)
      */
-    private $moid;
+    private $monster;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="sfid", type="integer", nullable=false)
+     * @var XenobladeStoryfight
+    *
+     * @ORM\ManyToOne(targetEntity="XenobladeStoryfight")
+     * @ORM\JoinColumn(name="sfid", referencedColumnName="sfid", nullable=false)
      */
-    private $sfid;
+    private $storyFight;
 
     /**
      * @var int
@@ -54,26 +56,26 @@ class XenobladeMonsterstoryfightR
         return $this->mosfid;
     }
 
-    public function getMoid(): ?int
+    public function getMonster(): ?XenobladeMonsters
     {
-        return $this->moid;
+        return $this->monster;
     }
 
-    public function setMoid(int $moid): self
+    public function setMonster(XenobladeMonsters $monster): self
     {
-        $this->moid = $moid;
+        $this->monster = $monster;
 
         return $this;
     }
 
-    public function getSfid(): ?int
+    public function getStoryFight(): ?XenobladeStoryfight
     {
-        return $this->sfid;
+        return $this->storyFight;
     }
 
-    public function setSfid(int $sfid): self
+    public function setStoryFight(XenobladeStoryfight $storyFight): self
     {
-        $this->sfid = $sfid;
+        $this->storyFight = $storyFight;
 
         return $this;
     }

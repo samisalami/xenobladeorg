@@ -24,7 +24,7 @@ class XenobladeChapters
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false, unique=true)
      */
     private $name;
 

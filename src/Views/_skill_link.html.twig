@@ -1,0 +1,7 @@
+{% if skill.description is not empty %}
+    <a href="#" class="xc_tooltip" title="{{ skill.description | replace({'"':"'"}) }}">
+{% endif %}
+    {{ skill.name }} <i>({{ skill.type | replace({'AE':'Ä'}) }})</i>
+{% if skill.description is not empty %}
+</a>
+{% endif %}
