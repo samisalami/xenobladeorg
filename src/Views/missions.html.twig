@@ -1,14 +1,13 @@
 {% extends '_layout.html.twig' %}
 
-{% block headline %}Missionen{% endblock %}
+{% block headline %}
+    Missionen{% if not chapter is empty %} - {{ chapter.name }}{% endif %}
+{% endblock %}
 {% block submenu %}
 {% endblock %}
 {% block content %}
     <a href="http://www.xenoblade.org/extra-talente/">Missionen f&uuml;r freischaltbare Talente &raquo;</a><br/>
     <br />
-    {% if not chapter is empty %}
-        <h2>{{ chapter.name }}</h2>
-    {% endif %}
     <br />
     <table class="guide-table" align="center">
         <tr class="tablehead">
@@ -50,13 +49,10 @@
             <td>
                 <ul>
                     <li>
-                        {{ mission.ep }}
+                        {{ mission.ep }} EP
                     </li>
                     <li>
-                        {{ mission.money }}
-                    </li>
-                    <li>
-                        items
+                        {{ mission.money }} G
                     </li>
                 </ul>
                 {{ render(controller('App\\Controller\\ItemsController::missionLootList',

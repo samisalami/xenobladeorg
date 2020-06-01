@@ -30,11 +30,12 @@ class XenobladeEquipSockettypeR
     private $item;
 
     /**
-     * @var int
+     * @var XenobladeSockettype | null
      *
-     * @ORM\Column(name="stid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeSockettype")
+     * @ORM\JoinColumn(name="stid", referencedColumnName="stid")
      */
-    private $stid;
+    private $sockettype;
 
     /**
      * @var \DateTime
@@ -60,14 +61,14 @@ class XenobladeEquipSockettypeR
         return $this;
     }
 
-    public function getStid(): ?int
+    public function getSockettype(): ?XenobladeSockettype
     {
-        return $this->stid;
+        return $this->sockettype;
     }
 
-    public function setStid(int $stid): self
+    public function setSockettype(XenobladeSockettype $sockettype): self
     {
-        $this->stid = $stid;
+        $this->sockettype = $sockettype;
 
         return $this;
     }

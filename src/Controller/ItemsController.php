@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Entity\XenobladeChestitemsR;
+use App\Entity\XenobladeEquipSockettypeR;
 use App\Entity\XenobladeItemMissionR;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -24,7 +25,7 @@ class ItemsController extends AbstractController
             array_push($items[$relation->getItem()->getItemcategory()->getName()], $relation);
         }
 
-        return $this->render('items/_items_chest.html.twig', [
+        return $this->render('items/_loot_list.html.twig', [
             'items' => $items
         ]);
     }
@@ -35,18 +36,21 @@ class ItemsController extends AbstractController
         $items = [];
 
         foreach ($missionItemRelations as $relation) {
-            $item = $relation->getItem();
-            if (!$item) {
-                $item = $relation->getEquipSockettypeR()->getItem();
+            if (!$relation->getItem()) {
+                $itemData = $relation->getEquipSockettypeR();
+            } else {
+                // work around messed up db schema
+                $itemData = new XenobladeEquipSockettypeR();
+                $itemData->setItem($relation->getItem());
             }
-            if (!array_key_exists($item->getItemcategory()->getName(), $items)) {
-                $items[$item->getItemcategory()->getName()] = [];
+            if (!array_key_exists($itemData->getItem()->getItemcategory()->getName(), $items)) {
+                $items[$itemData->getItem()->getItemcategory()->getName()] = [];
             }
 
-            array_push($items[$item->getItemcategory()->getName()], $relation);
+            array_push($items[$itemData->getItem()->getItemcategory()->getName()], $itemData);
         }
 
-        return $this->render('items/_items_mission.html.twig', [
+        return $this->render('items/_loot_list.html.twig', [
             'items' => $items
         ]);
     }
