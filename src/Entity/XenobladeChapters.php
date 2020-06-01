@@ -54,7 +54,7 @@ class XenobladeChapters
      *
      * @ORM\Column(name="personchapter", type="boolean", nullable=false)
      */
-    private $personchapter = '0';
+    private $personChapter = false;
 
     /**
      * @var int
@@ -71,11 +71,11 @@ class XenobladeChapters
     private $hasmap = '1';
 
     /**
-     * @var int
+     * @var bool
      *
-     * @ORM\Column(name="missionchapter", type="integer", nullable=false, options={"default"="1"})
+     * @ORM\Column(name="missionchapter", type="boolean", nullable=false)
      */
-    private $missionchapter = '1';
+    private $missionChapter = true;
 
     /**
      * @var string
@@ -144,14 +144,14 @@ class XenobladeChapters
         return $this;
     }
 
-    public function getPersonchapter(): ?bool
+    public function getPersonChapter(): ?bool
     {
-        return $this->personchapter;
+        return $this->personChapter;
     }
 
-    public function setPersonchapter(bool $personchapter): self
+    public function setPersonChapter(bool $personChapter): self
     {
-        $this->personchapter = $personchapter;
+        $this->personChapter = $personChapter;
 
         return $this;
     }
@@ -180,14 +180,14 @@ class XenobladeChapters
         return $this;
     }
 
-    public function getMissionchapter(): ?int
+    public function getMissionChapter(): ?bool
     {
-        return $this->missionchapter;
+        return $this->missionChapter;
     }
 
-    public function setMissionchapter(int $missionchapter): self
+    public function setMissionChapter(bool $missionChapter): self
     {
-        $this->missionchapter = $missionchapter;
+        $this->missionChapter = $missionChapter;
 
         return $this;
     }

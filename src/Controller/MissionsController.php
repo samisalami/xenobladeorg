@@ -36,7 +36,10 @@ class MissionsController extends AbstractController
     }
 
     public function menu() {
-        $chapters = $this->getDoctrine()->getRepository(XenobladeChapters::class)->findAll();
+        $chapters = $this->getDoctrine()->getRepository(XenobladeChapters::class)->findBy(
+            ['missionChapter' => true],
+            ['prio' => 'asc']
+        );
         return $this->render('missions/_menu.html.twig', [
             'chapters' => $chapters
         ]);
