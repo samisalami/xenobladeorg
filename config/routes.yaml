@@ -26,6 +26,10 @@ collectionitems:
     defaults:
         character: null
 
+colony6:
+    path: guides/kolonie-6-ausbau/
+    controller: 'App\Controller\Colony6Controller::index'
+
 storyfights:
     path: guides/handlungskampfe
     controller: 'App\Controller\StoryFightsController::index'

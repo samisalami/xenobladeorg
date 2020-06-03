@@ -1,0 +1,40 @@
+{% extends '_layout.html.twig' %}
+
+{% block headline %}Kolonie 6 ausbauen{% endblock %}
+{% block submenu %}
+    {% include 'guides/_submenu.html.twig' %}
+{% endblock %}
+{% block content %}
+
+    <div class="pagecontent Kolonie">
+        Hier findet ihr die Ausbaustufen mit den zu beschaffenden Items und die Personen, die nach Kolonie 6 eingeladen werden können.
+        <br/>
+        <br/>
+        <strong>[Spoiler]</strong> verlinkt auf Inhalte nach Mechonis-Kern<br/>
+        <br/>
+
+        <table class="guide-table" align="center">
+	        <tr class="tablehead">
+		        <td>
+		        </td>
+
+		        {% for category in categories %}
+		            <td>{{ category.name }}
+		            </td>
+		        {% endfor %}
+
+		        <td>
+			        Belohnung:
+		        </td>
+	        </tr>
+	        {% for level in category_levels %}
+		        <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+	            <td>Stufe {{ level.level }}</td>
+	            <td style="vertical-align: top;">
+	            <u>cost G</u><br/>
+	            </td>
+	        {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
