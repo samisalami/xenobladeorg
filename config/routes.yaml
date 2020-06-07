@@ -20,6 +20,10 @@ chests:
     path: item-box/truhen
     controller: 'App\Controller\ChestsController::index'
 
+jewels:
+    path: item-box/juwelen
+    controller: 'App\Controller\JewelsController::index'
+
 collectionitems:
     path: item-box/sammelitems/{character}
     controller: 'App\Controller\CollectionItemsController::index'

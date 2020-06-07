@@ -35,18 +35,13 @@
                 <li>
                     <a href="{{ path('persons') }}">Personen</a>
                     <ul class="sub-menu">
-                        {% include 'persons/_person_submenu.html.twig' %}
+                        {% include 'persons/_submenu.html.twig' %}
                     </ul>
                 </li>
                 <li>
                     <a href="#">Item-Box</a>
                     <ul class="sub-menu">
-                        <li>
-                            <a href="{{ path('collectionitems') }}">Sammelitems</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('chests') }}">Truhen</a>
-                        </li>
+                        {% include 'items/_submenu.html.twig' %}
                     </ul>
                 </li>
                 <li>

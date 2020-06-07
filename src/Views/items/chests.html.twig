@@ -2,7 +2,9 @@
 
 {% block headline %}Truhen{% endblock %}
 {% block submenu %}
-    {% include 'items/_submenu.html.twig' %}
+    <ul class="submenu-rv">
+        {% include 'items/_submenu.html.twig' %}
+    </ul>
 {% endblock %}
 {% block content %}
     {% for chapter, chestPoints in viewData %}
