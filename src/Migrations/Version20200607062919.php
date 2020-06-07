@@ -25,9 +25,9 @@ final class Version20200607062919 extends AbstractMigration
         // $this->addSql("UPDATE xenoblade_extraskills as extraskill SET esid = extraskill.id");
         // $this->addSql('ALTER TABLE xenoblade_extraskills MODIFY id INT UNSIGNED NOT NULL');
         // $this->addSql('ALTER TABLE xenoblade_extraskills DROP PRIMARY KEY');
-        $this->addSql('ALTER TABLE xenoblade_extraskills ADD PRIMARY KEY (esid)');
+        $this->addSql('ALTER TABLE xenoblade_extraskills ADD PRIMARY KEY (esid), CHANGE esid esid INT AUTO_INCREMENT NOT NULL');
         // $this->addSql('ALTER TABLE xenoblade_extraskills DROP column id');
-        $this->addSql('ALTER TABLE xenoblade_extraskills CHANGE esid esid INT AUTO_INCREMENT NOT NULL');
+
     }
 
     public function down(Schema $schema) : void
