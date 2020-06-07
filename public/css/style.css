@@ -141,7 +141,7 @@ a:hover { text-decoration:underline; }
 .contact { float:right; margin-right:25px;}
 .twitter-follow-button { margin:0 10px 0 0; }
 .fbshare { margin:3px 10px 0 0; }
-.fb-like { margin:2px 10px 0 0; }
+.fb-like { margin:0 25px 0 0; }
 .gshare { overflow:hidden; width:75px;}
 .gsite { margin-right:10px;}
 .FlattrButton, .FlattrImg { margin:2px 5px 0 0;}
