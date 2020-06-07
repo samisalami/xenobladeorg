@@ -62,9 +62,9 @@
                         {{ mission.money }} G
                     </li>
                 </ul>
-                {{ render(controller('App\\Controller\\ItemsController::missionLootList',
+                {#{ render(controller('App\\Controller\\ItemsController::missionLootList',
                     { 'missionItemRelations': mission.itemRelations }
-                ))}}
+                ))}#}
             </td>
             <td style="text-align:center">{{ mission.harmonychange }} {% if not mission.harmonychange is empty %}*{% endif %}</td>
         </tr>
