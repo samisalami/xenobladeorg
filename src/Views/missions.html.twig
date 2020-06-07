@@ -1,7 +1,10 @@
 {% extends '_layout.html.twig' %}
 
 {% block headline %}
-    Missionen{% if not chapter is empty %} - {{ chapter.name }}{% endif %}
+    Missionen
+    {% if not chapter is empty %}
+        <br/><br/><img style="display: inline-block; vertical-align: middle; height: 45px; margin-right: 10px;" src="{{ asset('/images/icons/' ~ chapter.icon) }}" alt="kapitel icon" /><i style="font-size: 25px;">{{ chapter.name }}</i>
+    {% endif %}
 {% endblock %}
 {% block submenu %}
     <ul class="submenu-rv">
