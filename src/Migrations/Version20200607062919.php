@@ -20,12 +20,14 @@ final class Version20200607062919 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        // USE COMMENTED OUT LINES IF YOU HAVE THE COLUMN ID
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-        $this->addSql("UPDATE xenoblade_extraskills as extraskill SET esid = extraskill.id");
-        $this->addSql('ALTER TABLE xenoblade_extraskills MODIFY id INT UNSIGNED NOT NULL');
+        // $this->addSql("UPDATE xenoblade_extraskills as extraskill SET esid = extraskill.id");
+        // $this->addSql('ALTER TABLE xenoblade_extraskills MODIFY id INT UNSIGNED NOT NULL');
         $this->addSql('ALTER TABLE xenoblade_extraskills DROP PRIMARY KEY');
         $this->addSql('ALTER TABLE xenoblade_extraskills ADD PRIMARY KEY (esid)');
-        $this->addSql('ALTER TABLE xenoblade_extraskills DROP column id, CHANGE esid esid INT AUTO_INCREMENT NOT NULL');
+        // $this->addSql('ALTER TABLE xenoblade_extraskills DROP column id');
+        $this->addSql('ALTER TABLE xenoblade_extraskills CHANGE esid esid INT AUTO_INCREMENT NOT NULL');
     }
 
     public function down(Schema $schema) : void
