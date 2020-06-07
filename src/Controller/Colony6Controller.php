@@ -70,16 +70,6 @@ class Colony6Controller extends AbstractController
 
         $chapterInvitePersonsNoSpoiler = $this->getChapterPersons($invitePersonsNoSpoiler);
         $chapterInvitePersonsSpoiler = $this->getChapterPersons($invitePersonsSpoiler);
-     /*   foreach ($invitePersons as $person) {
-            $chapter = $person->getChapter()->getName();
-
-            if (!array_key_exists($chapter, $chapterInvitePersons)) {
-                $chapterInvitePersons[$chapter] = [];
-            }
-
-            array_push($chapterInvitePersons[$chapter], $person);
-        }
-*/
 
         return $this->render('guides/colony6.html.twig',
                               [ 'categories' => $categories,

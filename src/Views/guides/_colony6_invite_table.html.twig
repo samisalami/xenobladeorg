@@ -1,7 +1,7 @@
 <table class="guide-table">
     {% for chaptername, Persons in chapterInvitePersons %}
         <tr class="tableheadline">
-	        <td colspan="5">
+	        <td colspan="6">
 		        <h3> {{ chaptername }} </h3>
 	        </td>
         </tr>
@@ -25,32 +25,15 @@
 	        </td>
         </tr>
 
-
-
         {% for person in Persons %}
             <tr class="{{ loop.index0 is odd ? "odd" : "even" }}" style="{{ loop.last ? "border-bottom:1px #bbb solid;" }}">
 
-                <td>
-                    Bild
-                </td>
-                <td>
-                    {{ person.name }}
-                </td>
-                <td>
-                    Ort
-                </td>
-                <td>
-                    Zeit
-                </td>
-                <td>
-                    Karte
-                </td>
+                {% include 'persons/_person_table_data.html.twig' with { 'person': person }
+             %}
                 <td>
                     {{ person.colony6description  | raw }}
                 </td>
             </tr>
         {% endfor %}
     {% endfor %}
-
-
 </table>

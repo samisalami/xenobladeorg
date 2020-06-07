@@ -42,9 +42,8 @@
 	                        {% set item = item_tuple[1] %}
     	                    <br/>
                             {{ count }} ×
-                            <a href="{{ path('collectionitems') }}#iid{{ item.iid }}" >
-                            {{ item.name }}
-                            </a><br/>
+                            {% include 'items/_item_link.html.twig' with {'item': item} %}
+                            <br/>
                             {% if item.itemcategory.type == "collectionitem" %}
                                 <ul style="padding-top:5px;">
                                     <li>{{ item.collection.chapter.name }}</li>
@@ -93,7 +92,5 @@
                         }
              %}
          </details>
-
-        {# ToDo: Correct material links #}
     </div>
 {% endblock %}
