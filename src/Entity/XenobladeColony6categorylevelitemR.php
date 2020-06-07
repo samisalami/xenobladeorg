@@ -22,11 +22,12 @@ class XenobladeColony6categorylevelitemR
     private $c6cliid;
 
     /**
-     * @var int
+     * @var XenobladeItems|null
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $rewardItem;
 
     /**
      * @var int
@@ -36,11 +37,12 @@ class XenobladeColony6categorylevelitemR
     private $eqstid;
 
     /**
-     * @var int
+     * @var XenobladeColony6categorylevels
      *
-     * @ORM\Column(name="c6clid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeColony6categorylevels")
+     * @ORM\JoinColumn(name="c6clid", referencedColumnName="c6clid", nullable=false)
      */
-    private $c6clid;
+    private $categoryLevel;
 
     /**
      * @var \DateTime
@@ -54,14 +56,14 @@ class XenobladeColony6categorylevelitemR
         return $this->c6cliid;
     }
 
-    public function getIid(): ?int
+    public function getRewardItem(): ?XenobladeItems
     {
-        return $this->iid;
+        return $this->rewardItem;
     }
 
-    public function setIid(int $iid): self
+    public function setRewardItem(XenobladeItems $rewardItem): self
     {
-        $this->iid = $iid;
+        $this->rewardItem = $rewardItem;
 
         return $this;
     }
@@ -78,14 +80,14 @@ class XenobladeColony6categorylevelitemR
         return $this;
     }
 
-    public function getC6clid(): ?int
+    public function getCategoryLevel(): ?XenobladeColony6categorylevels
     {
-        return $this->c6clid;
+        return $this->categoryLevel;
     }
 
-    public function setC6clid(int $c6clid): self
+    public function setCategoryLevel(XenobladeColony6categorylevels $categoryLevel): self
     {
-        $this->c6clid = $c6clid;
+        $this->categoryLevel = $categoryLevel;
 
         return $this;
     }

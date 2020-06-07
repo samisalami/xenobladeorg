@@ -13,6 +13,10 @@
         <strong>[Spoiler]</strong> verlinkt auf Inhalte nach Mechonis-Kern<br/>
         <br/>
 
+        {###############################}
+        {#####     ITEMS TABLE     #####}
+        {###############################}
+
         <table class="guide-table" align="center">
 	        <tr class="tablehead">
 		        <td>
@@ -27,14 +31,69 @@
 			        Belohnung:
 		        </td>
 	        </tr>
-	        {% for level in category_levels %}
-		        <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+	        {% for level in categoryLevels %}
+		        <tr class="{{ loop.index0 is odd ? "odd" : "even" }}">
 	            <td>Stufe {{ level.level }}</td>
-	            <td style="vertical-align: top;">
-	            <u>cost G</u><br/>
+	            {% for category in categories %}
+	                <td style="vertical-align: top;">
+	                    <u> {{ costsData[level.level][category.name] }} G</u><br/>
+	                    {% for item_tuple in itemArrays[level.level][category.name] %}
+	                        {% set count = item_tuple[0] %}
+	                        {% set item = item_tuple[1] %}
+    	                    <br/>
+                            {{ count }} ×
+                            <a href="{{ path('collectionitems') }}#iid{{ item.iid }}" >
+                            {{ item.name }}
+                            </a><br/>
+                            {% if item.itemcategory.type == "collectionitem" %}
+                                <ul style="padding-top:5px;">
+                                    <li>{{ item.collection.chapter.name }}</li>
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+	                </td>
+	            {% endfor %}
+	            <td>
+
+	            {% if level.money is not empty %}
+	                {{ level.money }} G<br/>
+	            {% endif %}
+
+                {% if rewardItems is not empty %}
+                    {% for item in rewardItems[level.level] %}
+	                    {{ item.name }}
+	                {% endfor %}
+	            {% endif %}
+
 	            </td>
+	            </tr>
 	        {% endfor %}
         </table>
-    </div>
 
+        {###############################}
+        {####   PERSONS TO INVITE   ####}
+        {###############################}
+
+        <br/>
+        <h2>Einzuladende Personen:</h2>
+        {% include 'guides/_colony6_invite_table.html.twig'
+            with    {
+                     'chapterInvitePersons': chapterInvitePersonsNoSpoiler
+                    }
+        %}
+
+        <br/>
+        <h2>Einzuladende Personen nach Mechonis-Kern (Spoiler):</h2>
+        <details>
+            <summary><a onmouseover="" style="cursor: pointer;">Spoiler</a></summary>
+
+             {% include 'guides/_colony6_invite_table.html.twig'
+                with    {
+                         'chapterInvitePersons': chapterInvitePersonsSpoiler
+                        }
+             %}
+         </details>
+
+        {# ToDo: Correct material links #}
+    </div>
 {% endblock %}
