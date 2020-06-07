@@ -25,7 +25,7 @@ class PersonsController extends AbstractController
             $groupedPersons[$chapter->getName()] = $persons;
         }
 
-        return $this->render('persons.html.twig', [
+        return $this->render('/persons/persons.html.twig', [
             'groupedPersons' => $groupedPersons
         ]);
     }

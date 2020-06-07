@@ -5,17 +5,16 @@
 </td>
 <td style="width: 150px;">
     <a name="p{{ person.pid }}"></a>{{ person.name }}
+    {% if person.age > 0 %}
+        ({{ person.age }})
+    {% endif %}
     {% if person.isFemale %}
         &nbsp;<img height="15" src="{{ asset('/images/femaleicon.png') }}" alt="weiblich" />
     {% else %}
         &nbsp;<img height="15" src="{{ asset('/images/maleicon.png') }}" alt="männlich" />
     {% endif %}
-    {% if person.age > 0 %}
-        {{ person.age }},
-    {% endif %}
-    <br/>
     {% if not person.race is empty %}
-        <i>{{ person.race.name }}</i>
+        <br/><i>{{ person.race.name }}</i>
     {% endif %}
 </td>
 <td>
