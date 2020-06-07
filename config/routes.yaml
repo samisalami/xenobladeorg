@@ -12,12 +12,16 @@ persons:
     path: /personen
     controller: 'App\Controller\PersonsController::index'
 
+persons_spoiler:
+    path: /personen/personen-nach-mechonis-kern
+    controller: 'App\Controller\PersonsController::spoilerPersons'
+
 chests:
-    path: items/truhen
+    path: item-box/truhen
     controller: 'App\Controller\ChestsController::index'
 
 collectionitems:
-    path: items/sammelitems/{character}
+    path: item-box/sammelitems/{character}
     controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         character: null

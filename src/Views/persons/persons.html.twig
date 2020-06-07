@@ -1,12 +1,21 @@
 {% extends '_layout.html.twig' %}
 
 {% block headline %}
-    Personen
+    {{ spoiler ? 'Personen nach Mechonis-Kern' : 'Personen'}}
+{% endblock %}
+{% block submenu %}
+    <ul class="submenu-rv">
+        {% include 'persons/_person_submenu.html.twig' %}
+    </ul>
 {% endblock %}
 {% block content %}
-    <a href="/kolonie-6-ausbau/">Kolonie 6 Einladungen auf der Seite "Kolonie 6 Ausbau" &raquo;</a><br/>
-    <br/>
-    <b>[Achtung Spoiler]</b> <a href="/personen-nach-mechonis-kern/">Personen nach Mechonis-Kern &raquo;</a><br />
+    {% if spoiler %}
+        <a href="{{ path('persons') }}">Personen vorher &raquo;</a><br />
+    {% else %}
+        <a href="/kolonie-6-ausbau/">Kolonie 6 Einladungen auf der Seite "Kolonie 6 Ausbau" &raquo;</a><br/>
+        <br/>
+        <b>[Achtung Spoiler]</b> <a href="{{ path('persons_spoiler') }}">Personen nach Mechonis-Kern &raquo;</a><br />
+    {% endif %}
     <br />
     <table class="guide-table" align="center">
         {% for chapter, persons in groupedPersons %}

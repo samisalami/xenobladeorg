@@ -8,6 +8,22 @@ class PersonsController extends AbstractController
 {
     public function index()
     {
+        return $this->render('/persons/persons.html.twig', [
+            'groupedPersons' => $this->getGroupedPersons(),
+            'spoiler' => false
+        ]);
+    }
+
+    public function spoilerPersons()
+    {
+        return $this->render('/persons/persons.html.twig', [
+            'groupedPersons' => $this->getGroupedPersons(true),
+            'spoiler' => true
+        ]);
+    }
+
+    private function getGroupedPersons($spoiler = false)
+    {
         $chapters = $this->getDoctrine()->getRepository(XenobladeChapters::class)->findBy(
             ['personChapter' => true],
             ['prio' => 'asc']
@@ -18,15 +34,13 @@ class PersonsController extends AbstractController
             $persons = $this->getDoctrine()->getRepository(XenobladePersons::class)->findBy(
                 [
                     'chapter' => $chapter,
-                    'spoiler' => false,
+                    'spoiler' => $spoiler,
                     'story' => false
                 ]
             );
             $groupedPersons[$chapter->getName()] = $persons;
         }
 
-        return $this->render('/persons/persons.html.twig', [
-            'groupedPersons' => $groupedPersons
-        ]);
+        return $groupedPersons;
     }
 }

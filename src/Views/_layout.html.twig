@@ -34,9 +34,12 @@
                 </li>
                 <li>
                     <a href="{{ path('persons') }}">Personen</a>
+                    <ul class="sub-menu">
+                        {% include 'persons/_person_submenu.html.twig' %}
+                    </ul>
                 </li>
                 <li>
-                    <a href="#">Items</a>
+                    <a href="#">Item-Box</a>
                     <ul class="sub-menu">
                         <li>
                             <a href="{{ path('collectionitems') }}">Sammelitems</a>
