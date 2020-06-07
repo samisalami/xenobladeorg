@@ -92,7 +92,7 @@ a:hover { text-decoration:underline; }
 #content .guide-table li { padding-left:0; }
 #content .guide-table .even td { background-color:#f5f4e2; }
 #content .guide-table .tablehead td { font-weight:bold; border-top:1px #bbb solid; border-bottom:1px #bbb solid;}
-#content .guide-table .tableheadline { border-color:transparent; }
+#content .guide-table .tableheadline { border-color:transparent; background-color: #E9EBEF;}
 #content .guide-table .borderLeft { border-left:1px #bbb solid; }
 
 #content .post-edit-link { margin-bottom:10px; display:block; }

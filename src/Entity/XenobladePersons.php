@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * XenobladePersons
@@ -61,7 +63,7 @@ class XenobladePersons
      *
      * @ORM\Column(name="gender", type="boolean", nullable=false)
      */
-    private $gender;
+    private $isFemale;
 
     /**
      * @var string
@@ -71,11 +73,12 @@ class XenobladePersons
     private $copy;
 
     /**
-     * @var int
+     * @var XenobladeRaces|null
      *
-     * @ORM\Column(name="rid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeRaces")
+     * @ORM\JoinColumn(name="rid", referencedColumnName="rid")
      */
-    private $rid;
+    private $race;
 
     /**
      * @var XenobladeChapters|null
@@ -126,6 +129,24 @@ class XenobladePersons
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var XenobladeMissions[]
+     * @OneToMany(targetEntity="XenobladeMissions", mappedBy="person")
+     */
+    private $missions;
+
+    /**
+     * @var XenobladePersonMapPoints[]
+     * @OneToMany(targetEntity="XenobladePersonMapPoints", mappedBy="person")
+     */
+    private $mapPoints;
+
+    public function __construct()
+    {
+        $this->missions = new ArrayCollection();
+        $this->mapPoints = new ArrayCollection();
+    }
 
     public function getPid(): ?int
     {
@@ -192,14 +213,14 @@ class XenobladePersons
         return $this;
     }
 
-    public function getGender(): ?bool
+    public function getIsFemale(): ?bool
     {
-        return $this->gender;
+        return $this->isFemale;
     }
 
-    public function setGender(bool $gender): self
+    public function setIsFemale(bool $isFemale): self
     {
-        $this->gender = $gender;
+        $this->isFemale = $isFemale;
 
         return $this;
     }
@@ -216,14 +237,14 @@ class XenobladePersons
         return $this;
     }
 
-    public function getRid(): ?int
+    public function getRace(): ?XenobladeRaces
     {
-        return $this->rid;
+        return $this->race;
     }
 
-    public function setRid(int $rid): self
+    public function setRace(XenobladeRaces $race): self
     {
-        $this->rid = $rid;
+        $this->race = $race;
 
         return $this;
     }
@@ -312,5 +333,13 @@ class XenobladePersons
         return $this;
     }
 
+    public function getMissions(): array
+    {
+        return $this->missions->toArray();
+    }
 
+    public function getMapPoints(): array
+    {
+        return $this->mapPoints->toArray();
+    }
 }

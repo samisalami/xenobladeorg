@@ -40,7 +40,7 @@ class XenobladeMissions
     /**
      * @var XenobladePersons
      *
-     * @ORM\ManyToOne(targetEntity="XenobladePersons")
+     * @ORM\ManyToOne(targetEntity="XenobladePersons", inversedBy="missions")
      * @ORM\JoinColumn(name="pid", referencedColumnName="pid")
      */
     private $person;

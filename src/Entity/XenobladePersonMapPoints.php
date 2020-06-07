@@ -13,7 +13,7 @@ class XenobladePersonMapPoints extends XenobladeMapPoints
 {
     /**
      * @var XenobladePersons|null
-     * @ORM\ManyToOne(targetEntity="XenobladePersons")
+     * @ORM\ManyToOne(targetEntity="XenobladePersons", inversedBy="mapPoints")
      * @ORM\JoinColumn(name="typeid", referencedColumnName="pid")
      */
     private $person;

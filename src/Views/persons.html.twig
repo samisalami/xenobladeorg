@@ -1,0 +1,84 @@
+{% extends '_layout.html.twig' %}
+
+{% block headline %}
+    Personen
+{% endblock %}
+{% block content %}
+    <a href="/kolonie-6-ausbau/">Kolonie 6 Einladungen auf der Seite "Kolonie 6 Ausbau" &raquo;</a><br/>
+    <br/>
+    <b>[Achtung Spoiler]</b> <a href="/personen-nach-mechonis-kern/">Personen nach Mechonis-Kern &raquo;</a><br />
+    <br />
+    <table class="guide-table" align="center">
+        {% for chapter, persons in groupedPersons %}
+            <tr class="tableheadline">
+                <td colspan="6">
+                    <h2>{{ chapter }}</h2>
+                </td>
+            </tr>
+            <tr class="tablehead">
+                <td></td>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    Ort:
+                </td>
+                <td>
+                    Uhrzeit:
+                </td>
+                <td>
+                    Karte:
+                </td>
+                <td>
+                    Missionen:
+                </td>
+            </tr>
+            {% for person in persons %}
+            <tr class="{{ loop.index is odd ? "odd" : "even" }}" style="{% if loop.last %}border-bottom:1px #bbb solid;{% endif %}">
+                <td>
+                    {% if not person.img is empty %}
+                        <img alt="avatar" style="margin-right:10px;" height="50" src="{{ asset('/images/personicons/' ~ person.img) }}" />
+                    {% endif %}
+                </td>
+                <td>
+                    <a name="p{{ person.pid }}"></a>{{ person.name }}{% if person.age > 0 %}, {{ person.age }}{% endif %}
+                    {% if person.isFemale %}
+                        &nbsp;<img height="15" src="{{ asset('/images/femaleicon.png') }}" alt="weiblich" />
+                    {% else %}
+                        &nbsp;<img height="15" src="{{ asset('/images/maleicon.png') }}" alt="männlich" />
+                    {% endif %}
+                    {% if not person.race is empty %}
+                        <i>{{ person.race.name }}</i>
+                    {% endif %}
+                </td>
+                <td>
+                    {{ person.location }}
+                </td>
+                <td>
+                    {{ person.time }}
+                </td>
+                <td>
+                    {% set mapPoint = person.mapPoints[0]|default(null) %}
+                    {% include '_map.html.twig' with {
+                        'map': mapPoint.map|default(null),
+                        'mapPoint': mapPoint,
+                        'name': person.name,
+                        'color': 'yellow'
+                    } %}
+                </td>
+                <td>
+                    <ul>
+                    {% for mission in person.missions %}
+                        <li>
+                            <a href="{{ path('missions') }}#m{{ mission.mid }}">
+                                {{ mission.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -36,7 +36,7 @@ class MissionsController extends AbstractController
             ['missionChapter' => true],
             ['prio' => 'asc']
         );
-        return $this->render('missions/_menu.html.twig', [
+        return $this->render('_chapter_menu.html.twig', [
             'chapters' => $chapters
         ]);
     }
