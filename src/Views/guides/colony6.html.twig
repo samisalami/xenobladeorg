@@ -7,90 +7,87 @@
 </ul>
 {% endblock %}
 {% block content %}
+    Hier findet ihr die Ausbaustufen mit den zu beschaffenden Items und die Personen, die nach Kolonie 6 eingeladen werden können.
+    <br/>
+    <br/>
 
-    <div class="pagecontent Kolonie">
-        Hier findet ihr die Ausbaustufen mit den zu beschaffenden Items und die Personen, die nach Kolonie 6 eingeladen werden können.
-        <br/>
-        <br/>
+    {# ############################# #}
+    {# ####     ITEMS TABLE     #### #}
+    {# ############################# #}
 
-        {# ############################# #}
-        {# ####     ITEMS TABLE     #### #}
-        {# ############################# #}
+    <table class="guide-table" align="center">
+        <tr class="tablehead">
+            <td>
+            </td>
 
-        <table class="guide-table" align="center">
-	        <tr class="tablehead">
-		        <td>
-		        </td>
+            {% for category in categories %}
+                <td>{{ category.name }}
+                </td>
+            {% endfor %}
 
-		        {% for category in categories %}
-		            <td>{{ category.name }}
-		            </td>
-		        {% endfor %}
+            <td>
+                Belohnung:
+            </td>
+        </tr>
+        {% for level in categoryLevels %}
+            <tr class="{{ loop.index0 is odd ? "odd" : "even" }}">
+            <td>Stufe {{ level.level }}</td>
+            {% for category in categories %}
+                <td style="vertical-align: top;">
+                    <u> {{ costsData[level.level][category.name] }} G</u><br/>
+                    {% for item_tuple in itemArrays[level.level][category.name] %}
+                        {% set count = item_tuple[0] %}
+                        {% set item = item_tuple[1] %}
+                        <br/>
+                        {{ count }} ×
+                        {% include 'items/_item_link.html.twig' with {'item': item} %}
+                        <br/>
+                        {% if item.itemcategory.type == "collectionitem" %}
+                            <ul style="padding-top:5px;">
+                                <li>{{ item.collection.chapter.name }}</li>
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            {% endfor %}
+            <td>
 
-		        <td>
-			        Belohnung:
-		        </td>
-	        </tr>
-	        {% for level in categoryLevels %}
-		        <tr class="{{ loop.index0 is odd ? "odd" : "even" }}">
-	            <td>Stufe {{ level.level }}</td>
-	            {% for category in categories %}
-	                <td style="vertical-align: top;">
-	                    <u> {{ costsData[level.level][category.name] }} G</u><br/>
-	                    {% for item_tuple in itemArrays[level.level][category.name] %}
-	                        {% set count = item_tuple[0] %}
-	                        {% set item = item_tuple[1] %}
-    	                    <br/>
-                            {{ count }} ×
-                            {% include 'items/_item_link.html.twig' with {'item': item} %}
-                            <br/>
-                            {% if item.itemcategory.type == "collectionitem" %}
-                                <ul style="padding-top:5px;">
-                                    <li>{{ item.collection.chapter.name }}</li>
-                                </ul>
-                            {% endif %}
-                        {% endfor %}
-	                </td>
-	            {% endfor %}
-	            <td>
+            {% if level.money is not empty %}
+                {{ level.money }} G<br/>
+            {% endif %}
 
-	            {% if level.money is not empty %}
-	                {{ level.money }} G<br/>
-	            {% endif %}
+            {% if rewardItems is not empty %}
+                {% for item in rewardItems[level.level] %}
+                    {{ item.name }}
+                {% endfor %}
+            {% endif %}
 
-                {% if rewardItems is not empty %}
-                    {% for item in rewardItems[level.level] %}
-	                    {{ item.name }}
-	                {% endfor %}
-	            {% endif %}
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
 
-	            </td>
-	            </tr>
-	        {% endfor %}
-        </table>
+    {# ############################# #}
+    {# ###   PERSONS TO INVITE   ### #}
+    {# ############################# #}
 
-        {# ############################# #}
-        {# ###   PERSONS TO INVITE   ### #}
-        {# ############################# #}
+    <br/>
+    <h2>Einzuladende Personen:</h2>
+    {% include 'guides/_colony6_invite_table.html.twig'
+        with    {
+                 'chapterInvitePersons': chapterInvitePersonsNoSpoiler
+                }
+    %}
 
-        <br/>
-        <h2>Einzuladende Personen:</h2>
-        {% include 'guides/_colony6_invite_table.html.twig'
+    <br/>
+    <h2>Einzuladende Personen nach Mechonis-Kern (Spoiler):</h2>
+    <details>
+        <summary><span style="cursor: pointer; text-decoration: underline; color: #21759B;">Spoiler</span></summary>
+
+         {% include 'guides/_colony6_invite_table.html.twig'
             with    {
-                     'chapterInvitePersons': chapterInvitePersonsNoSpoiler
+                     'chapterInvitePersons': chapterInvitePersonsSpoiler
                     }
-        %}
-
-        <br/>
-        <h2>Einzuladende Personen nach Mechonis-Kern (Spoiler):</h2>
-        <details>
-            <summary><span style="cursor: pointer; text-decoration: underline; color: #21759B;">Spoiler</span></summary>
-
-             {% include 'guides/_colony6_invite_table.html.twig'
-                with    {
-                         'chapterInvitePersons': chapterInvitePersonsSpoiler
-                        }
-             %}
-         </details>
-    </div>
+         %}
+     </details>
 {% endblock %}
