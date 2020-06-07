@@ -22,18 +22,20 @@ class XenobladeColony6categorieslevelsR
     private $c6cclid;
 
     /**
-     * @var int
+     * @var XenobladeColony6categories
      *
-     * @ORM\Column(name="c6cid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeColony6categories")
+     * @ORM\JoinColumn(name="c6cid", referencedColumnName="c6cid", nullable=false)
      */
-    private $c6cid;
+    private $category;
 
     /**
-     * @var int
+     * @var XenobladeColony6categorylevels
      *
-     * @ORM\Column(name="c6clid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeColony6categorylevels")
+     * @ORM\JoinColumn(name="c6clid", referencedColumnName="c6clid", nullable=false)
      */
-    private $c6clid;
+    private $categoryLevel;
 
     /**
      * @var int
@@ -54,26 +56,26 @@ class XenobladeColony6categorieslevelsR
         return $this->c6cclid;
     }
 
-    public function getC6cid(): ?int
+    public function getCategory(): ?XenobladeColony6categories
     {
-        return $this->c6cid;
+        return $this->category;
     }
 
-    public function setC6cid(int $c6cid): self
+    public function setCategory(XenobladeColony6categories $category): self
     {
-        $this->c6cid = $c6cid;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getC6clid(): ?int
+    public function getCategoryLevel(): ?XenobladeColony6categorylevels
     {
-        return $this->c6clid;
+        return $this->categoryLevel;
     }
 
-    public function setC6clid(int $c6clid): self
+    public function setCategoryLevel(XenobladeColony6categorylevels $categoryLevel): self
     {
-        $this->c6clid = $c6clid;
+        $this->categoryLevel = $categoryLevel;
 
         return $this;
     }

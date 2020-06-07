@@ -22,18 +22,20 @@ class XenobladeColony6levelitemR
     private $c6liid;
 
     /**
-     * @var int
+     * @var XenobladeItems|null
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $item;
 
     /**
-     * @var int
+     * @var XenobladeColony6categorieslevelsR
      *
-     * @ORM\Column(name="c6cclid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeColony6categorieslevelsR")
+     * @ORM\JoinColumn(name="c6cclid", referencedColumnName="c6cclid", nullable=false)
      */
-    private $c6cclid;
+    private $categoryLevelLink;
 
     /**
      * @var int
@@ -54,26 +56,26 @@ class XenobladeColony6levelitemR
         return $this->c6liid;
     }
 
-    public function getIid(): ?int
+    public function getItem(): ?XenobladeItems
     {
-        return $this->iid;
+        return $this->item;
     }
 
-    public function setIid(int $iid): self
+    public function setItem(XenobladeItems $item): self
     {
-        $this->iid = $iid;
+        $this->item = $item;
 
         return $this;
     }
 
-    public function getC6cclid(): ?int
+    public function getCategoryLevelLink(): ?XenobladeColony6categorieslevelsR
     {
-        return $this->c6cclid;
+        return $this->categoryLevelLink;
     }
 
-    public function setC6cclid(int $c6cclid): self
+    public function setCategoryLevelLink(XenobladeColony6categorieslevelsR $categoryLevelLink): self
     {
-        $this->c6cclid = $c6cclid;
+        $this->categoryLevelLink = $categoryLevelLink;
 
         return $this;
     }

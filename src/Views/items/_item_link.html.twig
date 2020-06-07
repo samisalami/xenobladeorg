@@ -1,0 +1,12 @@
+{% set category_path = '' %}
+{% if item.itemcategory.type == "collectionitem" %}
+    {% set category_path = path('collectionitems') %}
+{% endif %}
+
+{% if category_path is not empty %}
+    <a href="{{ category_path }}#iid{{ item.iid }}" >
+{% endif %}
+    {{ item.name }}
+{% if category_path is not empty %}
+    </a>
+{% endif %}
