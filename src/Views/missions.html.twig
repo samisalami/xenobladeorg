@@ -40,7 +40,7 @@
         </tr>
         {% for mission in missions %}
         <tr class="{{ loop.index is odd ? "odd" : "even" }}">
-            <td>{{ mission.name }}</td>
+            <td><a name="m{{ mission.mid }}"></a>{{ mission.name }}</td>
             {% if chapter is empty %}
                 <td>{{ mission.chapter.name }}</td>
             {% endif %}
