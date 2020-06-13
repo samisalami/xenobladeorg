@@ -1,5 +1,8 @@
 {% extends '_layout.html.twig' %}
 
+{% block title %}
+    {{ spoiler ? 'Personen nach Mechonis-Kern' : 'Personen'}}
+{% endblock %}
 {% block headline %}
     {{ spoiler ? 'Personen nach Mechonis-Kern' : 'Personen'}}
 {% endblock %}
