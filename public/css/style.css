@@ -157,7 +157,7 @@ a:hover { text-decoration:underline; }
  *  NEW LISTVIEW
  *
  ******************************************************** */
-  .xc_ItemWrapper { 
+  .xc_ItemWrapper {
 	background-color:#fff;
 	border:1px #bbb solid;
 	-moz-border-radius-topleft: 5px;
@@ -179,9 +179,9 @@ a:hover { text-decoration:underline; }
 .xc_Headline { color: #333333; font-size: 20px; font-weight: normal;  }
 .xc_Headline .Inner { margin:0 auto; overflow:auto; }
 .xc_Headline .Inner * { display:inline-block; vertical-align: middle;}
-.xc_Headline .Inner * { 
-	*display: inline;  
-    *margin: 0 20px 0 20px;  
+.xc_Headline .Inner * {
+	*display: inline;
+    *margin: 0 20px 0 20px;
 }
 
 .xc_ItemWrapper .xc_ItemField { display:inline-block; vertical-align:middle;}
@@ -198,7 +198,7 @@ a:hover { text-decoration:underline; }
 .xc_ItemContentHidden .coloured-table { border: 1px #bbbbbb dotted; margin-top:5px; }
 .xc_ItemContentHidden .coloured-table thead td { background-color:#f5f4e2;  }
 .xc_ItemContentHidden .coloured-table td { border: 1px #bbbbbb dotted; padding:5px; }
- 
+
 .xc_ItemContentHidden { display:none; padding:10px; border-top:1px #bbb solid; }
 .xc_ItemContentHidden .xc_ItemField { vertical-align:top; margin-right:15px; }
 
@@ -237,14 +237,14 @@ a:hover { text-decoration:underline; }
  *
  *  ITEMBOX - KRISTALLE
  *
- ******************************************************** */ 
+ ******************************************************** */
 .pagecontent.Kristalle { background:none; border-style:none; }
 .entry-title.Kristalle{ position:absolute; margin:30px 0 0 25px;}
- 
+
 .Kristalle .xc_ItemContent .xc_ItemContentLeft { width:220px; }
 .Kristalle .xc_ItemContent .xc_ItemContentCenter { width: auto; text-align:left; }
 .Kristalle .xc_ItemContent .xc_ItemContentRight { width: auto; }
- 
+
  /* *********************************************************
 
   /* *********************************************************
@@ -287,11 +287,11 @@ a:hover { text-decoration:underline; }
 ******************************************************** */
 .pagecontent.Materialien { background:none; border-style:none; }
 .entry-title.Materialien{ position:absolute; margin:30px 0 0 25px;}
- 
+
 .Materialien .xc_ItemContent .xc_ItemContentLeft { width:200px; }
 .Materialien .xc_ItemContent .xc_ItemContentCenter { width: auto; text-align:left; }
 .Materialien .xc_ItemContent .xc_ItemContentRight { width: auto; }
- 
+
  /* *********************************************************
  *
  *  ITEMBOX - WICHTIGES
@@ -299,17 +299,17 @@ a:hover { text-decoration:underline; }
  ******************************************************** */
 .pagecontent.Wichtiges { background:none; border-style:none; }
 .entry-title.Wichtiges{ position:absolute; margin:30px 0 0 25px;}
- 
+
 .Wichtiges .xc_ItemContent .xc_ItemContentLeft { width:200px; }
 .Wichtiges .xc_ItemContent .xc_ItemContentCenter { width: auto; text-align:left; }
 .Wichtiges .xc_ItemContent .xc_ItemContentRight  { width:50px; }
- 
+
 /* *********************************************************
  *
  *  ARTICLE ITEMS
  *
  ******************************************************** */
- 
+
 .clear { clear:both; }
 
 .alignleft      { float: left; }
@@ -332,7 +332,7 @@ a:hover { text-decoration:underline; }
  *  FORUM
  *
  ******************************************************** */
- 
+
  .Forum.pagecontent  { padding:15px 0; }
  .Forum .sharebuttons  { width:99%; margin:10px 15px 0 0; }
  .Forum  #forumwrap { width:100%; }
@@ -381,4 +381,10 @@ a:hover { text-decoration:underline; }
 
 .overlay-trigger:checked + .overlay {
 	visibility: visible;
+}
+
+ .content-box-white {
+	background-color:#fff;
+	border:1px #bbb solid;
+	padding: 4em 2em;
 }
