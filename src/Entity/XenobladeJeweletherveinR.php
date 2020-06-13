@@ -31,7 +31,7 @@ class XenobladeJeweletherveinR
 
     /**
      * @var XenobladeEthervein
-     * @ORM\ManyToOne(targetEntity="XenobladeEthervein")
+     * @ORM\ManyToOne(targetEntity="XenobladeEthervein", inversedBy="jewelRelations")
      * @ORM\JoinColumn(name="evid", referencedColumnName="evid")
      */
     private $etherVein;

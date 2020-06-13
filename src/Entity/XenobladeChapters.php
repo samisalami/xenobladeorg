@@ -64,9 +64,9 @@ class XenobladeChapters
     private $prio;
 
     /**
-     * @var int
+     * @var bool
      *
-     * @ORM\Column(name="hasmap", type="integer", nullable=false, options={"default"="1"})
+     * @ORM\Column(name="hasmap", type="boolean", nullable=false, options={"default"="1"})
      */
     private $hasmap = '1';
 

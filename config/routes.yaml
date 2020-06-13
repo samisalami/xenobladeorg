@@ -24,6 +24,10 @@ jewels:
     path: item-box/juwelen
     controller: 'App\Controller\JewelsController::index'
 
+etherveins:
+    path: item-box/atheradern
+    controller: 'App\Controller\EtherVeinsController::index'
+
 collectionitems:
     path: item-box/sammelitems/{character}
     controller: 'App\Controller\CollectionItemsController::index'

@@ -1,0 +1,85 @@
+{% extends '_layout.html.twig' %}
+
+{% block title %}Ätheradern{% endblock %}
+{% block headline %}Ätheradern{% endblock %}
+{% block submenu %}
+    <ul class="submenu-rv">
+        {% include 'items/_submenu.html.twig' %}
+    </ul>
+{% endblock %}
+{% block content %}
+    - Die Reinheit der Kristalle aus <strong>normalen</strong> Ätheradern liegt ungefähr bei 20% – 60%<br/>
+    - Die Reinheit der Kristalle aus <strong>hochwertigen</strong> Ätheradern liegt ungefähr bei 80% – 98%
+    <br/>
+    <br/>
+    {% for chapter, etherVeins in groupedEtherVeins %}
+        {% if not etherVeins is empty %}
+        <h2>{{ chapter }}</h2>
+        <table class="guide-table" align="center">
+            <tr class="tablehead">
+                <td>
+                    Name:
+                </td>
+
+                <td>
+                    Beschreibung:
+
+                </td>
+                <td>
+                    Regenerationszeit:
+                </td>
+                <td>
+                    Abbaupunkte:
+                </td>
+                <td>
+                    Abbaubar:
+                </td>
+                <td>
+                    Typ:
+                </td>
+                <td>
+                    Juwelen:
+                </td>
+                <td>
+                    Karte:
+                </td>
+            </tr>
+            {% for etherVein in etherVeins %}
+                <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+                    <td style="vertical-align:top;">
+                        <a name="{{ etherVein.evid }}"></a>{{ etherVein.name }}
+                    </td>
+                    <td>
+                        {{ etherVein.description }}
+                    </td>
+                    <td style="text-align:center;">
+                        {{ etherVein.rare ? '10 Std.' : '5 Std.' }}
+                    </td>
+                    <td>
+                        {{ etherVein.collectionpoints }}
+                    </td>
+                    <td>
+                        {{ etherVein.collectcount }} mal
+                    </td>
+                    <td>
+                        {{ etherVein.rare ? 'Hochwertig' : 'Normal' }}
+                    </td>
+                    <td>
+                        {% for relation in etherVein.jewelRelations %}
+                            <a href="{{ path('jewels') }}#jvid{{ relation.jewel.jewelValue.jvid }}">{{ relation.jewel.jewelValue.name|raw }}</a><br/>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% include '_map.html.twig' with {
+                            'map': etherVein.mapPoint.map,
+                            'mapPoint': etherVein.mapPoint,
+                            'name': etherVein.name,
+                            'color': 'yellow'
+                        } %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

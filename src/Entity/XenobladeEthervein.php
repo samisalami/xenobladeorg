@@ -92,8 +92,15 @@ class XenobladeEthervein
      */
     private $mapPoints;
 
+    /**
+     * @var XenobladeJeweletherveinR[]
+     * @OneToMany(targetEntity="XenobladeJeweletherveinR", mappedBy="etherVein")
+     */
+    private $jewelRelations;
+
     public function __construct() {
         $this->mapPoints = new ArrayCollection();
+        $this->jewelRelations = new ArrayCollection();
     }
 
     public function getEvid(): ?int
@@ -209,8 +216,13 @@ class XenobladeEthervein
         return $this;
     }
 
-    public function getMapPoints(): array
+    public function getMapPoint(): XenobladeEtherVeinMapPoints
     {
-        return $this->mapPoints->toArray();
+        return $this->mapPoints->first();
+    }
+
+    public function getJewelRelations(): array
+    {
+        return $this->jewelRelations->toArray();
     }
 }

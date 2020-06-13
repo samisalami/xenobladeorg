@@ -140,4 +140,9 @@ class XenobladeSockettype
     {
         return $this->equipRelations->toArray();
     }
+
+    public function getEquipRelation(): XenobladeEquipSockettypeR
+    {
+        return $this->equipRelations->first();
+    }
 }
