@@ -22,18 +22,20 @@ class XenobladeCrystaljewelR
     private $jcid;
 
     /**
-     * @var int
+     * @var XenobladeCrystals
      *
-     * @ORM\Column(name="crid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeCrystals")
+     * @ORM\JoinColumn(name="crid", referencedColumnName="crid")
      */
-    private $crid;
+    private $crystal;
 
     /**
-     * @var int
+     * @var XenobladeJewels
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeJewels", inversedBy="crystalRelations")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $jewel;
 
     /**
      * @var \DateTime
@@ -47,26 +49,26 @@ class XenobladeCrystaljewelR
         return $this->jcid;
     }
 
-    public function getCrid(): ?int
+    public function getCrystal(): ?XenobladeCrystals
     {
-        return $this->crid;
+        return $this->crystal;
     }
 
-    public function setCrid(int $crid): self
+    public function setCrystal(XenobladeCrystals $crystal): self
     {
-        $this->crid = $crid;
+        $this->crystal = $crystal;
 
         return $this;
     }
 
-    public function getIid(): ?int
+    public function getJewel(): ?XenobladeJewels
     {
-        return $this->iid;
+        return $this->jewel;
     }
 
-    public function setIid(int $iid): self
+    public function setJewel(XenobladeJewels $jewel): self
     {
-        $this->iid = $iid;
+        $this->jewel = $jewel;
 
         return $this;
     }

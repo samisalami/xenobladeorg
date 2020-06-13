@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * XenobladeSockettype
@@ -24,7 +26,7 @@ class XenobladeSockettype
     /**
      * @var XenobladeJewels | null
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeJewels")
+     * @ORM\ManyToOne(targetEntity="XenobladeJewels", inversedBy="firstSockets")
      * @ORM\JoinColumn(name="slot1", referencedColumnName="iid")
      */
     private $slot1;
@@ -32,7 +34,7 @@ class XenobladeSockettype
     /**
      * @var XenobladeJewels | null
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeJewels")
+     * @ORM\ManyToOne(targetEntity="XenobladeJewels", inversedBy="secondSockets")
      * @ORM\JoinColumn(name="slot2", referencedColumnName="iid")
      */
     private $slot2;
@@ -40,7 +42,7 @@ class XenobladeSockettype
     /**
      * @var XenobladeJewels | null
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeJewels")
+     * @ORM\ManyToOne(targetEntity="XenobladeJewels", inversedBy="thirdSockets")
      * @ORM\JoinColumn(name="slot3", referencedColumnName="iid")
      */
     private $slot3;
@@ -58,6 +60,16 @@ class XenobladeSockettype
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var XenobladeEquipSockettypeR[]
+     * @OneToMany(targetEntity="XenobladeEquipSockettypeR", mappedBy="sockettype")
+     */
+    private $equipRelations;
+
+    public function __construct() {
+        $this->equipRelations = new ArrayCollection();
+    }
 
     public function getStid(): ?int
     {
@@ -124,5 +136,8 @@ class XenobladeSockettype
         return $this;
     }
 
-
+    public function getEquipRelations(): array
+    {
+        return $this->equipRelations->toArray();
+    }
 }

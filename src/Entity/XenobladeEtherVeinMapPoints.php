@@ -13,7 +13,7 @@ class XenobladeEtherVeinMapPoints extends XenobladeMapPoints
 {
     /**
      * @var XenobladeEthervein|null
-     * @ORM\ManyToOne(targetEntity="XenobladeEthervein")
+     * @ORM\ManyToOne(targetEntity="XenobladeEthervein", inversedBy="mapPoints")
      * @ORM\JoinColumn(name="typeid", referencedColumnName="evid")
      */
     private $etherVein;

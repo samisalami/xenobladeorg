@@ -32,7 +32,7 @@ class XenobladeItemMissionR
     /**
      * @var XenobladeItems
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\ManyToOne(targetEntity="XenobladeItems", inversedBy="missionRelations")
      * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
     private $item;

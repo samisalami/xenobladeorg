@@ -32,7 +32,7 @@
                     {% if not chestPoint.chest is empty  %}
                     <tr class="{{ loop.index is odd ? "odd" : "even" }}">
                         <td>
-                            <a name="{{ chestPoint.chest.chestid }}"></a>
+                            <a name="chestid{{ chestPoint.chest.chestid }}"></a>
                             {{ chestPoint.chest.name }}
                         </td>
                         <td>

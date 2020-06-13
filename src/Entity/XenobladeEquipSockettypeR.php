@@ -32,7 +32,7 @@ class XenobladeEquipSockettypeR
     /**
      * @var XenobladeSockettype | null
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeSockettype")
+     * @ORM\ManyToOne(targetEntity="XenobladeSockettype", inversedBy="equipRelations")
      * @ORM\JoinColumn(name="stid", referencedColumnName="stid")
      */
     private $sockettype;

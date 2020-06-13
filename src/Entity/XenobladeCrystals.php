@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * XenobladeCrystals
@@ -35,6 +37,16 @@ class XenobladeCrystals
      */
     private $date = 'CURRENT_TIMESTAMP';
 
+    /**
+     * @var XenobladeCrystaljewelR[]
+     * @OneToMany(targetEntity="XenobladeCrystaljewelR", mappedBy="crystal")
+     */
+    private $jewelRelations;
+
+    public function __construct() {
+        $this->jewelRelations = new ArrayCollection();
+    }
+
     public function getCrid(): ?int
     {
         return $this->crid;
@@ -64,5 +76,8 @@ class XenobladeCrystals
         return $this;
     }
 
-
+    public function getJewelRelations(): array
+    {
+        return $this->jewelRelations->toArray();
+    }
 }

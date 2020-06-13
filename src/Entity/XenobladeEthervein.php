@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * XenobladeEthervein
@@ -83,6 +85,16 @@ class XenobladeEthervein
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var XenobladeEtherVeinMapPoints[]
+     * @OneToMany(targetEntity="XenobladeEtherVeinMapPoints", mappedBy="etherVein")
+     */
+    private $mapPoints;
+
+    public function __construct() {
+        $this->mapPoints = new ArrayCollection();
+    }
 
     public function getEvid(): ?int
     {
@@ -197,5 +209,8 @@ class XenobladeEthervein
         return $this;
     }
 
-
+    public function getMapPoints(): array
+    {
+        return $this->mapPoints->toArray();
+    }
 }

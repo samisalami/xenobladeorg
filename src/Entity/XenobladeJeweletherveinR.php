@@ -22,18 +22,19 @@ class XenobladeJeweletherveinR
     private $jvevid;
 
     /**
-     * @var int
+     * @var XenobladeJewels
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeJewels", inversedBy="etherVeinRelations")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $jewel;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="evid", type="integer", nullable=false)
+     * @var XenobladeEthervein
+     * @ORM\ManyToOne(targetEntity="XenobladeEthervein")
+     * @ORM\JoinColumn(name="evid", referencedColumnName="evid")
      */
-    private $evid;
+    private $etherVein;
 
     /**
      * @var \DateTime
@@ -47,26 +48,26 @@ class XenobladeJeweletherveinR
         return $this->jvevid;
     }
 
-    public function getIid(): ?int
+    public function getJewel(): ?XenobladeJewels
     {
-        return $this->iid;
+        return $this->jewel;
     }
 
-    public function setIid(int $iid): self
+    public function setJewel(XenobladeJewels $jewel): self
     {
-        $this->iid = $iid;
+        $this->jewel = $jewel;
 
         return $this;
     }
 
-    public function getEvid(): ?int
+    public function getEtherVein(): ?XenobladeEthervein
     {
-        return $this->evid;
+        return $this->etherVein;
     }
 
-    public function setEvid(int $evid): self
+    public function setEtherVein(XenobladeEthervein $etherVein): self
     {
-        $this->evid = $evid;
+        $this->etherVein = $etherVein;
 
         return $this;
     }

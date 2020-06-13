@@ -7,4 +7,203 @@
     </ul>
 {% endblock %}
 {% block content %}
+    <style type="text/css">
+        ul {
+            float: left;
+            margin: 10px 10px 20px -5px;
+            padding: 0;
+        }
+    </style>
+    <strong>Wert&auml;nderung:</strong><br/>
+    Unter Wert&auml;nderung wird f&uuml;r die jeweilige Stufe die Wertspanne angezeigt.<br/>
+    Ist ein Wert in Klammern zu jeder Stufe angegeben, handelt es sich um die Chance, dass der Juweleneffekt aktiviert wird.
+    <br/>
+    Der
+    <strong>Max-Wert</strong> ist der h&ouml;chstm&ouml;gliche zu erreichende zus&auml;tzliche Wert pro Charakter, egal wieviele Juwelen ausger&uuml;stet sind.
+    <br/>
+    <br/>
+    <strong>Typ:</strong><br/>
+    1. Aktiv/Passiv = Die Effekte aktiver Juwelen werden im Kampf aktiviert, passive sind immer wirksam.<br/>
+    2. Ausr&uuml;stungstyp = Einige Juwelen k&ouml;nnen nur in Waffen, andere nur in R&uuml;stungen gesockelt werden.
+    <br/>
+    <br/>
+    <table class="guide-table" align="center">
+        <tr class="tablehead">
+            <td style="border-bottom:1px #999 solid;">
+                Name:
+            </td>
+            <td style="border-bottom:1px #999 solid;">
+                Beschreibung:
+            </td>
+            <td style="border-bottom:1px #999 solid;">
+                Typ:
+            </td>
+        </tr>
+        {% for jewelValue in jewelValues %}
+            <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+                <td style="vertical-align:top;">
+                    <a name="{{ jewelValue.jvid }}"></a><strong>{{ jewelValue.name|raw }}</strong>
+                </td>
+                <td>
+                    {{ jewelValue.description }}
+                    {% if jewelValue.duration %}
+                        <br/><u>Effektdauer:</u> {{ jewelValue.duration }} Sekunden
+                    {% endif %}
+                </td>
+                <td style="vertical-align:top;">
+                    {% if jewelValue.status == 1 %}
+                        Aktiv
+                    {% elseif jewelValue.status == 2 %}
+                        Passiv
+                    {% else %}
+                        ?
+                    {% endif %}
+                    <br/>
+                    {% if jewelValue.type == 1 %}
+                        Beides
+                    {% elseif jewelValue.type == 2 %}
+                        Waffen
+                    {% elseif jewelValue.type == 3 %}
+                        R&uuml;stungen
+                    {% else %}
+                        ?
+                    {% endif %}
+                </td>
+            </tr>
+            <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+                <td style="vertical-align:top;">
+                    <i>{{ jewelValue.element.name }}</i>
+                </td>
+                <td colspan="2" style="padding:0;">
+                    <table width="100%">
+                        <tr style="border:none;">
+                            <td colspan="7" style="padding-bottom:0;">
+                                <u>Wert&auml;nderung:</u>
+                            </td>
+                        </tr>
+                        <tr style="border:none;">
+                            {% for jewel in jewelValue.jewels %}
+                                <td>
+                                    <strong>{{ jewel.level }}:</strong> {{ jewel.jewelattribute }}
+                                    {% if jewel.jewelchance %}({{ jewel.jewelchance }}){% endif %}
+                                </td>
+                            {% endfor %}
+                            <td>
+                                <strong>Max:</strong> {{ jewelValue.maxvalue }}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="{{ loop.index is odd ? "odd" : "even" }}" style="border-top:1px #bbb dotted;">
+                <td colspan="3" class="borderLeft" style="border-bottom:1px #999 solid;">
+                    <div class="tableCell">
+                        <u>&Auml;theradern:</u><br/>
+                        <ul>
+                            {% for jewel in jewelValue.jewels %}
+                                {% for etherVeinRelation in jewel.etherVeinRelations %}
+                                    <li>
+                                        {{ jewel.level }}
+                                        : {{ etherVeinRelation.etherVein.mapPoints[0].map.chapter.name }}
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tableCell">
+                        <u>Missionen:</u><br/>
+                        <ul>
+                            {% for jewel in jewelValue.jewels %}
+                                {% for missionRelation in jewel.missionRelations %}
+                                    <li>
+                                        {{ jewel.level }}: <a
+                                                href="{{ path('missions') }}#m{{ missionRelation.mission.mid }}">{{ missionRelation.mission.name }}
+                                            ({{ missionRelation.mission.chapter.name }})</a>
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tableCell">
+                        <u>Personentausch:</u><br/>
+                        <ul>
+                            {% for jewel in jewelValue.jewels %}
+                                {% for tradeRelation in jewel.tradeRelations %}
+                                    <li>
+                                        {{ jewel.level }}: <a
+                                                href="{{ path('persons') }}#p{{ tradeRelation.tradeInventory.person.pid }}">{{ tradeRelation.tradeInventory.person.name }}
+                                            ({{ tradeRelation.reqharmony }}
+                                            *, {{ tradeRelation.tradeInventory.person.chapter.name }})</a>
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tableCell">
+                        <u>Ausrüstung:</u><br/>
+                        <ul>
+                            {% for jewel in jewelValue.jewels %}
+                                {% for socket in jewel.sockets %}
+                                    <li>
+                                        {{ jewel.level }}: {{ socket.equipRelations[0].item.name }}
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tableCell">
+                        <u>Kristalle:</u><br/>
+                        <ul>
+                            {% for jewel in jewelValue.jewels %}
+                                {% for crystalRelation in jewel.crystalRelations %}
+                                    <li>
+                                        {{ jewel.level }}: {{ crystalRelation.crystal.name }}<br/>
+                                        (
+                                        {% for jewelRelation in crystalRelation.crystal.jewelRelations %}
+                                            {{ jewelRelation.jewel.jewelValue.name|raw }} {{ jewelRelation.jewel.level }},
+                                        {% endfor %}
+                                        )
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tableCell">
+                        <u>Kollektionen:</u><br/>
+                        <ul>
+                            {% for jewel in jewelValue.jewels %}
+                                {% for collection in jewel.rewardCollections %}
+                                    <li>
+                                        {{ jewel.level }}: {{ collection.chapter.name }} (Gesamt)
+                                    </li>
+                                {% endfor %}
+                                {% for collectionRowRelation in jewel.collectionRowRelations %}
+                                    <li>
+                                        {{ jewel.level }}: {{ collectionRowRelation.collection.chapter.name }}
+                                        ({{ collectionRowRelation.collectionRow.name }})
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tableCell">
+                        <u>Truhen:</u><br/>
+                        <ul>
+                            {% for jewel in jewelValue.jewels %}
+                                {% for chestRelation in jewel.chestRelations %}
+                                    {% if loop.first %}
+
+                                    {% endif %}
+                                    <li>
+                                        {{ jewel.level }}: <a
+                                                href="{{ path('chests') }}#chestid{{ chestRelation.chest.chestid }}">{{ chestRelation.chest.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

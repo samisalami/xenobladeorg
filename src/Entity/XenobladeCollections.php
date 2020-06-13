@@ -74,7 +74,7 @@ class XenobladeCollections
     /**
      * @var XenobladeItems|null
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\ManyToOne(targetEntity="XenobladeItems", inversedBy="rewardCollections")
      * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
     private $rewardItem;

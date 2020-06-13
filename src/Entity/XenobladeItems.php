@@ -46,6 +46,30 @@ class XenobladeItems
     private $tradeRelations;
 
     /**
+     * @var XenobladeItemMissionR[]
+     * @OneToMany(targetEntity="XenobladeItemMissionR", mappedBy="item")
+     */
+    private $missionRelations;
+
+    /**
+     * @var XenobladeChestitemsR[]
+     * @OneToMany(targetEntity="XenobladeChestitemsR", mappedBy="item")
+     */
+    private $chestRelations;
+
+    /**
+     * @var XenobladeCollections[]
+     * @OneToMany(targetEntity="XenobladeCollections", mappedBy="rewardItem")
+     */
+    private $rewardCollections;
+
+    /**
+     * @var XenobladeCollectioncollectionfieldtypesR[]
+     * @OneToMany(targetEntity="XenobladeCollectioncollectionfieldtypesR", mappedBy="item")
+     */
+    private $collectionRowRelations;
+
+    /**
      * @var XenobladeItemcategories
      *
      * @ORM\ManyToOne(targetEntity="XenobladeItemcategories")
@@ -101,13 +125,6 @@ class XenobladeItems
      * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
     private $description;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="level", type="string", length=255, nullable=true)
-     */
-    private $level;
 
     /**
      * @var int|null
@@ -167,6 +184,10 @@ class XenobladeItems
 
     public function __construct() {
         $this->tradeRelations = new ArrayCollection();
+        $this->missionRelations = new ArrayCollection();
+        $this->rewardCollections = new ArrayCollection();
+        $this->collectionRowRelations = new ArrayCollection();
+        $this->chestRelations = new ArrayCollection();
     }
 
     public function getIid(): ?int
@@ -270,18 +291,6 @@ class XenobladeItems
         return $this;
     }
 
-    public function getLevel(): ?string
-    {
-        return $this->level;
-    }
-
-    public function setLevel(?string $level): self
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
     public function getC6cclid(): ?int
     {
         return $this->c6cclid;
@@ -381,6 +390,26 @@ class XenobladeItems
     public function getTradeRelations(): array
     {
         return $this->tradeRelations->toArray();
+    }
+
+    public function getMissionRelations(): array
+    {
+        return $this->missionRelations->toArray();
+    }
+
+    public function getRewardCollections(): array
+    {
+        return $this->rewardCollections->toArray();
+    }
+
+    public function getCollectionRowRelations(): array
+    {
+        return $this->collectionRowRelations->toArray();
+    }
+
+    public function getChestRelations(): array
+    {
+        return $this->chestRelations->toArray();
     }
 }
 

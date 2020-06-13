@@ -1,8 +1,10 @@
 <?php
 namespace App\Twig;
 
+use ReflectionClass;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigTest;
 
 class AppExtension extends AbstractExtension
 {
@@ -11,6 +13,22 @@ class AppExtension extends AbstractExtension
         return [
             new TwigFilter('hearts', [$this, 'getHarmonyCount']),
         ];
+    }
+
+    public function getTests()
+    {
+        return [
+            new TwigTest('instanceof', [$this, 'isInstanceof'])
+        ];
+    }
+
+    public function isInstanceof($var, $instance) {
+        try {
+            $reflexionClass = new ReflectionClass($instance);
+            return $reflexionClass->isInstance($var);
+        } catch (\ReflectionException $e) {
+            return false;
+        }
     }
 
     public function getHarmonyCount($value) {

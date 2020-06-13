@@ -29,7 +29,7 @@ a { color:#333333; text-decoration:none; }
 a:hover { text-decoration:underline; }
 
 .comment-text p { margin-bottom:10px !important; }
-.tableCell { float:left; }
+.tableCell { float:left; margin: 0 5px; }
 
 /* *********************************************************
  *

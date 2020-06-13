@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * XenobladeJewelvalues
@@ -29,11 +31,11 @@ class XenobladeJewelvalues
     private $name;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="elementid", type="integer", nullable=false)
+     * @var XenobladeElements
+     * @ORM\ManyToOne(targetEntity="XenobladeElements")
+     * @ORM\JoinColumn(name="elementid", referencedColumnName="elementid")
      */
-    private $elementid;
+    private $element;
 
     /**
      * @var string
@@ -71,11 +73,23 @@ class XenobladeJewelvalues
     private $duration;
 
     /**
+     * @var XenobladeJewels[]
+     * @OneToMany(targetEntity="XenobladeJewels", mappedBy="jewelValue")
+     * @ORM\OrderBy({"level" = "ASC"})
+     */
+    private $jewels;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date = 'CURRENT_TIMESTAMP';
+
+    public function __construct()
+    {
+        $this->jewels = new ArrayCollection();
+    }
 
     public function getJvid(): ?int
     {
@@ -94,14 +108,14 @@ class XenobladeJewelvalues
         return $this;
     }
 
-    public function getElementid(): ?int
+    public function getElement(): ?XenobladeElements
     {
-        return $this->elementid;
+        return $this->element;
     }
 
-    public function setElementid(int $elementid): self
+    public function setElement(XenobladeElements $element): self
     {
-        $this->elementid = $elementid;
+        $this->element = $element;
 
         return $this;
     }
@@ -178,5 +192,8 @@ class XenobladeJewelvalues
         return $this;
     }
 
-
+    public function getJewels(): array
+    {
+        return $this->jewels->toArray();
+    }
 }

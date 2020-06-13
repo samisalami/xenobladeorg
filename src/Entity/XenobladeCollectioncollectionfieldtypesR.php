@@ -22,32 +22,36 @@ class XenobladeCollectioncollectionfieldtypesR
     private $id;
 
     /**
-     * @var int
+     * @var XenobladeCollections|null
      *
-     * @ORM\Column(name="colid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeCollections")
+     * @ORM\JoinColumn(name="colid", referencedColumnName="colid")
      */
-    private $colid;
+    private $collection;
 
     /**
-     * @var int
+     * @var XenobladeCollectionfieldtypes|null
      *
-     * @ORM\Column(name="colftid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
+     * @ORM\JoinColumn(name="colftid", referencedColumnName="colftid")
      */
-    private $colftid;
+    private $collectionRow;
 
     /**
-     * @var int
+     * @var XenobladeItems|null
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeItems", inversedBy="collectionRowRelations")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $item;
 
     /**
-     * @var int
+     * @var XenobladeSockettype|null
      *
-     * @ORM\Column(name="stid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeSockettype")
+     * @ORM\JoinColumn(name="stid", referencedColumnName="stid")
      */
-    private $stid;
+    private $rewardSocketType;
 
     /**
      * @var \DateTime
@@ -61,50 +65,50 @@ class XenobladeCollectioncollectionfieldtypesR
         return $this->id;
     }
 
-    public function getColid(): ?int
+    public function getCollection(): ?XenobladeCollections
     {
-        return $this->colid;
+        return $this->collection;
     }
 
-    public function setColid(int $colid): self
+    public function setCollection(XenobladeCollections $collection): self
     {
-        $this->colid = $colid;
+        $this->collection = $collection;
 
         return $this;
     }
 
-    public function getColftid(): ?int
+    public function getCollectionRow(): ?XenobladeCollectionfieldtypes
     {
-        return $this->colftid;
+        return $this->collectionRow;
     }
 
-    public function setColftid(int $colftid): self
+    public function setCollectionRow(XenobladeCollectionfieldtypes $collectionRow): self
     {
-        $this->colftid = $colftid;
+        $this->collectionRow = $collectionRow;
 
         return $this;
     }
 
-    public function getIid(): ?int
+    public function getItem(): ?XenobladeItems
     {
-        return $this->iid;
+        return $this->item;
     }
 
-    public function setIid(int $iid): self
+    public function setItem(XenobladeItems $item): self
     {
-        $this->iid = $iid;
+        $this->item = $item;
 
         return $this;
     }
 
-    public function getStid(): ?int
+    public function getRewardSocketType(): ?XenobladeSockettype
     {
-        return $this->stid;
+        return $this->rewardSocketType;
     }
 
-    public function setStid(int $stid): self
+    public function setRewardSocketType(XenobladeSockettype $rewardSocketType): self
     {
-        $this->stid = $stid;
+        $this->rewardSocketType = $rewardSocketType;
 
         return $this;
     }
