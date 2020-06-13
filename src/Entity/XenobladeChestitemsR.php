@@ -24,7 +24,7 @@ class XenobladeChestitemsR
     /**
      * @var XenobladeItems
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\ManyToOne(targetEntity="XenobladeItems", inversedBy="chestRelations")
      * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
     private $item;
