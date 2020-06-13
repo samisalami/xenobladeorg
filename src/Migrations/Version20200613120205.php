@@ -22,6 +22,7 @@ final class Version20200613120205 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('ALTER TABLE xenoblade_collectioncollectionfieldtypes_r ADD id INT UNSIGNED AUTO_INCREMENT NOT NULL, ADD PRIMARY KEY (id)');
         $this->addSql('ALTER TABLE xenoblade_collectioncollectionfieldtypes_r CHANGE colid colid INT DEFAULT NULL, CHANGE colftid colftid INT DEFAULT NULL, CHANGE iid iid INT DEFAULT NULL, CHANGE stid stid INT DEFAULT NULL');
         $this->addSql('CREATE INDEX IDX_59679E91C4D85A3E ON xenoblade_collectioncollectionfieldtypes_r (colid)');
         $this->addSql('CREATE INDEX IDX_59679E913107B339 ON xenoblade_collectioncollectionfieldtypes_r (colftid)');
@@ -39,6 +40,9 @@ final class Version20200613120205 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->addSql('ALTER TABLE xenoblade_collectioncollectionfieldtypes_r MODIFY id INT UNSIGNED NOT NULL');
+        $this->addSql('ALTER TABLE xenoblade_collectioncollectionfieldtypes_r DROP PRIMARY KEY');
+        $this->addSql('ALTER TABLE xenoblade_collectioncollectionfieldtypes_r DROP id');
         $this->addSql('DROP INDEX IDX_59679E91C4D85A3E ON xenoblade_collectioncollectionfieldtypes_r');
         $this->addSql('DROP INDEX IDX_59679E913107B339 ON xenoblade_collectioncollectionfieldtypes_r');
         $this->addSql('DROP INDEX IDX_59679E9146A75C12 ON xenoblade_collectioncollectionfieldtypes_r');
