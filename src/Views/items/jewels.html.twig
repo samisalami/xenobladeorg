@@ -43,7 +43,7 @@
         {% for jewelValue in jewelValues %}
             <tr class="{{ loop.index is odd ? "odd" : "even" }}">
                 <td style="vertical-align:top;">
-                    <a name="{{ jewelValue.jvid }}"></a><strong>{{ jewelValue.name|raw }}</strong>
+                    <a name="jvid{{ jewelValue.jvid }}"></a><strong>{{ jewelValue.name|raw }}</strong>
                 </td>
                 <td>
                     {{ jewelValue.description }}
