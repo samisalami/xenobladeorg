@@ -48,7 +48,9 @@ colony6:
     path: guides/kolonie-6-ausbau/
     controller: 'App\Controller\Colony6Controller::index'
 
-
+gemcrafting:
+    path: guides/schmieden
+    controller: 'App\Controller\GemCraftingController::index'
 
 storyfights:
     path: guides/handlungskampfe
