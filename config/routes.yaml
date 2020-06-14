@@ -34,9 +34,9 @@ collectionitems:
     defaults:
         character: null
 
-charakterguides:
+characterguides:
     path: guides/charakter-{character}
-    controller: 'App\Controller\CharakterGuideController::index'
+    controller: 'App\Controller\CharacterGuideController::index'
     defaults:
         character: null
 

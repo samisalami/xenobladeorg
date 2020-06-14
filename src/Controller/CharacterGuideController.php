@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CharakterGuideController extends AbstractController
+class CharacterGuideController extends AbstractController
 {
 
     public function index(string $character)
