@@ -34,6 +34,10 @@ collectionitems:
     defaults:
         character: null
 
+chainattacks:
+    path: guides/angriffsketten/
+    controller: 'App\Controller\ChainAttacksController::index'
+
 characterguides:
     path: guides/charakter-{character}
     controller: 'App\Controller\CharacterGuideController::index'
