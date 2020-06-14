@@ -55,7 +55,13 @@
                     {% endfor %}
                 {% endif %}
                 {{ mission.solution|raw }}</td>
-            <td><a href="{{ path('persons') }}#p{{ mission.person.pid }}">{{ mission.person.name }}</a></td>
+            <td>
+                {% if mission.person.name == 'NPC' %}
+                    NPC
+                {% else %}
+                    <a href="{{ path('persons') }}#p{{ mission.person.pid }}">{{ mission.person.name }}</a>
+                {% endif %}
+            </td>
             <td><center>{{ mission.timelimit|raw }}{% if mission.timelimit is empty %}-{% endif %}</center></td>
             <td>
                 <ul>
