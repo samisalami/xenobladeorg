@@ -1,0 +1,143 @@
+{% extends '_white_box_layout.html.twig' %}
+
+{% block headline %}Schmieden{% endblock %}
+{% block title %}Schmieden{% endblock %}
+
+{% block submenu %}
+    <ul class="submenu-rv">
+        {% include 'guides/_submenu.html.twig' %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+<p>Anbei der von Tyr verfasste Schmiedeguide:</p>
+<p>(Das Xenoblade.org-Team dankt {% include 'emoticons/_wink.html.twig' %})</p>
+<p><br></p>
+
+
+<h2>Allgemeines</h2>
+<p>Zunächst einmal die Frage:</p>
+<p><br></p>
+<p><em>Warum überhaupt Schmieden, man kriegt ja auch so genug Juwelen?</em></p>
+<p><br></p>
+<p>Die Antwort darauf dürfte jedem ins Auge fallen, der die Werte von den Juwelen, die man in Quests erhält, mit denen, die maximal möglich sind, vergleicht.</p>
+<p>Rund 90% erreichen nicht ihr volles Potential und das ist der Punkt, an dem das Schmieden hilfreich wird.</p>
+<p><br></p>
+<p>Zum Schmieden braucht man erst einmal die entsprechenden Materialien.</p>
+<p>Dies sind <strong>Kristalle/Zylinder</strong> mit den gewünschten Effekten und ein <strong>Ofen</strong>. Den Ofen findet man beim Juwelenonkel in Kolonie 9 oder nach einer Quest erhält man eine tragbare Version, so dass man nicht immer wieder dorthin reisen muss.</p>
+<p>Kristalle findet man entweder in Ätheradern oder sie werden von Monstern gedropt (silberne oder goldene Truhe). Die von Monstern hinterlassenen haben immer 2 Effekte, während die Kristalle aus Ätheradern 1-4 aufweisen können.</p>
+<p>Zylinder erhält man entweder als Drops von Mechon oder durch Schmieden (dazu gleich mehr). Diese besitzen immer nur 1 Effekt.</p>
+<p>Die Prozentwerte der einzelnen Effekte eines Kristalls/Zylinders liegen zwischen 10% und 99%.</p>
+<p>Wer noch auf der Suche nach einem speziellen Kristall ist, der schaut mal <a href="{{ path('jewels') }}">auf der Juwelenübersicht</a> vorbei.</p>
+<p>Nachdem jetzt alle Zutaten beisammen sind, eine kurze Erklärung wie das mit dem Schmieden überhaupt abläuft.</p>
+<p><br></p>
+<p>Zum Auftakt werden die zu schmiedenden Kristalle/Zylinder ausgewählt. Man kann 2-8 Items gleichzeitig schmieden. Voraussetzung ist allerdings, dass keiner der Effekte die 100% bereits übersteigt. Sobald dies der Fall ist, können keine weiteren Kristalle/Zylinder ausgewählt werden. Insgesamt kann man bis zu 9 unterschiedliche Effekte gleichzeitig bearbeiten. Es können nur Kristalle/Zylinder derselben <strong>Stufe (I-V)</strong> gleichzeitig verwendet werden.</p>
+<p><br></p>
+<p>Nach der Auswahl der Materialien wählt man die beiden Personen, die das Schmieden selber übernehmen sollen.</p>
+<p>Dabei wird zuerst der <strong>Werfer</strong>, danach der <strong>Techniker</strong> ausgewählt. Jeder Charakter hat unterschiedliche Eigenschaften in diesen Rollen, dazu später mehr.</p>
+<p>Abhängig von der Harmonie zwischen den beiden Personen können bei höchster Harmonie 10-15 Schmiededurchgänge stattfinden.</p>
+<p>In jedem Durchgang stellt der Techniker eine der drei Flammen <span style="color: #ff0000;"><strong>rot</strong></span>, <span style="color: #0000ff;"><strong>blau</strong> </span>oder <span style="color: #008000;"><strong>grün</strong> </span>ein. Die Häufigkeit, mit der die einzelnen Flammenarten vorkommen hängt vom Charakter ab.</p>
+<p><br></p>
+<p>Die einzelnen Flammen bewirken folgendes:</p>
+<p><br></p>
+<p><span style="color: #ff0000;"><strong>Rote Flamme: </strong></span></p>
+<p>Die rote Flamme erhöht die Reinheit EINES Effekts um 3-10%.</p>
+<p>Dabei wird zufällig einer der Werte während des Schmiedevorgangs gewählt.</p>
+<p><br></p>
+<p><span style="color: #0000ff;"><strong>Blaue Flamme:</strong></span></p>
+<p>Die blaue Flamme erhöht die Reinheit ALLER Effekte um 1-5%.</p>
+<p><br></p>
+<p><span style="color: #008000;"><strong>Grüne Flamme:</strong></span></p>
+<p>Die grüne Flamme füllt den Zylinderbalken um 30-70%.</p>
+<p><br></p>
+<p><br></p>
+<p>Jeder Effekt kann während des Schmiedens abhängig vom Prozentwert verschiedene <strong>"Zustände"</strong> annehmen:</p>
+<p><br></p>
+<p><strong>10%-99% (Zylinder)</strong></p>
+<p>Hat der Effekt einen Wert in diesem Bereich am Ende des Schmiedens, so kann aus ihm ein Zylinder geschmiedet werden. Zylinder selber kann man noch nicht nutzen, aber man kann sie zum erneuten Schmieden verwenden. Der Zylinderbalken bestimmt, wie viele der Effekte nach dem Schmieden in einen Zylinder umgewandelt werden können. Zu Beginn des Schmiedens liegt kann man einen Zylinder herstellen, mit jedem kompletten Füllen des Balkens kommt ein weiterer dazu. Maximal kann man 9 Zylinder schmieden.</p>
+<p><br></p>
+<p><strong>100%-199% (Juwel)</strong></p>
+<p>Liegt der Wert am Ende in diesem Bereich, erhält man automatisch ein entsprechendes Juwel mit diesem Effekt und der <strong>Stufe des Kristalls</strong>. Wie groß der Effekt am Ende ist hängt vom Prozentwert ab. So hätte ein geschmiedetes STR<strong>?</strong>-Juwel der Stufe I bei 100% einen Wert von 5, bei 199% läge der Effekt bei 10.</p>
+<p><br></p>
+<p><strong>200%-299% (Hitze)</strong></span></p>
+<p>Sobald der Prozentwert &gt;200% ist, erreicht ein Effekt den Hitze-Zustand. Dabei wird nicht mehr der Prozentwert angezeigt, sondern nur noch das Wort Hitze in gelber Schrift. Am Ende des Schmiedens erhält man für einen Effekt im Hitze-Zustand ein Juwel mit einer<strong> um 1 höheren Stufe</strong>, als die der verwendeten <strong></strong>Kristalle/Zylinder. Wie zuvor beim einfachen Juwel fällt der Wert des Effekts für höhere Prozentzahlen größer aus.</p>
+<p><br></p>
+<p><strong>&gt;300% (Mega-Hitze)</strong></span></p>
+<p><strong></strong>Besser geht's nicht! Ab 300% erhalten wir nicht nur ein Juwel, sondern <strong>2 Juwelen mit um 1 erhöhter Stufe</strong>. Zudem hat der Effekt den <strong>maximalen Wert</strong> dieser Stufe. Auch für diesen Zustand wird kein Prozentwert mehr angezeigt, sonder nur der rote Schriftzug Mega-Hitze.</p>
+<p><br></p>
+<p><br></p>
+<p>Da es maximal Stufe V Kristalle/Zylinder gibt, ist der Hitze bzw. Mega-Hitze Zustand die einzige Möglichkeit Stufe VI Juwelen für alle Effekte zu erhalten (von den paar Quest-Belohnungen mal abgesehen).</p>
+<p>Beim Schmieden kann es vorkommen, dass die Charaktere in ein <strong>Fieber</strong> verfallen. Dabei wird einige Male hintereinander bei der zuletzt verwendeten Flamme geschmiedet, wobei diese Durchgänge während des Fiebers nicht zu den eigentlichen Schmiededurchgängen. Auf diese Weise kann der Wert eines Effektes oder der Zylinderbalken zusätzlich stark ansteigen.</p>
+<p><br></p>
+<p>Neben den Flammen des Ofens gibt es noch eine weitere Mglichkeit Effekte zu steigern und zwar durch <strong>Unterstützung</strong>.</p>
+<p>Ist die Harmonie von Werfer/Techniker mit anderen Charakteren hoch genug, können diese mit einer bestimmten Wahrscheinlichkeit in den Schmiedevorgang eingreifen. Dabei kann diese Unterstützung jeweils den Effekt einer der Flammen haben, allerdings mit einem weitaus höheren Einfluss (bis zu 60% Steigerung eines Effektes bei mir). Der genaue Wert ist auch hier zufällig. Jeder Charakter kann nur einmal helfen, also kann man mit maximal  5 Unterstützungen pro Schmieden rechnen.</p>
+<p><br></p>
+
+
+<h2>Charaktereigenschaften</h2>
+<p>Wie schon erwähnt haben die einzelnen Charaktere unterschiedliche Eigenschaften als Werfer oder Techniker.</p>
+<p>Beim Techniker wird die Stärke mit den einzelnen Flammen angegeben. Dabei gibt es die fünf Werte <strong>schlecht, schwach, normal, gut </strong>und <strong>Experte</strong>. Diese Angaben bestimmen die Wahrscheinlichkeit, mit der eine bestimmte Flammenart bei diesem Techniker vorkommt.</p>
+<p>Der Werfer hat bestimmte Spezialfähigkeiten.</p>
+<p><br></p>
+<p><strong>Shulk:</strong></p>
+<p>Werfer: Fieber – Fieberzustand wird schneller erreicht</p>
+<p><br></p>
+<p>Techniker:      <span style="color: #ff0000;">rot</span>: normal<br />                     <span style="color: #0000ff;">blau</span>: normal<br />                     <span style="color: #008000;">grün</span>: gut</p>
+<p><br></p>
+<p><strong>Reyn:</strong></p>
+<p>Werfer: Rote Flamme – Stärkerer Reinheitsanstieg bei roter Flamme</p>
+<p><br></p>
+<p>Techniker:      <span style="color: #ff0000;">rot</span>: Experte<br />                     <span style="color: #0000ff;">blau</span>: schwach<br />                     <span style="color: #008000;">grün</span>: schwach</p>
+<p><br></p>
+<p><strong>Sharla:</strong></p>
+<p>Werfer: Grüne Flamme – Zylinderbalken steigt stark bei grüner Flamme</p>
+<p>Techniker:      <span style="color: #ff0000;">rot</span>: schwach<br />                     <span style="color: #0000ff;">blau</span>: gut<br />                     <span style="color: #008000;">grün</span>: normal</p>
+<p><br></p>
+<p><strong>Dunban:</strong></p>
+<p>Werfer:  Combo – Reinheit steigt bei konstanter Flamme</p>
+<p><br></p>
+<p>Techniker:      <span style="color: #ff0000;">rot</span>: gut<br />                     <span style="color: #0000ff;">blau</span>: schwach<br />                     <span style="color: #008000;">grün</span>: normal</p>
+<p><br></p>
+<p><strong>Melia:</strong></p>
+<p>Werfer: Blaue Flamme – Stärkerer Reinheitsanstieg bei blauer Flamme</p>
+<p><br></p>
+<p>Techniker:      <span style="color: #ff0000;">rot<span style="color: #000000;">:</span></span> schwach<br />                     <span style="color: #0000ff;">blau</span>: Experte<br />                     <span style="color: #008000;">grün</span>: schwach</p>
+<p><br></p>
+<p><strong>Riki:</strong></p>
+<p>Werfer: Hastiger Werfer – Es wird immer zweimal in Folge geschmiedet</p>
+<p><br></p>
+<p>Techniker:      <span style="color: #ff0000;">rot</span>: schlecht<br />                     <span style="color: #0000ff;">blau</span>: schlecht<br />                     <span style="color: #008000;">grün</span>: Experte</p>
+<p><br></p>
+<p><strong>Person 7:</strong></p>
+<p>Werfer: Zylinder – Zylinderbalken startet bei 3</p>
+<p><br></p>
+<p>Techniker:      <span style="color: #ff0000;">rot</span>: schlecht<br />                     <span style="color: #0000ff;">blau</span>: Experte<br />                     <span style="color: #008000;">grün</span>: schlecht</p>
+<p><br></p>
+<p>Nach den Eigenschaften der Charaktere kommen wir nun zum wichtigsten Teil</p>
+<p><br></p>
+
+
+<h2>Taktiken</h2>
+<p>Ziel des Schmiedens ist es die Mega-Hitze zu erreichen, weil man da nicht nur die maximalen Werte der höheren Stufe hat, sondern praktischerweise gleich ein zweites Juwel gratis dazubekommt.</p>
+<p>Um dies zu erreichen benötigt man erstmal Zylinder mit Prozentwerten nahe den 100%.</p>
+<p><br></p>
+<p>Da man für die Mega-Hitze einen Wert von 300% erreichen muss, sollte man schon mit den Zylindern möglichst vorlegen. Ein einzelner Zylinder kann maximal 99% haben und bei einem Gesamtwert von &gt;100% kann kein weiterer Zylinder verwendet werden. Maximal kann ein Wert vor dem Schmieden also 198% haben (keine Sorge, das ist nicht nötig).</p>
+<p>Je nachdem, wie weit man im Spiel ist (Anzahl der Charaktere; Harmonie der Gruppe) gibt es verschiedene Möglichkeiten sich diesem idealem Ausgangswert möglichst anzunähern.</p>
+<p>Solange Melia und Riki noch nicht dabei sind, sollt man gar nicht erst auf Mega-Hitze setzen, da man die nötigen Zylinder nur mit viel Glück schmieden kann und auch die Unterstützung durch den Rest der Party noch nicht hat.</p>
+<p>Eine der wichtigsten Voraussetzungen beim Schmieden heißt <strong>SPEICHERN</strong>. Falls etwas schief geht, kann man dann einfach neu laden.</p>
+<p><br></p>
+<p><h3>Zylinder schmieden</h3></p>
+<p>Eine der Techniken, die sich zumindest bei mir bewährt hat, bezeichne ich als <strong>Dummy-Taktik</strong>.</p>
+<p>Dabei wird Sharla als Werferein und Riki als Techniker verwendet, um den Zylinderbalken möglichst schnell zu füllen. Durch Unterstützung und die selten vorkommenden blauen und roten Flammen werden die Effekte erhöht. Abhängig vom Prozentwert der für wichtigen Effekte sollte man eine gewisse Anzahl an Dummy-Effekten mitschmieden. Dadurch sinkt die Wahrscheinlichkeit, dass bei einem Wert nahe 100% der Effekt "über das Ziel hinausschießt". Benutzt man genügend Dummies (z.B. Zielzwang-Res.; Erd-, Wind-, oder Wassermantel) schafft man es, die gewünschten Effekte langsam den 100% anzunähern.</p>
+<p><br></p>
+<p>Eine weitere Möglichkeit setzt eine möglichst <strong>niedrige Harmonie</strong> zwischen Melia und Person 7 voraus und ist besonders im Endgame hilfreich.</p>
+<p>Dabei wird Person 7 als Werfer und Melia als Techniker eingesetzt. Durch Person 7 liegt der Zylinderbalken zu Beginn schon bei 3 und mit Melias blauer Flamme und der Unterstützung steigen die einzelnen Effekte. Dabei sollten auch nur möglichst 3 Effekte gleichzeitig geschmiedet werden und das Schmieden bei Bedarf wiederholt werden.</p>
+<p><br></p>
+<p><h3>Juwelen schmieden</h3></p>
+<p>Das Schmieden von Juwelen ist im Vergleich zum Erhalten der nötigen Zylinder recht einfach. Man nimmt einfach Zylinder und Kristalle mit einem Effekt, so dass der Ausgangswert möglichst hoch ist. Danach wählt man Reyn als Techniker und wahlweise, abhängig von Harmonie und Laune, Shulk, Dunban oder Riki als Werfer.</p>
+<p>Durch Reyn wird zumeist bei roter Flamme geschmiedet, damit wird der Effekt erhöht und die Fähigkeiten der Werfer zusammen mit der Unterstützung ergänzen das ganze ziemlich gut.</p>
+<p>Besonders im Endgame bei hoher Harmonie reicht schon ein Ausgangswert von ca. 130%-140% um zuverlässig Mega-Hitze zu erreichen.</p>
+<p><br></p>
+
+{% endblock %}
