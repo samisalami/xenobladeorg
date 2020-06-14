@@ -59,3 +59,7 @@ storyfights:
 extraskilltrees:
     path: guides/extra-talente
     controller: 'App\Controller\ExtraSkillTreesController::index'
+
+giftguide:
+    path: guides/anleitung-sammelitems-verschenken/
+    controller: 'App\Controller\GiftGuideController::index'

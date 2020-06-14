@@ -1,0 +1,54 @@
+{% extends '_white_box_layout.html.twig' %}
+
+{% block headline %}Sammelitems verschenken{% endblock %}
+{% block title %}Sammelitems verschenken{% endblock %}
+
+{% block submenu %}
+<ul class="submenu-rv">
+    {% include 'guides/_submenu.html.twig' %}
+</ul>
+{% endblock %}
+
+{% block content %}
+<p><a href="{{ path('collectionitems') }}">Zu den Sammelitems »</a></p>
+<p><br></p>
+<p><br></p>
+<p>In Xenoblade Chronicles kann man Sammelitems verschenken, um die Harmonie zwischen zwei Charakteren zu steigern.</p>
+<p><br></p>
+<p>Geht zunächst in das Menü mit euren Sammelitems und wählt das gewünschte Item aus:</p>
+
+<figure>
+    <img style="max-height: 20em; max-width: 150%" src="{{ asset('/images/Harmoniegeschenke-1.jpg') }}" title="Sammelitem auswählen" alt="Sammelitem auswählen" />
+    <figcaption><em>Sammelitem auswählen</em></figcaption>
+</figure>
+
+<p>Wenn ihr nun "A" oder "a" drückt (Je nachdem welche Steuerung ihr gerade verwendet), könnt ihr wählen ob ihr das Item wegwerfen oder verschenken wollt. Wählt hier "Geschenk" aus:</p>
+
+<figure>
+    <img style="max-height: 20em; max-width: 150%" src="{{ asset('/images/Harmoniegeschenke-2.jpg') }}" title='Aktion "Geschenk" wählen' alt='Aktion "Geschenk" wählen' />
+    <figcaption><em>Aktion "Geschenk" wählen</em></figcaption>
+</figure>
+
+<p>Dann wählt den Charakter der das Geschenk machen soll:</p>
+
+<figure>
+    <img style="max-height: 20em; max-width: 150%" src="{{ asset('/images/Harmoniegeschenke-3.jpg') }}" title='Shulk schenkt' alt='Shulk schenkt' />
+    <figcaption><em>Shulk schenkt</em></figcaption>
+</figure>
+
+<p>Zuletzt noch den zu Beschenkenden wählen:</p>
+
+<figure>
+    <img style="max-height: 20em; max-width: 150%" src="{{ asset('/images/Harmoniegeschenke-4.jpg') }}" title='Sharla wird beschenkt' alt='Sharla wird beschenkt' />
+    <figcaption><em>Sharla wird beschenkt</em></figcaption>
+</figure>
+
+<p>Danach seht ihr dann welche Auswirkung das Geschenk hat. In diesem Beispiel eine positive Auswirkung; zu erkennen an den Herzen, die nach oben steigen - negative Auswirkungen erkennt man an den Herzen, die nach unten sinken.</p>
+
+<figure>
+    <img style="max-height: 20em; max-width: 150%" src="{{ asset('/images/Harmoniegeschenke-5.jpg') }}" title='Positiv - Ein aufsteigendes Herz!' alt='Positiv - Ein aufsteigendes Herz!' />
+    <figcaption><em>Positiv - Ein aufsteigendes Herz!</em></figcaption>
+</figure>
+
+<p><a href="{{ path('collectionitems') }}">Zu den Sammelitems »</a></p>
+{% endblock %}
