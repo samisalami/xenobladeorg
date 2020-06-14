@@ -1,0 +1,102 @@
+{% extends '_layout.html.twig' %}
+
+{% block headline %}Tiefe Charakterzüge{% endblock %}
+{% block title %}Tiefe Charakterzüge{% endblock %}
+
+{% block submenu %}
+<ul class="submenu-rv">
+    {% include 'guides/_submenu.html.twig' %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<em><strong>Der Questgeber muss immer mit der Person, dessen Talent freigeschaltet wird angesprochen werden.</strong></em>
+
+<h2>4. tiefer Charakterzug</h2>
+Frühestens nach Gefängnisinsel
+<p><br/><p>
+<table class="guide-table">
+	<tr class="tablehead">
+		<td>
+			Charakter:
+		</td>
+		<td>
+			Name:
+		</td>
+		<td>
+			Mission:
+		</td>
+		<td>
+			Lösung:
+		</td>
+		<td>
+			Person:
+		</td>
+	</tr>
+
+    {% for skilltree in skilltrees4 %}
+        <tr class="{{ loop.index0 is odd ? "odd" : "even" }}" style="{{ loop.last ? "border-bottom:1px #bbb solid;" }}">
+            <td>
+                {{ skilltree.character.name }}
+            </td>
+            <td>
+                {{ skilltree.name }}
+            </td>
+            <td>
+                <a href="{{ path('missions') }}#m{{ skilltree.mission.mid }}">{{ skilltree.mission.name }}</a>
+            </td>
+            <td>
+                {{ skilltree.mission.solution | raw }}
+            </td>
+            <td>
+                <a href="{{ path('persons') }}#p{{ skilltree.mission.person.pid }}">{{ skilltree.mission.person.name }}</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+<p><br/><p>
+
+<h2>5. tiefer Charakterzug</h2>
+Frühestens nach Mechonis-Kern
+<p><br/><p>
+<table class="guide-table">
+	<tr class="tablehead">
+		<td>
+			Charakter:
+		</td>
+		<td>
+			Name:
+		</td>
+		<td>
+			Mission:
+		</td>
+		<td>
+			Lösung:
+		</td>
+		<td>
+			Person:
+		</td>
+	</tr>
+
+    {% for skilltree in skilltrees5 %}
+        <tr class="{{ loop.index0 is odd ? "odd" : "even" }}" style="{{ loop.last ? "border-bottom:1px #bbb solid;" }}">
+            <td>
+                {{ skilltree.character.name }}
+            </td>
+            <td>
+                {{ skilltree.name }}
+            </td>
+            <td>
+                <a href="{{ path('missions') }}#m{{ skilltree.mission.mid }}">{{ skilltree.mission.name }}</a>
+            </td>
+            <td>
+                {{ skilltree.mission.solution | raw }}
+            </td>
+            <td>
+                <a href="{{ path('persons') }}#p{{ skilltree.mission.person.pid }}">{{ skilltree.mission.person.name }}</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

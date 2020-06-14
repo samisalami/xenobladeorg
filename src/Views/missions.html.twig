@@ -70,7 +70,7 @@
                     { 'missionItemRelations': mission.itemRelations }
                 ))}}
             </td>
-            <td style="text-align:center">{{ mission.harmonychange }} {% if not mission.harmonychange is empty %}*{% endif %}</td>
+            <td style="text-align:center">{{ mission.harmonychange | raw }} {% if not mission.harmonychange is empty %}*{% endif %}</td>
         </tr>
         {% endfor %}
     </table>
