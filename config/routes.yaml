@@ -28,6 +28,10 @@ etherveins:
     path: item-box/atheradern
     controller: 'App\Controller\EtherVeinsController::index'
 
+collection:
+    path: item-box/kollektion
+    controller: 'App\Controller\CollectionsController::index'
+
 collectionitems:
     path: item-box/sammelitems/{character}
     controller: 'App\Controller\CollectionItemsController::index'

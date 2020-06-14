@@ -1,0 +1,56 @@
+{% extends '_layout.html.twig' %}
+
+{% block title %}Kollektikon{% endblock %}
+{% block headline %}Kollektikon{% endblock %}
+{% block submenu %}
+    <ul class="submenu-rv">
+        {% include 'items/_submenu.html.twig' %}
+    </ul>
+{% endblock %}
+{% block content %}
+    {% for chapter, data in groupedCollections %}
+        <a name="colid{{ data.collection.colid }}"></a><h2>{{ chapter }}</h2>
+        <table class="guide-table">
+            <tr class="tablehead">
+                <td colspan="6"></td>
+                <td><strong>Belohnung:</strong></td>
+            </tr>
+            {% for fieldType, rowData in data.rows %}
+                <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+                    <td>
+                        <strong>{{ fieldType }}</strong>
+                    </td>
+                    {% for collectionItem in rowData.collectionItems %}
+                        <td>
+                            <a href="{{ path('collectionitems') }}#iid{{ collectionItem.iid }}">{{ collectionItem.name }}</a>
+                        </td>
+                        {% if loop.last and loop.length < 5 %}
+                            {% set count = 5 - loop.length %}
+                            {% for i in 1..count %}
+                                <td>X</td>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    <td>
+                        {% if rowData.rewardRelation.item is instanceof('\\App\\Entity\\XenobladeJewels') %}
+                            <a href="{{ path('jewels') }}#jvid{{ rowData.rewardRelation.item.jewelValue.jvid }}">{{ rowData.rewardRelation.item.name|raw }}</a>
+                        {% else %}
+                            {{ rowData.rewardRelation.item.name|raw }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br/>
+        <br/>
+        <strong>Belohnung Gesamt:</strong>
+        {% if data.collection.rewardItem is instanceof('\\App\\Entity\\XenobladeJewels') %}
+            <a href="{{ path('jewels') }}#jvid{{ data.collection.rewardItem.jewelValue.jvid }}">{{ data.collection.rewardItem.name|raw }}</a>
+        {% else %}
+            {{ data.collection.rewardItem.name|raw }}
+        {% endif %}
+        <br/>
+        <br/>
+        <br/>
+    {% endfor %}
+{% endblock %}

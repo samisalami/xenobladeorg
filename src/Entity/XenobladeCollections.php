@@ -22,44 +22,44 @@ class XenobladeCollections
     private $colid;
 
     /**
-     * @var XenobladeCollectionfieldtypes
+     * @var XenobladeCollectionfieldtypes|null
      * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
-     * @ORM\JoinColumn(name="field1", referencedColumnName="colftid")
+     * @ORM\JoinColumn(name="field1", referencedColumnName="colftid", nullable=true)
      */
     private $field1CollectionType;
 
     /**
-     * @var XenobladeCollectionfieldtypes
+     * @var XenobladeCollectionfieldtypes|null
      * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
-     * @ORM\JoinColumn(name="field2", referencedColumnName="colftid")
+     * @ORM\JoinColumn(name="field2", referencedColumnName="colftid", nullable=true)
      */
     private $field2CollectionType;
 
     /**
-     * @var XenobladeCollectionfieldtypes
+     * @var XenobladeCollectionfieldtypes|null
      * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
-     * @ORM\JoinColumn(name="field3", referencedColumnName="colftid")
+     * @ORM\JoinColumn(name="field3", referencedColumnName="colftid", nullable=true)
      */
     private $field3CollectionType;
 
     /**
-     * @var XenobladeCollectionfieldtypes
+     * @var XenobladeCollectionfieldtypes|null
      * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
-     * @ORM\JoinColumn(name="field4", referencedColumnName="colftid")
+     * @ORM\JoinColumn(name="field4", referencedColumnName="colftid", nullable=true)
      */
     private $field4CollectionType;
 
     /**
-     * @var XenobladeCollectionfieldtypes
+     * @var XenobladeCollectionfieldtypes|null
      * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
-     * @ORM\JoinColumn(name="field5", referencedColumnName="colftid")
+     * @ORM\JoinColumn(name="field5", referencedColumnName="colftid", nullable=true)
      */
     private $field5CollectionType;
 
     /**
-     * @var XenobladeCollectionfieldtypes
+     * @var XenobladeCollectionfieldtypes|null
      * @ORM\ManyToOne(targetEntity="XenobladeCollectionfieldtypes")
-     * @ORM\JoinColumn(name="field6", referencedColumnName="colftid")
+     * @ORM\JoinColumn(name="field6", referencedColumnName="colftid", nullable=true)
      */
     private $field6CollectionType;
 
