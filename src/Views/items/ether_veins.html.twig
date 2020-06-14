@@ -50,7 +50,7 @@
                         <a name="{{ etherVein.evid }}"></a>{{ etherVein.name }}
                     </td>
                     <td>
-                        {{ etherVein.description }}
+                        {{ etherVein.description|raw }}
                     </td>
                     <td style="text-align:center;">
                         {{ etherVein.rare ? '10 Std.' : '5 Std.' }}
