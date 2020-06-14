@@ -41,3 +41,7 @@ colony6:
 storyfights:
     path: guides/handlungskampfe
     controller: 'App\Controller\StoryFightsController::index'
+
+extraskilltrees:
+    path: guides/extra-talente
+    controller: 'App\Controller\ExtraSkillTreesController::index'
