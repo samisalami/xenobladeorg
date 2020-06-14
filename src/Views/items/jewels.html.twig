@@ -175,12 +175,12 @@
                             {% for jewel in jewelValue.jewels %}
                                 {% for collection in jewel.rewardCollections %}
                                     <li>
-                                        {{ jewel.level }}: {{ collection.chapter.name }} (Gesamt)
+                                        {{ jewel.level }}: <a href="{{ path('collection') }}#colid{{ collection.colid }}">{{ collection.chapter.name }}</a> (Gesamt)
                                     </li>
                                 {% endfor %}
                                 {% for collectionRowRelation in jewel.collectionRowRelations %}
                                     <li>
-                                        {{ jewel.level }}: {{ collectionRowRelation.collection.chapter.name }}
+                                        {{ jewel.level }}: <a href="{{ path('collection') }}#colid{{ collectionRowRelation.collection.colid }}">{{ collectionRowRelation.collection.chapter.name }}</a>
                                         ({{ collectionRowRelation.collectionRow.name }})
                                     </li>
                                 {% endfor %}
