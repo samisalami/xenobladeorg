@@ -30,13 +30,6 @@ class XenobladeColony6categorylevelitemR
     private $rewardItem;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="eqstid", type="integer", nullable=false)
-     */
-    private $eqstid;
-
-    /**
      * @var XenobladeColony6categorylevels
      *
      * @ORM\ManyToOne(targetEntity="XenobladeColony6categorylevels")
@@ -64,18 +57,6 @@ class XenobladeColony6categorylevelitemR
     public function setRewardItem(XenobladeItems $rewardItem): self
     {
         $this->rewardItem = $rewardItem;
-
-        return $this;
-    }
-
-    public function getEqstid(): ?int
-    {
-        return $this->eqstid;
-    }
-
-    public function setEqstid(int $eqstid): self
-    {
-        $this->eqstid = $eqstid;
 
         return $this;
     }

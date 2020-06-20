@@ -24,13 +24,6 @@ class XenobladeColony6categorylevels
     /**
      * @var int
      *
-     * @ORM\Column(name="money", type="integer", nullable=false)
-     */
-    private $money;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="level", type="integer", nullable=false)
      */
     private $level;
@@ -45,18 +38,6 @@ class XenobladeColony6categorylevels
     public function getC6clid(): ?int
     {
         return $this->c6clid;
-    }
-
-    public function getMoney(): ?int
-    {
-        return $this->money;
-    }
-
-    public function setMoney(int $money): self
-    {
-        $this->money = $money;
-
-        return $this;
     }
 
     public function getLevel(): ?int

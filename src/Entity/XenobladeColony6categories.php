@@ -36,6 +36,14 @@ class XenobladeColony6categories
     private $prio;
 
     /**
+     * @var XenobladeItems|null
+     *
+     * @ORM\ManyToOne(targetEntity="XenobladeItems", inversedBy="rewardCollections")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
+     */
+    private $rewardItem;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
@@ -55,6 +63,18 @@ class XenobladeColony6categories
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getRewardItem(): ?XenobladeItems
+    {
+        return $this->rewardItem;
+    }
+
+    public function setRewardItem(XenobladeItems $rewardItem): self
+    {
+        $this->rewardItem = $rewardItem;
 
         return $this;
     }

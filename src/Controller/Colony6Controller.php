@@ -30,6 +30,7 @@ class Colony6Controller extends AbstractController
 
         $costsData = [];
         foreach ($categoryLevelLinks as $link) {
+            /** @var XenobladeColony6categorieslevelsR $link */
             $level = $link->getCategoryLevel()->getLevel();
             $category = $link->getCategory()->getName();
             $costs = $link->getCosts();
@@ -39,6 +40,7 @@ class Colony6Controller extends AbstractController
 
         $itemArrays = [];
         foreach ($levelItemLinks as $link) {
+            /** @var XenobladeColony6levelitemR $link */
             $level = $link->getCategoryLevelLink()->getCategoryLevel()->getLevel();
             $category = $link->getCategoryLevelLink()->getCategory()->getName();
             $item = $link->getItem();
@@ -58,11 +60,12 @@ class Colony6Controller extends AbstractController
 
         $rewardItems = [];
         foreach ($categoryLevelItemLinks as $link) {
-            $level = $link->getCategoryLevel()->getLevel()->getLevel();
-            $item = $link->getItem();
+            /** @var XenobladeColony6categorylevelitemR $link */
+            $level = $link->getCategoryLevel()->getLevel();
+            $item = $link->getRewardItem();
 
-            if (!array_key_exists($level, $itemArrays)) {
-                $itemArrays[$level] = [];
+            if (!array_key_exists($level, $rewardItems)) {
+                $rewardItems[$level] = [];
             }
 
             array_push($rewardItems[$level], $item);

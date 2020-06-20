@@ -53,13 +53,13 @@
             {% endfor %}
             <td>
 
-            {% if level.money is not empty %}
-                {{ level.money }} G<br/>
-            {% endif %}
-
             {% if rewardItems is not empty %}
                 {% for item in rewardItems[level.level] %}
-                    {{ item.name }}
+                    {% if item is instanceof('\\App\\Entity\\XenobladeJewels') %}
+                        <a href="{{ path('jewels') }}#jvid{{ item.jewelValue.jvid }}">{{ item.name|raw }}</a>
+                    {% else %}
+                        {{ item.name|raw }}
+                    {% endif %}
                 {% endfor %}
             {% endif %}
 
