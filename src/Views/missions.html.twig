@@ -51,7 +51,7 @@
             <td>
                 {% if not mission.extraSkills is empty %}
                     {% for skill in mission.extraSkills %}
-                        <i>Diese Mission schaltet {{ skill.character.name }} {% if skill.skill4 %}4{% else %}5{% endif %}. Charakterzug {{ skill.name }} frei</i><br/>
+                        <i>Diese Mission schaltet {{ skill.character.name }}s {% if skill.skill4 %}4{% else %}5{% endif %}. Charakterzug {{ skill.name }} frei</i><br/>
                     {% endfor %}
                 {% endif %}
                 {{ mission.solution|raw }}</td>
