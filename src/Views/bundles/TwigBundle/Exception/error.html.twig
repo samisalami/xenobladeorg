@@ -1,0 +1,39 @@
+{# to test it in dev mode visit "http://localhost/index.php/_error/{statusCode}" #}
+
+{% extends '_layout.html.twig' %}
+
+{# Translate common status messages #}
+{% if status_code == 404 %}
+{% set status_text = "Seite nicht gefunden" %}
+{% elseif status_code == 500 %}
+{% set status_text = "Interner Serverfehler" %}
+{% endif %}
+
+{% block headline %}{{ status_code }} {{ status_text }}{% endblock %}
+{% block title %}{{ status_code }} {{ status_text }}{% endblock %}
+
+{% block submenu %}
+{% endblock %}
+
+{% block content %}
+
+{# The image for the error page is selected randomly #}
+{% set number = random(1, 4) %}
+
+{% set alt_text = 'nur noch ihre leblosen Hüllen blieben.' %}
+{% set titel_text = 'Mehr als eine leblose Hülle wirst du hier nicht finden.' %}
+
+{% if number==2 %}
+{% set alt_text = 'Völlig unbrauchbar.' %}
+{% set titel_text = 'Genau wie der Link der einen herführt.' %}
+{% elseif number==3 %}
+{% set alt_text = 'Die Libelle und Shulk.' %}
+{% set titel_text = 'Mehr als die Libelle gibt es hier nicht. Ja, Shulk ist auch wenig begeistert.' %}
+{% elseif number==4 %}
+{% set alt_text = 'Der Himmel über Kolonie 9.' %}
+{% set titel_text = 'Ob es da oben wohl mehr zu sehen gibt als hier?' %}
+{% endif %}
+
+<img style="max-width: 70%" src="{{ asset('/images/error' ~ number) }}.jpg" title='{{ titel_text }}' alt='{{ alt_text }}' />
+
+{% endblock %}
