@@ -24,7 +24,7 @@ class XenobladeCrystaljewelR
     /**
      * @var XenobladeCrystals
      *
-     * @ORM\ManyToOne(targetEntity="XenobladeCrystals")
+     * @ORM\ManyToOne(targetEntity="XenobladeCrystals", inversedBy="jewelRelations")
      * @ORM\JoinColumn(name="crid", referencedColumnName="crid")
      */
     private $crystal;

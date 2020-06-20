@@ -55,17 +55,28 @@
 
             {% if rewardItems is not empty %}
                 {% for item in rewardItems[level.level] %}
-                    {% if item is instanceof('\\App\\Entity\\XenobladeJewels') %}
-                        <a href="{{ path('jewels') }}#jvid{{ item.jewelValue.jvid }}">{{ item.name|raw }}</a>
-                    {% else %}
-                        {{ item.name|raw }}
-                    {% endif %}
+                    {% include 'items/_item_link.html.twig' with {'item': item} %}
                 {% endfor %}
             {% endif %}
 
             </td>
             </tr>
         {% endfor %}
+
+        <tr class="tablehead {{ categoryLevels|length is odd ? "odd" : "even"}}">
+            <td>
+                Belohnung
+            </td>
+
+            {% for category in categories %}
+                <td>
+                    {% include 'items/_item_link.html.twig' with {'item': category.rewardItem} %}
+                </td>
+            {% endfor %}
+
+            <td>
+            </td>
+        </tr>
     </table>
 
     {# ############################# #}

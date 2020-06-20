@@ -1,12 +1,7 @@
-{% set category_path = '' %}
-{% if item.itemcategory.type == "collectionitem" %}
-    {% set category_path = path('collectionitems') %}
-{% endif %}
-
-{% if category_path is not empty %}
-    <a href="{{ category_path }}#iid{{ item.iid }}" >
-{% endif %}
-    {{ item.name }}
-{% if category_path is not empty %}
-    </a>
+{% if item is instanceof('\\App\\Entity\\XenobladeCollectionItems') %}
+    <a href="path('collectionitems')#iid{{ item.iid }}" >{{ item.name|raw }}</a>
+{% elseif item is instanceof('\\App\\Entity\\XenobladeJewels') %}
+    <a href="{{ path('jewels') }}#jvid{{ item.jewelValue.jvid }}">{{ item.name|raw }}</a>
+{% else %}
+    {{ item.name | raw }}
 {% endif %}
