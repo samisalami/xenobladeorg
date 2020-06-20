@@ -25,7 +25,7 @@
 </td>
 <td>
     {% set mapPoint = person.mapPoints[0]|default(null) %}
-    {% include '_map.html.twig' with {
+    {% include 'maps/_mapIcon.html.twig' with {
         'map': mapPoint.map|default(null),
         'mapPoint': mapPoint,
         'name': person.name,

@@ -324,8 +324,69 @@ a:hover { text-decoration:underline; }
  *  MAPS
  *
  ******************************************************** */
-
 #content .chapters h3 { margin: 0 0 10px 10px; color: #cc0000; }
+.zitem { width:120px; height:90px; border:1px solid #333333; overflow:hidden; cursor: pointer; }
+.zitem .caption { width:120px; height:30px; background: rgba(0,0,0,0.7); text-align:center; color:#fff; position:absolute; margin-top:-31px; display:block; }
+
+.zitem img { -webkit-transition: 0.2s ease-out; -moz-transition: 0.2s ease-out; }
+.zitem:hover img {
+	-webkit-transform: scale(1.2);
+	-webkit-transition: 0.1s ease-out;
+	-moz-transform: scale(1.2);
+	-moz-transition: 0.1s ease-out;
+}
+
+.zitem:hover .caption {
+	background: rgba(33,33,33,0.7);
+}
+
+.pointlabel, .shadow { font-weight:bold; text-shadow: black 1px 1px; text-decoration:none; }
+.mappointfilter { position:absolute; margin-top:20px; margin-left:20px; }
+#mapinfocontainer { float:right; width:150px; background-color:#666666; color:#fff; list-style-type:none !important; padding:0 !important; margin:0 !important;}
+#mapinfocontainer li { padding: 10px; border-bottom:1px #fff solid; background-color:#666666;}
+#mapinfocontainer h2 { padding:0; margin:0; margin-bottom:5px; position:static; }
+#mapinfocontainer a { color:#cc0000; }
+
+ul.chapters {
+	list-style: none;
+	margin: 0 0 50px 0;
+	padding: 0;
+	float:left;
+	width:100%;
+}
+
+ul.chapters > li {
+	clear: both;
+	padding: 1em;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+ul.chapters > li > h2 {
+	padding: 0.5em;
+	border-bottom: 1px solid #fff;
+	background: -moz-linear-gradient(top, rgb(245, 245, 245), rgb(235, 235, 235));
+	background: -webkit-linear-gradient(top, rgb(235, 235, 235), rgb(225, 225, 225));
+	cursor: pointer;
+	color: #666;
+	text-shadow: 0 1px 0 #fff;
+	font-size:18px;
+}
+
+ul.maps {
+	clear: both;
+	list-style: none;
+}
+
+ul.maps > li {
+	margin-left: 5px;
+	margin-bottom: 5px;
+	float: left;
+}
+
+#wrapper ul.maps > li {
+	padding-left: 0;
+}
 
 /* *********************************************************
  *

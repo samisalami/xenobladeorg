@@ -22,11 +22,11 @@ class XenobladeMapinfos
     private $mapinfoid;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="maid", type="integer", nullable=false)
+     * @var XenobladeMaps|null
+     * @ORM\ManyToOne(targetEntity="XenobladeMaps", inversedBy="mapInfos")
+     * @ORM\JoinColumn(name="maid", referencedColumnName="maid")
      */
-    private $maid;
+    private $map;
 
     /**
      * @var string
@@ -47,14 +47,14 @@ class XenobladeMapinfos
         return $this->mapinfoid;
     }
 
-    public function getMaid(): ?int
+    public function getMap(): ?XenobladeMaps
     {
-        return $this->maid;
+        return $this->map;
     }
 
-    public function setMaid(int $maid): self
+    public function setMap(XenobladeMaps $map): self
     {
-        $this->maid = $maid;
+        $this->map = $map;
 
         return $this;
     }

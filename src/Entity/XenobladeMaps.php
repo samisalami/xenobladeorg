@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * XenobladeMaps
@@ -72,11 +74,21 @@ class XenobladeMaps
     private $thumb;
 
     /**
+     * @var XenobladeMapinfos[]
+     * @OneToMany(targetEntity="XenobladeMapinfos", mappedBy="map")
+     */
+    private $mapInfos;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $date = 'CURRENT_TIMESTAMP';
+
+    public function __construct() {
+        $this->mapInfos = new ArrayCollection();
+    }
 
     public function getMaid(): ?int
     {
@@ -179,5 +191,8 @@ class XenobladeMaps
         return $this;
     }
 
-
+    public function getMapInfos(): array
+    {
+        return $this->mapInfos->toArray();
+    }
 }

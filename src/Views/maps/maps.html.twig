@@ -1,0 +1,86 @@
+{% extends '_layout.html.twig' %}
+
+{% block title %}Karten{% endblock %}
+{% block headline %}
+    Karten
+{% endblock %}
+{% block content %}
+    <u>Legende:</u><br/>
+    <br/>
+    <div class="pointlabel" style="color: yellow;">Reisepunkt</div><br/>
+    <div class="pointlabel" style="color: #03befc;">Geheimpunkt</div><br/>
+    <div class="pointlabel" style="color: green;">Ätherader</div><br/>
+    <div class="pointlabel" style="color: purple;">Hinweis</div><br/>
+    <ul class='chapters'>
+    {% for chapter, maps in mapsData %}
+            <li>
+                <h2>{{ chapter }}</h2>
+                <ul class='maps'>
+                    {% for mapData in maps %}
+                        <li>
+                            <label>
+                                <div class="zitem">
+                                    <div class="thumblink">
+                                        <img src="{{ asset('/images/maps/' ~ mapData.map.thumb) }}" alt="{{ mapData.map.name }}"
+                                             width="120" height="90"/>
+                                        <div class="caption">
+                                            {{ mapData.map.name }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="checkbox" class="overlay-trigger"/>
+                                <div class="overlay">
+                                    <div class="map wrapper">
+                                        {% for mapPoint in mapData.landmarks %}
+                                            {% include 'maps/_mapPoint.html.twig' with {
+                                                'mapPoint': mapPoint,
+                                                'name': mapPoint.name,
+                                                'color': 'yellow'
+                                            } %}
+                                        {% endfor %}
+                                        {% for mapPoint in mapData.secretLocations %}
+                                            {% include 'maps/_mapPoint.html.twig' with {
+                                                'mapPoint': mapPoint,
+                                                'name': mapPoint.name,
+                                                'color': 'brightblue'
+                                            } %}
+                                        {% endfor %}
+                                        {% for mapPoint in mapData.etherVeins %}
+                                            {% include 'maps/_mapPoint.html.twig' with {
+                                                'mapPoint': mapPoint,
+                                                'name': mapPoint.name,
+                                                'color': 'green'
+                                            } %}
+                                        {% endfor %}
+                                        {% for mapPoint in mapData.notes %}
+                                            {% include 'maps/_mapPoint.html.twig' with {
+                                                'mapPoint': mapPoint,
+                                                'name': loop.index,
+                                                'color': 'purple'
+                                            } %}
+                                        {% endfor %}
+                                        <h2>{{ mapData.map.name }}</h2>
+                                        <img src="{{ asset('/images/maps/' ~ mapData.map.imgsrc) }}" alt="{{ mapData.map.name }}"/>
+                                        <ul id="mapinfocontainer">
+                                            {% for info in mapData.map.mapInfos %}
+                                                <li>
+                                                    <h2>{{ loop.index }}</h2>
+                                                    {{ info.description|raw }}
+                                                </li>
+                                            {% endfor %}
+                                            {% if mapData.map.mapInfos is empty %}
+                                                <li>
+                                                    <h2>Kein Hinweis vorhanden</h2>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

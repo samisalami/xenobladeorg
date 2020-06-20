@@ -16,6 +16,10 @@ persons_spoiler:
     path: /personen/personen-nach-mechonis-kern
     controller: 'App\Controller\PersonsController::spoilerPersons'
 
+maps:
+    path: karten
+    controller: 'App\Controller\MapsController::index'
+
 chests:
     path: item-box/truhen
     controller: 'App\Controller\ChestsController::index'

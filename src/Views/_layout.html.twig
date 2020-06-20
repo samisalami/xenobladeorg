@@ -8,7 +8,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/xenobladeorg.js?bla=1') }}"></script>
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset('css/reset.css') }}" />
-    <link rel="stylesheet" type="text/css" media="all" href="/css/style.css?ver=03" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/style.css?ver=05" />
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset('css/jquery-ui-1.10.3.custom.min.css') }}" />
     <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
     {% block head %}{% endblock %}
@@ -38,6 +38,9 @@
                     <ul class="sub-menu">
                         {% include 'persons/_submenu.html.twig' %}
                     </ul>
+                </li>
+                <li>
+                    <a href="{{ path('maps') }}">Karten</a>
                 </li>
                 <li>
                     <a href="#">Item-Box</a>
@@ -83,7 +86,7 @@
                     </div>
                     <div class="pagecontent clear">
                         {% block content_style %}
-                            <div>
+                            <div></div>
                         {% endblock content_style %}
                         {% block content %}
                         {% endblock %}

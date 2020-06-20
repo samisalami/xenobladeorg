@@ -4,7 +4,7 @@
         <input type="checkbox" class="overlay-trigger"/>
         <div class="overlay">
             <div class="map wrapper">
-                <div class="pointlabel" style="left: {{ mapPoint.xpos + 15 }}px; top: {{ mapPoint.ypos - 2 }}px; color: {{ color }}">{{ name }}</div>
+                <div class="pointlabel" style="left: {{ mapPoint.xpos + 15 }}px; top: {{ mapPoint.ypos - 2 }}px; color: {{ color }}">{{ name|raw }}</div>
                 <img class="pointimg" style="left: {{ mapPoint.xpos }}px; top: {{ mapPoint.ypos }}px" src="{{ asset('/images/'~ color ~'point.png') }}" />
                 <h2>{{ map.name }}</h2>
                 <img src="{{ asset('/images/maps/' ~ map.imgsrc) }}" alt="{{ map.name }}" />

@@ -25,7 +25,7 @@
 
                             {% for fightPoint in fightPoints %}
                                 {% if fightPoint.storyFight is same as(fight)  %}
-                                    {% include '_map.html.twig' with {
+                                    {% include 'maps/_mapIcon.html.twig' with {
                                      'map': fightPoint.map,
                                      'mapPoint': fightPoint,
                                      'name': fight.name,
