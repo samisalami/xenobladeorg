@@ -1,0 +1,167 @@
+{% extends '_layout.html.twig' %}
+
+{% block title %}Ausrüstung{% endblock %}
+{% block headline %}Ausrüstung{% endblock %}
+{% block submenu %}
+    <ul class="submenu-rv">
+        {% include 'items/_submenu.html.twig' %}
+    </ul>
+{% endblock %}
+{% block content %}
+    <style type="text/css">
+        ul { float:left; margin:10px 10px 20px -5px; padding:0; }
+    </style>
+    <strong>Hinweis Funde:</strong><br/>
+    Bei den Funden unter Monster steht in Klammern die Sockelzahl davor, wenn gepflegt und nicht mit festen Juwelen gesockelt.<br/>
+    <br/>
+    <strong>[Spoiler]</strong> verlinkt auf Inhalte nach Mechonis-Kern<br/>
+    {% for type, items in equipData %}
+        <br/>
+        <strong>Typen:</strong><br/>
+        <a href="#Torso">Torso</a> |
+        <a href="#Arme">Arme</a> |
+        <a href="#Beine">Beine</a> |
+        <a href="#Kopf">Kopf</a> |
+        <a href="#F&uuml;&szlig;e">F&uuml;&szlig;e</a>
+        <a name="{{ type }}"></a>
+        <br>
+        <h2>{{ type }}</h2>
+        <table class="guide-table" align="center">
+            <tr class="tablehead">
+                <td>
+                    Name:
+                </td>
+                <td>
+                    Gewicht:
+                </td>
+                <td>
+                    PhA:
+                </td>
+                <td>
+                    AtA:
+                </td>
+                <td>
+                    Preis:
+                </td>
+                <td>
+                    Juwelen:
+                </td>
+                <td>
+                    Funde:
+                </td>
+            </tr>
+            {% for itemData in items %}
+                <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+                    <td>
+                        <a name="iid{{ itemData.item.iid }}"></a>{{ itemData.item.name }}{% if not itemData.socket.notfixed %} (V){% endif %}
+                    </td>
+                    <td>
+                        {% if itemData.item.weightType == 1 %}
+                            Leicht,
+                        {% elseif itemData.item.weightType == 2 %}
+                            Mittel,
+                        {% elseif itemData.item.weightType == 3 %}
+                            Schwer,
+                        {% elseif itemData.item.weightType == 4 %}
+                            Mechonis,
+                        {% endif %}
+                         {{ itemData.item.weight }}
+                    </td>
+                    <td>
+                        {{ itemData.item.pha }}
+                    </td>
+                    <td>
+                        {{ itemData.item.aeta }}
+                    </td>
+                    <td>
+                        {{ itemData.item.wert ? itemData.item.wert ~ ' G' : '' }}
+                    </td>
+                    <td>
+                        {% if itemData.socket.notfixed %}
+                            -
+                        {% else %}
+                            {% if itemData.socket.slot1 %}
+                                <a href="{{ path('jewels') }}#jvid{{ itemData.socket.slot1.jewelValue.jvid }}">{{ itemData.socket.slot1.name|raw }}</a><br/>
+                            {% endif %}
+                            {% if itemData.socket.slot2 %}
+                                <a href="{{ path('jewels') }}#jvid{{ itemData.socket.slot2.jewelValue.jvid }}">{{ itemData.socket.slot2.name|raw }}</a><br/>
+                            {% endif %}
+                            {% if itemData.socket.slot3 %}
+                                <a href="{{ path('jewels') }}#jvid{{ itemData.socket.slot3.jewelValue.jvid }}">{{ itemData.socket.slot3.name|raw }}</a><br/>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="borderLeft">
+                        {% if not itemData.finds.merchants is empty %}
+                        <div class="tableCell">
+                            <strong>Händler:</strong><br/>
+                            <ul>
+                            {% for merchant in itemData.finds.merchants %}
+                                <li>- {{ merchant.location }} ({{ merchant.chapter.name }})</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        {% if not itemData.finds.trades is empty %}
+                        <div class="tableCell">
+                            <strong>Personentausch:</strong><br/>
+                            <ul>
+                            {% for tradeData in itemData.finds.trades %}
+                                <li>
+                                {% if tradeData.person.spoiler %}
+                                    {% set personLink = path('persons_spoiler') ~ '#pid' ~ tradeData.person.pid %}
+                                {% else %}
+                                    {% set personLink = path('persons') ~ '#pid' ~ tradeData.person.pid %}
+                                {% endif %}
+                                <a href="{{ personLink }}">{{ tradeData.person.name }} ({{ tradeData.reqHarmony }}*, {{ tradeData.person.chapter.name }})</a>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        {% if not itemData.finds.missions is empty %}
+                        <div class="tableCell">
+                            <strong>Missionen:</strong><br/>
+                            <ul>
+                            {% for mission in itemData.finds.missions %}
+                                <li><a href="{{ path('missions') }}#mid{{ mission.mid }}">{{ mission.name }}</a><br/></li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        {% if not itemData.finds.monsters is empty %}
+                        <div class="tableCell">
+                            <strong>Monster:</strong><br/>
+                            <ul>
+                                {% for monster in itemData.finds.monsters %}
+                                    <li>{{ monster.name }} ({{ monster.chapter.name }})</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        {% if not itemData.finds.collections is empty %}
+                        <div class="tableCell">
+                            <strong>Kollektikon:</strong><br/>
+                            <ul>
+                            {% for collection in itemData.finds.collections %}
+                                <li><a href="{{ path('collection') }}#colid{{ collection.colid }}">{{ collection.chapter.name }}</a></li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        {% if not itemData.finds.chests is empty %}
+                        <div class="tableCell">
+                            <ul>
+                            <strong>Truhen:</strong><br/>
+                            {% for chest in itemData.finds.chests %}
+                                <li><a href="{{ path('chests') }}#chestid{{ chest.chestid }}">{{ chest.name }}</a></li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+{% endblock %}

@@ -22,18 +22,20 @@ class XenobladeItemmonsterR
     private $imid;
 
     /**
-     * @var int
+     * @var XenobladeMonsters
      *
-     * @ORM\Column(name="moid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeMonsters")
+     * @ORM\JoinColumn(name="moid", referencedColumnName="moid")
      */
-    private $moid;
+    private $monster;
 
     /**
-     * @var int
+     * @var XenobladeItems
      *
-     * @ORM\Column(name="iid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $item;
 
     /**
      * @var int
@@ -61,26 +63,26 @@ class XenobladeItemmonsterR
         return $this->imid;
     }
 
-    public function getMoid(): ?int
+    public function getMonster(): ?XenobladeMonsters
     {
-        return $this->moid;
+        return $this->monster;
     }
 
-    public function setMoid(int $moid): self
+    public function setMonster(XenobladeMonsters $monster): self
     {
-        $this->moid = $moid;
+        $this->monster = $monster;
 
         return $this;
     }
 
-    public function getIid(): ?int
+    public function getItem(): ?XenobladeItems
     {
-        return $this->iid;
+        return $this->item;
     }
 
-    public function setIid(int $iid): self
+    public function setItem(XenobladeItems $item): self
     {
-        $this->iid = $iid;
+        $this->item = $item;
 
         return $this;
     }

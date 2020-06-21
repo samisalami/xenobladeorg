@@ -5,7 +5,7 @@
             <ul>
                 {% for itemData in categoryItems %}
                     <li>
-                        <a href="#">
+                        <a href="{{ itemData.item|itemLink }}">
                             {% if not itemData.item is empty %}
                                 {{ itemData.item.name|raw }}
                             {% endif %}

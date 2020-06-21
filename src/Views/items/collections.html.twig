@@ -32,11 +32,7 @@
                         {% endif %}
                     {% endfor %}
                     <td>
-                        {% if rowData.rewardRelation.item is instanceof('\\App\\Entity\\XenobladeJewels') %}
-                            <a href="{{ path('jewels') }}#jvid{{ rowData.rewardRelation.item.jewelValue.jvid }}">{{ rowData.rewardRelation.item.name|raw }}</a>
-                        {% else %}
-                            {{ rowData.rewardRelation.item.name|raw }}
-                        {% endif %}
+                        <a href="{{ rowData.rewardRelation.item|itemLink }}">{{ rowData.rewardRelation.item.name|raw }}</a>
                     </td>
                 </tr>
             {% endfor %}

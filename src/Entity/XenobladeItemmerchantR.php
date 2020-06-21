@@ -22,18 +22,20 @@ class XenobladeItemmerchantR
     private $imid;
 
     /**
-     * @var int
+     * @var XenobladeMerchants
      *
-     * @ORM\Column(name="merid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeMerchants")
+     * @ORM\JoinColumn(name="merid", referencedColumnName="merid")
      */
-    private $merid;
+    private $merchant;
 
     /**
-     * @var int|null
+     * @var XenobladeItems
      *
-     * @ORM\Column(name="iid", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="XenobladeItems")
+     * @ORM\JoinColumn(name="iid", referencedColumnName="iid")
      */
-    private $iid;
+    private $item;
 
     /**
      * @var int
@@ -43,11 +45,12 @@ class XenobladeItemmerchantR
     private $stid;
 
     /**
-     * @var int|null
+     * @var XenobladeEquipSockettypeR|null
      *
-     * @ORM\Column(name="eqstid", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="XenobladeEquipSockettypeR")
+     * @ORM\JoinColumn(name="eqstid", referencedColumnName="eqstid")
      */
-    private $eqstid;
+    private $equipSockettypeR;
 
     /**
      * @var int
@@ -68,26 +71,26 @@ class XenobladeItemmerchantR
         return $this->imid;
     }
 
-    public function getMerid(): ?int
+    public function getMerchant(): ?XenobladeMerchants
     {
-        return $this->merid;
+        return $this->merchant;
     }
 
-    public function setMerid(int $merid): self
+    public function setMerchant(XenobladeMerchants $merchant): self
     {
-        $this->merid = $merid;
+        $this->merchant = $merchant;
 
         return $this;
     }
 
-    public function getIid(): ?int
+    public function getItem(): ?XenobladeItems
     {
-        return $this->iid;
+        return $this->item;
     }
 
-    public function setIid(?int $iid): self
+    public function setItem(?XenobladeItems $item): self
     {
-        $this->iid = $iid;
+        $this->item = $item;
 
         return $this;
     }
@@ -104,14 +107,14 @@ class XenobladeItemmerchantR
         return $this;
     }
 
-    public function getEqstid(): ?int
+    public function getEquipSockettypeR(): ?XenobladeEquipSockettypeR
     {
-        return $this->eqstid;
+        return $this->equipSockettypeR;
     }
 
-    public function setEqstid(?int $eqstid): self
+    public function setEquipSockettypeR(?XenobladeEquipSockettypeR $equipSockettypeR): self
     {
-        $this->eqstid = $eqstid;
+        $this->equipSockettypeR = $equipSockettypeR;
 
         return $this;
     }

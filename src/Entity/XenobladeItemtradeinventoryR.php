@@ -36,11 +36,12 @@ class XenobladeItemtradeinventoryR
     private $item;
 
     /**
-     * @var int
+     * @var XenobladeEquipSockettypeR|null
      *
-     * @ORM\Column(name="eqstid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeEquipSockettypeR")
+     * @ORM\JoinColumn(name="eqstid", referencedColumnName="eqstid")
      */
-    private $eqstid;
+    private $equipSockettypeR;
 
     /**
      * @var int
@@ -85,14 +86,14 @@ class XenobladeItemtradeinventoryR
         return $this;
     }
 
-    public function getEqstid(): ?int
+    public function getEquipSockettypeR(): ?XenobladeEquipSockettypeR
     {
-        return $this->eqstid;
+        return $this->equipSockettypeR;
     }
 
-    public function setEqstid(int $eqstid): self
+    public function setEquipSockettypeR(XenobladeEquipSockettypeR $equipSockettypeR): self
     {
-        $this->eqstid = $eqstid;
+        $this->equipSockettypeR = $equipSockettypeR;
 
         return $this;
     }

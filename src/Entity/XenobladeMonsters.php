@@ -253,11 +253,12 @@ class XenobladeMonsters
     private $individual = '0';
 
     /**
-     * @var int
+     * @var XenobladeChapters|null
      *
-     * @ORM\Column(name="cid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeChapters")
+     * @ORM\JoinColumn(name="cid", referencedColumnName="cid")
      */
-    private $cid;
+    private $chapter;
 
     /**
      * @var string
@@ -674,14 +675,14 @@ class XenobladeMonsters
         return $this;
     }
 
-    public function getCid(): ?int
+    public function getChapter(): ?XenobladeChapters
     {
-        return $this->cid;
+        return $this->chapter;
     }
 
-    public function setCid(int $cid): self
+    public function setChapter(XenobladeChapters $chapter): self
     {
-        $this->cid = $cid;
+        $this->chapter = $chapter;
 
         return $this;
     }

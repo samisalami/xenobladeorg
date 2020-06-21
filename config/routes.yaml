@@ -20,6 +20,10 @@ maps:
     path: karten
     controller: 'App\Controller\MapsController::index'
 
+equip:
+    path: item-box/ausrustung
+    controller: 'App\Controller\ItemsController::equip'
+
 chests:
     path: item-box/truhen
     controller: 'App\Controller\ChestsController::index'
