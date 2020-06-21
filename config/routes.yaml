@@ -20,9 +20,13 @@ maps:
     path: karten
     controller: 'App\Controller\MapsController::index'
 
-equip:
+gear:
     path: item-box/ausrustung
-    controller: 'App\Controller\ItemsController::equip'
+    controller: 'App\Controller\ItemsController::gear'
+
+weapons:
+    path: item-box/waffen
+    controller: 'App\Controller\ItemsController::weapons'
 
 chests:
     path: item-box/truhen

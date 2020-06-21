@@ -1,0 +1,73 @@
+{% if not itemData.finds.merchants is empty %}
+    <div class="tableCell">
+        <strong>Händler:</strong><br/>
+        <ul>
+            {% for merchant in itemData.finds.merchants %}
+                <li>- {{ merchant.location }} ({{ merchant.chapter.name }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if not itemData.finds.trades is empty %}
+    <div class="tableCell">
+        <strong>Personentausch:</strong><br/>
+        <ul>
+            {% for tradeData in itemData.finds.trades %}
+                <li>
+                    {% if tradeData.person.spoiler %}
+                        {% set personLink = path('persons_spoiler') ~ '#pid' ~ tradeData.person.pid %}
+                    {% else %}
+                        {% set personLink = path('persons') ~ '#pid' ~ tradeData.person.pid %}
+                    {% endif %}
+                    <a href="{{ personLink }}">{{ tradeData.person.name }}
+                        ({{ tradeData.reqHarmony }}*, {{ tradeData.person.chapter.name }})</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if not itemData.finds.missions is empty %}
+    <div class="tableCell">
+        <strong>Missionen:</strong><br/>
+        <ul>
+            {% for mission in itemData.finds.missions %}
+                <li><a href="{{ path('missions') }}#mid{{ mission.mid }}">{{ mission.name }}</a><br/>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if not itemData.finds.monsters is empty %}
+    <div class="tableCell">
+        <strong>Monster:</strong><br/>
+        <ul>
+            {% for monster in itemData.finds.monsters %}
+                <li>{{ monster.name }} ({{ monster.chapter.name }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if not itemData.finds.collections is empty %}
+    <div class="tableCell">
+        <strong>Kollektikon:</strong><br/>
+        <ul>
+            {% for collection in itemData.finds.collections %}
+                <li>
+                    <a href="{{ path('collection') }}#colid{{ collection.colid }}">{{ collection.chapter.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if not itemData.finds.chests is empty %}
+    <div class="tableCell">
+        <ul>
+            <strong>Truhen:</strong><br/>
+            {% for chest in itemData.finds.chests %}
+                <li>
+                    <a href="{{ path('chests') }}#chestid{{ chest.chestid }}">{{ chest.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

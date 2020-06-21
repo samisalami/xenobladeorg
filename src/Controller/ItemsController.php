@@ -2,6 +2,7 @@
 namespace App\Controller;
 use App\Entity\XenobladeArms;
 use App\Entity\XenobladeBodies;
+use App\Entity\XenobladeCharacters;
 use App\Entity\XenobladeChestitemsR;
 use App\Entity\XenobladeCollections;
 use App\Entity\XenobladeEquipSockettypeR;
@@ -14,20 +15,49 @@ use App\Entity\XenobladeItemtradeinventoryR;
 use App\Entity\XenobladeLegs;
 use App\Entity\XenobladeSockettype;
 use App\Entity\XenobladeCollectioncollectionfieldtypesR;
+use App\Entity\XenobladeWeapons;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ItemsController extends AbstractController
 {
-    public function equip() {
-        $equipData = [];
-        $equipData['Torso'] = $this->getEquipDataArray(XenobladeBodies::class);
-        $equipData['Arme'] = $this->getEquipDataArray(XenobladeArms::class);
-        $equipData['Beine'] = $this->getEquipDataArray(XenobladeLegs::class);
-        $equipData['Kopf'] = $this->getEquipDataArray(XenobladeHeads::class);
-        $equipData['Füße'] = $this->getEquipDataArray(XenobladeFeet::class);
+    public function gear() {
+        $orderBy = [
+            'weighttype' => 'ASC',
+            'weight' => 'ASC',
+            'pha' => 'ASC',
+            'aeta' => 'ASC'
+        ];
+        $gearData = [];
+        $gearData['Torso'] = $this->getEquipDataArray(XenobladeBodies::class, [], $orderBy);
+        $gearData['Arme'] = $this->getEquipDataArray(XenobladeArms::class, [], $orderBy);
+        $gearData['Beine'] = $this->getEquipDataArray(XenobladeLegs::class, [], $orderBy);
+        $gearData['Kopf'] = $this->getEquipDataArray(XenobladeHeads::class, [], $orderBy);
+        $gearData['Füße'] = $this->getEquipDataArray(XenobladeFeet::class, [], $orderBy);
 
-        return $this->render('/items/equip.html.twig', [
-            'equipData' => $equipData
+        return $this->render('/items/gear.html.twig', [
+            'gearData' => $gearData
+        ]);
+    }
+
+    public function weapons() {
+        $weaponData = [];
+        $characters = $this->getDoctrine()->getRepository(XenobladeCharacters::class)->findBy([], [
+            'prio' => 'ASC'
+        ]);
+
+        foreach ($characters as $character) {
+            array_push($weaponData, [
+                'character' => $character,
+                'weapons' => $this->getEquipDataArray(XenobladeWeapons::class, [
+                    'character' => $character
+                ], [
+                    'autoangriffMin' => 'ASC'
+                ])
+            ]);
+        }
+
+        return $this->render('/items/weapons.html.twig', [
+            'weaponData' => $weaponData
         ]);
     }
 
@@ -74,15 +104,10 @@ class ItemsController extends AbstractController
         ]);
     }
 
-    private function getEquipDataArray($class)
+    private function getEquipDataArray($class, $findBy = [], $orderBy = [])
     {
         $itemData = [];
-        $items = $this->getDoctrine()->getRepository($class)->findBy([], [
-            'weighttype' => 'ASC',
-            'weight' => 'ASC',
-            'pha' => 'ASC',
-            'aeta' => 'ASC'
-        ]);
+        $items = $this->getDoctrine()->getRepository($class)->findBy($findBy, $orderBy);
 
         foreach ($items as $item) {
             array_push($itemData, [

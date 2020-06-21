@@ -11,11 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
 class XenobladeWeapons extends XenobladeItems
 {
     /**
-     * @var int|null
+     * @var XenobladeCharacters
      *
-     * @ORM\Column(name="charid", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="XenobladeCharacters")
+     * @ORM\JoinColumn(name="charid", referencedColumnName="charid")
      */
-    private $charid;
+    private $character;
 
     /**
      * @var string|null
@@ -52,14 +53,14 @@ class XenobladeWeapons extends XenobladeItems
      */
     private $kritrate = '0';
 
-    public function getCharid(): ?int
+    public function getCharacter(): ?XenobladeCharacters
     {
-        return $this->charid;
+        return $this->character;
     }
 
-    public function setCharid(?int $charid): self
+    public function setCharacter(?XenobladeCharacters $character): self
     {
-        $this->charid = $charid;
+        $this->character = $character;
 
         return $this;
     }

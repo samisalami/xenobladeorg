@@ -104,8 +104,8 @@
                             {% for jewel in jewelValue.jewels %}
                                 {% for etherVeinRelation in jewel.etherVeinRelations %}
                                     <li>
-                                        {{ jewel.level }}
-                                        : {{ etherVeinRelation.etherVein.mapPoint.map.chapter.name }}
+                                        <a href="{{ path('etherveins') }}#evid{{ etherVeinRelation.etherVein.evid }}">{{ jewel.level }}
+                                        : {{ etherVeinRelation.etherVein.mapPoint.map.chapter.name }}</a>
                                     </li>
                                 {% endfor %}
                             {% endfor %}
@@ -146,7 +146,7 @@
                             {% for jewel in jewelValue.jewels %}
                                 {% for socket in jewel.sockets %}
                                     <li>
-                                        {{ jewel.level }}: {{ socket.equipRelation.item.name }}
+                                        {{ jewel.level }}: <a href="{{ socket.equipRelation.item|itemLink }}">{{ socket.equipRelation.item.name }}</a>
                                     </li>
                                 {% endfor %}
                             {% endfor %}

@@ -47,7 +47,7 @@
             {% for etherVein in etherVeins %}
                 <tr class="{{ loop.index is odd ? "odd" : "even" }}">
                     <td style="vertical-align:top;">
-                        <a name="{{ etherVein.evid }}"></a>{{ etherVein.name }}
+                        <a name="evid{{ etherVein.evid }}"></a>{{ etherVein.name }}
                     </td>
                     <td>
                         {{ etherVein.description|raw }}

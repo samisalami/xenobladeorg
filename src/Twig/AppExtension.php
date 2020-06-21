@@ -7,6 +7,7 @@ use App\Entity\XenobladeFeet;
 use App\Entity\XenobladeHeads;
 use App\Entity\XenobladeJewels;
 use App\Entity\XenobladeLegs;
+use App\Entity\XenobladeWeapons;
 use ReflectionClass;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
@@ -58,9 +59,11 @@ class AppExtension extends AbstractExtension
     public function getItemLink($item) {
         switch ($item) {
             case $this->isGearInstance($item):
-                return $this->router->generate('equip').'#iid'.$item->getIid();
+                return $this->router->generate('gear').'#iid'.$item->getIid();
             case $this->isInstanceof($item, XenobladeJewels::class):
                 return $this->router->generate('jewels').'#jvid'.$item->getJewelValue()->getJvId();
+            case $this->isInstanceof($item, XenobladeWeapons::class):
+                return $this->router->generate('weapons').'#iid'.$item->getIid();
             default:
                 return '';
         }

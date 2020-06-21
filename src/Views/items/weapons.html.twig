@@ -1,0 +1,108 @@
+{% extends '_layout.html.twig' %}
+
+{% block title %}Waffen{% endblock %}
+{% block headline %}Waffen{% endblock %}
+{% block submenu %}
+    <ul class="submenu-rv">
+        {% include 'items/_submenu.html.twig' %}
+    </ul>
+{% endblock %}
+{% block content %}
+    <style type="text/css">
+        ul { float:left; margin:10px 10px 20px -5px; padding:0; }
+    </style>
+    {% for characterData in weaponData %}
+        <br/>
+        <strong>Charaktere:</strong><br/>
+        <a href="#Shulk">Shulk</a> |
+        <a href="#Reyn">Reyn</a> |
+        <a href="#Fiora">Fiora</a> |
+        <a href="#Sharla">Sharla</a> |
+        <a href="#Dunban">Dunban</a> |
+        <a href="#Melia">Melia</a> |
+        <a href="#Riki">Riki</a> |
+        <a href="#Person 7">Person 7</a>
+        <a name="{{ characterData.character.name }}"></a>
+        <br>
+        <br/>
+        <br/>
+        <img style="margin:-2px 10px 0 0; float:left; " height="50" src="{{ asset('/images/personicons/' ~ characterData.character.img ) }}" /><h2>{{ characterData.character.name }}</h2>
+        <table class="guide-table" align="center">
+            <tr class="tablehead">
+                <td>
+                    Name:
+                </td>
+                <td>
+                    Preis:
+                </td>
+                <td>
+                    Auto-Angriff:
+                </td>
+                <td>
+                    PhA:
+                </td>
+                <td>
+                    AtA:
+                </td>
+                <td>
+                    Krit.:
+                </td>
+                <td>
+                    Block.:
+                </td>
+                <td>
+                    Juwelen:
+                </td>
+                <td>
+                    Funde:
+                </td>
+            </tr>
+            {% for itemData in characterData.weapons %}
+                <tr class="{{ loop.index is odd ? "odd" : "even" }}">
+                    <td>
+                        <a name="iid{{ itemData.item.iid }}"></a>{{ itemData.item.name }}{% if not itemData.socket.notfixed %} (V){% endif %}
+                    </td>
+                    <td>
+                        {{ itemData.item.wert ? itemData.item.wert ~ ' G' : '' }}
+                    </td>
+                    <td>
+                        {% set attackAverage = (itemData.item.autoangriffMax-itemData.item.autoangriffMin)/2 %}
+                        {{ itemData.item.autoangriffMin }}-{{ itemData.item.autoangriffMax }} ({{ attackAverage }})
+                    </td>
+                    <td>
+                        {{ itemData.item.pha }}
+                    </td>
+                    <td>
+                        {{ itemData.item.aeta }}
+                    </td>
+                    <td>
+                        {{ itemData.item.kritrate }}
+                    </td>
+                    <td>
+                        {{ itemData.item.blockrate }}
+                    </td>
+                    <td>
+                        {% if itemData.socket.notfixed %}
+                            -
+                        {% else %}
+                            {% if itemData.socket.slot1 %}
+                                <a href="{{ path('jewels') }}#jvid{{ itemData.socket.slot1.jewelValue.jvid }}">{{ itemData.socket.slot1.name|raw }}</a><br/>
+                            {% endif %}
+                            {% if itemData.socket.slot2 %}
+                                <a href="{{ path('jewels') }}#jvid{{ itemData.socket.slot2.jewelValue.jvid }}">{{ itemData.socket.slot2.name|raw }}</a><br/>
+                            {% endif %}
+                            {% if itemData.socket.slot3 %}
+                                <a href="{{ path('jewels') }}#jvid{{ itemData.socket.slot3.jewelValue.jvid }}">{{ itemData.socket.slot3.name|raw }}</a><br/>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="borderLeft">
+                        {% include '/items/_equip_finds.html.twig' with {
+                            'itemData': itemData
+                        } %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+{% endblock %}
