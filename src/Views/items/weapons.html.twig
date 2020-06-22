@@ -68,7 +68,7 @@
                         {{ itemData.item.wert ? itemData.item.wert ~ ' G' : '' }}
                     </td>
                     <td>
-                        {% set attackAverage = (itemData.item.autoangriffMax-itemData.item.autoangriffMin)/2 %}
+                        {% set attackAverage = itemData.item.autoangriffMax - (itemData.item.autoangriffMax-itemData.item.autoangriffMin)/2 %}
                         {{ itemData.item.autoangriffMin }}-{{ itemData.item.autoangriffMax }} ({{ attackAverage }})
                     </td>
                     <td>
@@ -78,10 +78,10 @@
                         {{ itemData.item.aeta }}
                     </td>
                     <td>
-                        {{ itemData.item.kritrate }}
+                        {{ itemData.item.kritrate }}%
                     </td>
                     <td>
-                        {{ itemData.item.blockrate }}
+                        {{ itemData.item.blockrate }}%
                     </td>
                     <td>
                         {% if itemData.socket.notfixed %}
