@@ -9,7 +9,8 @@
 {% endblock %}
 {% block submenu %}
     <ul class="submenu-rv">
-        {{ render(controller('App\\Controller\\MissionsController::menu'))}}
+        {% set chapters = missionChapters() %}
+        {% include 'missions/_chapter_menu.html.twig' with {'chapters': chapters} %}
     </ul>
 {% endblock %}
 {% block content %}
@@ -72,9 +73,8 @@
                         {{ mission.money }} G
                     </li>
                 </ul>
-                {{ render(controller('App\\Controller\\ItemsController::missionLootList',
-                    { 'missionItemRelations': mission.itemRelations }
-                ))}}
+                {% set items = missionLootList(mission.itemRelations) %}
+                {% include 'items/_loot_list.html.twig' with {'items': items}%}
             </td>
             <td style="text-align:center">{{ mission.harmonychange | raw }} {% if not mission.harmonychange is empty %}*{% endif %}</td>
         </tr>

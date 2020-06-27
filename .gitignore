@@ -61,3 +61,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###xenoblade-org###
+/output/*

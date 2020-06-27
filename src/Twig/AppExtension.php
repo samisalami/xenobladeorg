@@ -3,24 +3,32 @@ namespace App\Twig;
 
 use App\Entity\XenobladeArms;
 use App\Entity\XenobladeBodies;
+use App\Entity\XenobladeChapters;
+use App\Entity\XenobladeChestitemsR;
+use App\Entity\XenobladeEquipSockettypeR;
 use App\Entity\XenobladeFeet;
 use App\Entity\XenobladeHeads;
+use App\Entity\XenobladeItemMissionR;
 use App\Entity\XenobladeJewels;
 use App\Entity\XenobladeLegs;
 use App\Entity\XenobladeWeapons;
+use Doctrine\ORM\EntityManagerInterface;
 use ReflectionClass;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 use Twig\TwigTest;
 
 class AppExtension extends AbstractExtension
 {
     private $router;
+    private $em;
 
-    public function __construct(UrlGeneratorInterface $router)
+    public function __construct(UrlGeneratorInterface $router, EntityManagerInterface $em)
     {
         $this->router = $router;
+        $this->em = $em;
     }
 
     public function getFilters()
@@ -28,6 +36,15 @@ class AppExtension extends AbstractExtension
         return [
             new TwigFilter('hearts', [$this, 'getHarmonyCount']),
             new TwigFilter('itemLink', [$this, 'getItemLink']),
+        ];
+    }
+
+    public function getFunctions()
+    {
+        return [
+            new TwigFunction('missionChapters', [$this, 'getMissionChapters']),
+            new TwigFunction('missionLootList', [$this, 'missionLootList']),
+            new TwigFunction('chestLootList', [$this, 'chestLootList'])
         ];
     }
 
@@ -89,5 +106,54 @@ class AppExtension extends AbstractExtension
             $count++;
         }
         return $count;
+    }
+
+    /** FUNCTIONS */
+
+    public function getMissionChapters()
+    {
+        return $this->em->getRepository(XenobladeChapters::class)->findBy(
+            ['missionChapter' => true],
+            ['prio' => 'asc']
+        );
+    }
+
+    public function chestLootList(array $chestItemRelations) {
+        /** @var $chestItemRelations XenobladeChestitemsR[] */
+
+        $items = [];
+
+        foreach ($chestItemRelations as $relation) {
+            if (!array_key_exists($relation->getItem()->getItemcategory()->getName(), $items)) {
+                $items[$relation->getItem()->getItemcategory()->getName()] = [];
+            }
+
+            array_push($items[$relation->getItem()->getItemcategory()->getName()], $relation);
+        }
+
+        return $items;
+    }
+
+    public function missionLootList(array $missionItemRelations) {
+        /** @var $missionItemRelations XenobladeItemMissionR[] */
+
+        $items = [];
+
+        foreach ($missionItemRelations as $relation) {
+            if (!$relation->getItem()) {
+                $itemData = $relation->getEquipSockettypeR();
+            } else {
+                // work around messed up db schema
+                $itemData = new XenobladeEquipSockettypeR();
+                $itemData->setItem($relation->getItem());
+            }
+            if (!array_key_exists($itemData->getItem()->getItemcategory()->getName(), $items)) {
+                $items[$itemData->getItem()->getItemcategory()->getName()] = [];
+            }
+
+            array_push($items[$itemData->getItem()->getItemcategory()->getName()], $itemData);
+        }
+
+        return $items;
     }
 }

@@ -48,9 +48,8 @@
                             } %}
                         </td>
                         <td class="borderLeft">
-                            {{ render(controller('App\\Controller\\ItemsController::chestLootList',
-                            { 'chestItemRelations': chestPoint.chest.itemRelationShips }
-                            ))}}
+                            {% set items = chestLootList(chestPoint.chest.itemRelationShips) %}
+                            {% include 'items/_loot_list.html.twig' with {'items': items}%}
                         </td>
                     </tr>
                     {% endif %}

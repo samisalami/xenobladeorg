@@ -30,7 +30,8 @@
                 <li>
                     <a href="{{ path('missions') }}">Missionen</a>
                     <ul class="sub-menu">
-                        {{ render(controller('App\\Controller\\MissionsController::menu'))}}
+                        {% set chapters = missionChapters() %}
+                        {% include 'missions/_chapter_menu.html.twig' with {'chapters': chapters} %}
                     </ul>
                 </li>
                 <li>
