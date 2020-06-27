@@ -2,6 +2,14 @@ index:
     path: /
     controller: 'App\Controller\DefaultController::index'
 
+error_404:
+    path: /seite-nicht-gefunden
+    controller: 'App\Controller\DefaultController::error404'
+
+error_500:
+    path: /interner-fehler
+    controller: 'App\Controller\DefaultController::error500'
+
 missions:
     path: /missionen/{slug}
     controller: 'App\Controller\MissionsController::index'
