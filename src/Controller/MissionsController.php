@@ -2,19 +2,21 @@
 namespace App\Controller;
 use App\Entity\XenobladeChapters;
 use App\Entity\XenobladeMissions;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MissionsController extends AbstractController
 {
     /**
-     * @ParamConverter("chapter", class="App\Entity\XenobladeChapters")
-     * @param XenobladeChapters|null $chapter
+     * @param string|null $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(?XenobladeChapters $chapter)
+    public function index(?string $slug)
     {
-        if ($chapter) {
+        $chapter = null;
+        if ($slug) {
+            $chapter = $this->getDoctrine()->getRepository(XenobladeChapters::class)->findBy([
+                'slug' => $slug
+            ])[0];
             $missions = $this->getDoctrine()->getRepository(XenobladeMissions::class)->findBy(
                 ['chapter' => $chapter],
                 ['order' => 'ASC']

@@ -3,16 +3,11 @@ namespace App\Controller;
 
 use App\Entity\XenobladeCharacters;
 use App\Entity\XenobladeCollectionItems;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CollectionItemsController extends AbstractController
 {
-    /**
-     * @ParamConverter("character", class="App\Entity\XenobladeCharacters")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function index(?XenobladeCharacters $character)
+    public function index(?string $name)
     {
         $items = $this->getDoctrine()->getRepository(XenobladeCollectionItems::class)->findAll();
         $characters = $this->getDoctrine()->getRepository(XenobladeCharacters::class)->findBy([
@@ -21,16 +16,19 @@ class CollectionItemsController extends AbstractController
             'prio' => 'ASC'
         ]);
 
-        if ($character) {
-            $items = array_filter($items, function (XenobladeCollectionItems $item) use ($character) {
-               return $item->getHarmonies()[$character->getName()] > 15;
+        if ($name) {
+            $name = ucfirst($name);
+            $items = array_filter($items, function (XenobladeCollectionItems $item) use ($name) {
+               return $item->getHarmonies()[$name] > 15;
             });
+        } else {
+            $name = null;
         }
 
         return $this->render('items/collection_items.html.twig', [
             'items' => $items,
             'characters' => $characters,
-            'character' => $character
+            'name' => $name
         ]);
     }
 }

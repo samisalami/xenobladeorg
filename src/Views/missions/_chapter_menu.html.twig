@@ -1,5 +1,5 @@
 {% for chapter in chapters %}
     <li>
-        <a href="{{ path('missions', {chapter: chapter.cid}) }}">{{ chapter.name }}</a>
+        <a href="{{ path('missions', {slug: chapter.slug}) }}">{{ chapter.name }}</a>
     </li>
 {% endfor %}

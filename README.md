@@ -7,6 +7,9 @@
 * Run locally with `symfony server:start`
 
 ##Static output
+The generation needs a bit more memore than the PHP default. Set inside your php.ini:    
+`memory_limit=512M`    
+Afterwards    
 ``php bin/console dump-static-site``    
 (will be generated in /output)    
 ``php -S localhost:8001 -t output``    

@@ -3,10 +3,118 @@ index:
     controller: 'App\Controller\DefaultController::index'
 
 missions:
-    path: /missionen/{chapter}
+    path: /missionen/{slug}
     controller: 'App\Controller\MissionsController::index'
     defaults:
-        chapter: null
+        slug: null
+
+missions_static:
+    path: /missionen
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: null
+
+missions_kolonie-9:
+    path: /missionen/kolonie-9
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: kolonie-9
+
+missions_tephra-hoehle:
+    path: /missionen/tephra-hoehle
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: tephra-hoehle
+
+missions_kolonie-6:
+    path: /missionen/kolonie-6
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: kolonie-6
+
+missions_sumpf-von-satorl:
+    path: /missionen/sumpf-von-satorl
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: sumpf-von-satorl
+
+missions_wald-von-makna:
+    path: /missionen/wald-von-makna
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: wald-von-makna
+
+missions_grenzdorf:
+    path: /missionen/grenzdorf
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: grenzdorf
+
+missions_eryth-meer:
+    path: /missionen/eryth-meer
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: eryth-meer
+
+missions_alcamoth:
+    path: /missionen/alcamoth
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: alcamoth
+
+missions_berg-valak:
+    path: /missionen/berg-valak
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: berg-valak
+
+missions_schwerttal:
+    path: /missionen/schwerttal
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: schwerttal
+
+missions_festung-galahad:
+    path: /missionen/festung-galahad
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: festung-galahad
+
+missions_gefallener-arm:
+    path: /missionen/gefallener-arm
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: gefallener-arm
+
+missions_mechonis-hallen:
+    path: /missionen/mechonis-hallen
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: mechonis-hallen
+
+missions_zentralfabrik:
+    path: /missionen/zentralfabrik
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: zentralfabrik
+
+missions_agniratha:
+    path: /missionen/agniratha
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: agniratha
+
+missions_gefaengnisinsel-2:
+    path: /missionen/gefaengnisinsel-2
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: gefaengnisinsel-2
+
+missions_bein-des-bionis:
+    path: /missionen/bein-des-bionis
+    controller: 'App\Controller\MissionsController::index'
+    defaults:
+        slug: bein-des-bionis
 
 persons:
     path: /personen
@@ -45,20 +153,110 @@ collection:
     controller: 'App\Controller\CollectionsController::index'
 
 collectionitems:
-    path: item-box/sammelitems/{character}
+    path: item-box/sammelitems/{name}
     controller: 'App\Controller\CollectionItemsController::index'
     defaults:
-        character: null
+        name: null
+
+collectionitems_static:
+    path: item-box/sammelitems
+    controller: 'App\Controller\CollectionItemsController::index'
+    defaults:
+        name: null
+
+collectionitems_shulk:
+    path: item-box/sammelitems/shulk
+    controller: 'App\Controller\CollectionItemsController::index'
+    defaults:
+        name: shulk
+
+collectionitems_reyn:
+    path: item-box/sammelitems/reyn
+    controller: 'App\Controller\CollectionItemsController::index'
+    defaults:
+        name: reyn
+
+collectionitems_sharla:
+    path: item-box/sammelitems/sharla
+    controller: 'App\Controller\CollectionItemsController::index'
+    defaults:
+        name: sharla
+
+collectionitems_dunban:
+    path: item-box/sammelitems/dunban
+    controller: 'App\Controller\CollectionItemsController::index'
+    defaults:
+        name: dunban
+
+collectionitems_melia:
+    path: item-box/sammelitems/melia
+    controller: 'App\Controller\CollectionItemsController::index'
+    defaults:
+        name: melia
+
+collectionitems_riki:
+    path: item-box/sammelitems/riki
+    controller: 'App\Controller\CollectionItemsController::index'
+    defaults:
+        name: riki
+
+collectionitems_person7:
+    path: item-box/sammelitems/person 7
+    controller: 'App\Controller\CollectionItemsController::index'
+    defaults:
+        name: person 7
 
 chainattacks:
     path: guides/angriffsketten/
     controller: 'App\Controller\ChainAttacksController::index'
 
-characterguides:
-    path: guides/charakter-{character}
+characterguides_dunban:
+    path: guides/charakter-dunban
     controller: 'App\Controller\CharacterGuideController::index'
     defaults:
-        character: null
+        character: dunban
+
+characterguides_shulk:
+    path: guides/charakter-shulk
+    controller: 'App\Controller\CharacterGuideController::index'
+    defaults:
+        character: shulk
+
+characterguides_fiora:
+    path: guides/charakter-fiora
+    controller: 'App\Controller\CharacterGuideController::index'
+    defaults:
+        character: fiora
+
+characterguides_reyn:
+    path: guides/charakter-reyn
+    controller: 'App\Controller\CharacterGuideController::index'
+    defaults:
+        character: reyn
+
+characterguides_person7:
+    path: guides/charakter-person7
+    controller: 'App\Controller\CharacterGuideController::index'
+    defaults:
+        character: person7
+
+characterguides_melia:
+    path: guides/charakter-melia
+    controller: 'App\Controller\CharacterGuideController::index'
+    defaults:
+        character: melia
+
+characterguides_riki:
+    path: guides/charakter-riki
+    controller: 'App\Controller\CharacterGuideController::index'
+    defaults:
+        character: riki
+
+characterguides_sharla:
+    path: guides/charakter-sharla
+    controller: 'App\Controller\CharacterGuideController::index'
+    defaults:
+        character: sharla
 
 colony6:
     path: guides/kolonie-6-ausbau/

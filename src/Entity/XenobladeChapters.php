@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * XenobladeChapters
@@ -83,6 +84,12 @@ class XenobladeChapters
      * @ORM\Column(name="monster_url", type="string", length=255, nullable=false)
      */
     private $monsterUrl;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=128, unique=true, nullable=true)
+     */
+    private $slug=null;
 
     /**
      * @var \DateTime
@@ -216,5 +223,14 @@ class XenobladeChapters
         return $this;
     }
 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
 }

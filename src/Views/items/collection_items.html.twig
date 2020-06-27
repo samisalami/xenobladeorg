@@ -18,16 +18,16 @@
         <ul>
             {% for character in characters %}
                 <li>
-                    <a href="{{ path('collectionitems', {'character': character.charid}) }}">{{ character.name }}</a>
+                    <a href="{{ path('collectionitems', {'name': character.name|lower}) }}">{{ character.name }}</a>
                 </li>
             {% endfor %}
         </ul>
-        {% if not character is empty %}
-            <h2>{{ character.name }}</h2>
+        {% if not name is empty %}
+            <h2>{{ name }}</h2>
         {% endif %}
         {% set chapterName = '' %}
         {% for item in items %}
-            {% if not chapterName is same as(item.collection.chapter.name) and character is empty %}
+            {% if not chapterName is same as(item.collection.chapter.name) and name is empty %}
                 {% set chapterName = item.collection.chapter.name %}
                 <a name="colid{{ item.collection.colid }}"></a><h2>{{ chapterName }}</h2>
         {% endif %}
@@ -39,7 +39,7 @@
                     </div>
                     <div class="xc_ItemField">
                         <a name="iid{{ item.iid }}"></a>{{ item.name }}
-                        {% if not character is empty %}
+                        {% if not name is empty %}
                             <i>{{ item.collection.chapter.name }}</i>
                         {% endif %}
                     </div>
