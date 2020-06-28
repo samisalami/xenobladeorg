@@ -10,23 +10,5 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class XenobladeSkillbooks extends XenobladeItems
 {
-    /**
-     * @var XenobladeSkills
-     *
-     * @ORM\ManyToOne(targetEntity="XenobladeSkills")
-     * @ORM\JoinColumn(name="sid", referencedColumnName="sid")
-     */
-    private $sid;
 
-    public function getSid(): ?XenobladeSkills
-    {
-        return $this->sid;
-    }
-
-    public function setSid(?XenobladeSkills $sid): self
-    {
-        $this->sid = $sid;
-
-        return $this;
-    }
 }

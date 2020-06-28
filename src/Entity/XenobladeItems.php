@@ -40,6 +40,14 @@ class XenobladeItems
     private $iid;
 
     /**
+     * @var XenobladeSkills
+     *
+     * @ORM\ManyToOne(targetEntity="XenobladeSkills")
+     * @ORM\JoinColumn(name="sid", referencedColumnName="sid")
+     */
+    private $skill;
+
+    /**
      * @var XenobladeItemtradeinventoryR[]
      * @OneToMany(targetEntity="XenobladeItemtradeinventoryR", mappedBy="item")
      */
@@ -391,6 +399,18 @@ class XenobladeItems
     public function getChestRelations(): array
     {
         return $this->chestRelations->toArray();
+    }
+
+    public function getSkill(): ?XenobladeSkills
+    {
+        return $this->skill;
+    }
+
+    public function setSkill(?XenobladeSkills $skill): self
+    {
+        $this->skill = $skill;
+
+        return $this;
     }
 }
 

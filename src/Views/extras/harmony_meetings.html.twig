@@ -66,33 +66,19 @@ Harmonie:
 		<td>
 			{{ harmonyMeeting.solution }}
 		</td>
-		<td>
+		<td style="text-align: center;">
 			<img height="40" src="{{ asset('/images/personicons/' ~ harmonyMeeting.person1.img ) }}" alt="{{ harmonyMeeting.person1.name }}" />
 			<img height="40" src="{{ asset('/images/personicons/' ~ harmonyMeeting.person2.img) }}" alt="{{ harmonyMeeting.person2.name }}" />
 		</td>
 		<td style="text-align:center;">
-		    {% if harmonyMeeting.requiredHarmony == 'Gelb' %}
-		        <img alt="gelb" src="{{ asset('/images/gelb.png') }}" />
-		    {% elseif harmonyMeeting.requiredHarmony == 'Lila' %}
-		        <img alt="lila" src="{{ asset('/images/lila.png') }}" />
-		    {% elseif harmonyMeeting.requiredHarmony == 'Blau' %}
-		        <img alt="blau" src="{{ asset('/images/blau.png') }}" />
-		    {% elseif harmonyMeeting.requiredHarmony == 'Rot' %}
-		        <img alt="rot" src="{{ asset('/images/rot.png') }}" />
-		    {% elseif harmonyMeeting.requiredHarmony == 'Gruen' %}
-		        <img alt="grün" src="{{ asset('/images/gruen.png') }}" />
-		    {% endif %}
+			<img alt="gelb" src="{{ asset('/images/'~ harmonyMeeting.requiredHarmony|lower ~'.png') }}" />
 		</td>
 		<td>
 			{{ harmonyMeeting.chapter.name }}
 		</td>
 
-
 	</tr>
 	{% endfor %}
 
 </table>
-
-
-
 {% endblock %}
