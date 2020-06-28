@@ -15,7 +15,7 @@ class EtherVeinsController extends AbstractController
             ['prio' => 'ASC']
         );
 
-        $etherVeins = $this->getDoctrine()->getRepository(XenobladeEthervein::class)->findBy([], ['name' => 'ASC']);
+        $etherVeins = $this->getDoctrine()->getRepository(XenobladeEthervein::class)->findBy([], ['level' => 'ASC','name' => 'ASC', ]);
 
         $groupedEtherVeins = [];
         foreach ($chapters as $chapter) {
