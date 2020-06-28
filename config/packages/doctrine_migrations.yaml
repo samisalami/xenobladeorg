@@ -1,11 +1,10 @@
 doctrine_migrations:
     migrations_paths:
-        'App\Migrations': 'src/Migrations'
-        # path for version 2
-        'DoctrineMigrations': 'src/Migrations'
+        'DoctrineMigrations': '%kernel.project_dir%/src/Migrations'
 
     storage:
         table_storage:
             table_name: 'migration_versions'
             version_column_name: 'version'
             executed_at_column_name: 'executed_at'
+            execution_time_column_name: 'execution_time'
