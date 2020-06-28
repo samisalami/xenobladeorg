@@ -166,55 +166,55 @@ merchants:
 
 collectionitems:
     path: item-box/sammelitems/{name}
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: null
 
 collectionitems_static:
     path: item-box/sammelitems
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: null
 
 collectionitems_shulk:
     path: item-box/sammelitems/shulk
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: shulk
 
 collectionitems_reyn:
     path: item-box/sammelitems/reyn
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: reyn
 
 collectionitems_sharla:
     path: item-box/sammelitems/sharla
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: sharla
 
 collectionitems_dunban:
     path: item-box/sammelitems/dunban
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: dunban
 
 collectionitems_melia:
     path: item-box/sammelitems/melia
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: melia
 
 collectionitems_riki:
     path: item-box/sammelitems/riki
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: riki
 
 collectionitems_person7:
     path: item-box/sammelitems/person 7
-    controller: 'App\Controller\CollectionGearController::index'
+    controller: 'App\Controller\CollectionItemsController::index'
     defaults:
         name: person 7
 
