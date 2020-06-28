@@ -216,53 +216,53 @@ collectionitems_person7:
 
 chainattacks:
     path: guides/angriffsketten/
-    controller: 'App\Controller\ChainAttacksController::index'
+    controller: 'App\Controller\GuidesController::chainAttacks'
 
 characterguides_dunban:
     path: guides/charakter-dunban
-    controller: 'App\Controller\CharacterGuideController::index'
+    controller: 'App\Controller\GuidesController::character'
     defaults:
         character: dunban
 
 characterguides_shulk:
     path: guides/charakter-shulk
-    controller: 'App\Controller\CharacterGuideController::index'
+    controller: 'App\Controller\GuidesController::character'
     defaults:
         character: shulk
 
 characterguides_fiora:
     path: guides/charakter-fiora
-    controller: 'App\Controller\CharacterGuideController::index'
+    controller: 'App\Controller\GuidesController::character'
     defaults:
         character: fiora
 
 characterguides_reyn:
     path: guides/charakter-reyn
-    controller: 'App\Controller\CharacterGuideController::index'
+    controller: 'App\Controller\GuidesController::character'
     defaults:
         character: reyn
 
 characterguides_person7:
     path: guides/charakter-person7
-    controller: 'App\Controller\CharacterGuideController::index'
+    controller: 'App\Controller\GuidesController::character'
     defaults:
         character: person7
 
 characterguides_melia:
     path: guides/charakter-melia
-    controller: 'App\Controller\CharacterGuideController::index'
+    controller: 'App\Controller\GuidesController::character'
     defaults:
         character: melia
 
 characterguides_riki:
     path: guides/charakter-riki
-    controller: 'App\Controller\CharacterGuideController::index'
+    controller: 'App\Controller\GuidesController::character'
     defaults:
         character: riki
 
 characterguides_sharla:
     path: guides/charakter-sharla
-    controller: 'App\Controller\CharacterGuideController::index'
+    controller: 'App\Controller\GuidesController::character'
     defaults:
         character: sharla
 
@@ -272,7 +272,7 @@ colony6:
 
 gemcrafting:
     path: guides/schmieden
-    controller: 'App\Controller\GemCraftingController::index'
+    controller: 'App\Controller\GuidesController::gemCrafting'
 
 storyfights:
     path: guides/handlungskampfe
@@ -280,8 +280,8 @@ storyfights:
 
 extraskilltrees:
     path: guides/extra-talente
-    controller: 'App\Controller\ExtraSkillTreesController::index'
+    controller: 'App\Controller\GuidesController::skillTrees'
 
 giftguide:
     path: guides/anleitung-sammelitems-verschenken/
-    controller: 'App\Controller\GiftGuideController::index'
+    controller: 'App\Controller\GuidesController::gifts'
