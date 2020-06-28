@@ -58,6 +58,22 @@ class XenobladeHarmonymeetings
     private $persons;
 
     /**
+     * @var XenobladeCharacters
+     *
+     * @ORM\ManyToOne(targetEntity="XenobladeCharacters")
+     * @ORM\JoinColumn(name="charid1", referencedColumnName="charid")
+     */
+    private $person1;
+
+    /**
+     * @var XenobladeCharacters
+     *
+     * @ORM\ManyToOne(targetEntity="XenobladeCharacters")
+     * @ORM\JoinColumn(name="charid2", referencedColumnName="charid")
+     */
+    private $person2;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="required_harmony", type="string", length=255, nullable=false)
@@ -153,6 +169,30 @@ class XenobladeHarmonymeetings
     public function setPersons(string $persons): self
     {
         $this->persons = $persons;
+
+        return $this;
+    }
+
+    public function getPerson1(): ?XenobladeCharacters
+    {
+        return $this->person1;
+    }
+
+    public function setPerson1(XenobladeCharacters $person1): self
+    {
+        $this->person1 = $person1;
+
+        return $this;
+    }
+
+    public function getPerson2(): ?XenobladeCharacters
+    {
+        return $this->person2;
+    }
+
+    public function setPerson2(XenobladeCharacters $person2): self
+    {
+        $this->person2 = $person2;
 
         return $this;
     }

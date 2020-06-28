@@ -67,12 +67,8 @@ Harmonie:
 			{{ harmonyMeeting.solution }}
 		</td>
 		<td>
-		{# TODO: Fix database  #}
-			{{ harmonyMeeting.persons }}
-			<img height="40" src="{{ asset('/images/personicons/1348591234.png') }}" alt="Shulk" />
-			<img height="40" src="{{ asset('/images/personicons/1348591234.png') }}" alt="Shulk" />
-
-
+			<img height="40" src="{{ asset('/images/personicons/' ~ harmonyMeeting.person1.img ) }}" alt="{{ harmonyMeeting.person1.name }}" />
+			<img height="40" src="{{ asset('/images/personicons/' ~ harmonyMeeting.person2.img) }}" alt="{{ harmonyMeeting.person2.name }}" />
 		</td>
 		<td style="text-align:center;">
 		    {% if harmonyMeeting.requiredHarmony == 'Gelb' %}
