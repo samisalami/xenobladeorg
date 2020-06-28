@@ -314,7 +314,6 @@ a:hover { text-decoration:underline; }
 
 .alignleft      { float: left; }
 .aligncenter    { display: block; margin: 0 auto; }
-.alignright     { float: right; }
 .alignRight     { text-align:right;}
 
 .margintop { background-color:#fff; height:0px; margin:0 auto; width:1000px; }

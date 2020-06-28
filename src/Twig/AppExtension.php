@@ -11,6 +11,7 @@ use App\Entity\XenobladeHeads;
 use App\Entity\XenobladeItemMissionR;
 use App\Entity\XenobladeJewels;
 use App\Entity\XenobladeLegs;
+use App\Entity\XenobladeSockettype;
 use App\Entity\XenobladeWeapons;
 use Doctrine\ORM\EntityManagerInterface;
 use ReflectionClass;
@@ -44,7 +45,8 @@ class AppExtension extends AbstractExtension
         return [
             new TwigFunction('missionChapters', [$this, 'getMissionChapters']),
             new TwigFunction('missionLootList', [$this, 'missionLootList']),
-            new TwigFunction('chestLootList', [$this, 'chestLootList'])
+            new TwigFunction('chestLootList', [$this, 'chestLootList']),
+            new TwigFunction('socketSuffix', [$this, 'getSocketSuffix'])
         ];
     }
 
@@ -84,6 +86,23 @@ class AppExtension extends AbstractExtension
             default:
                 return '';
         }
+    }
+
+    public function getSocketSuffix($socket) {
+        /** @var XenobladeSockettype $socket */
+        if (!$socket) {
+            return null;
+        }
+
+        if (!$socket->getNotfixed()) {
+            return '(V)';
+        }
+
+        if ($socket->getEmptySlots()) {
+            return '('.$socket->getEmptySlots().')';
+        }
+
+        return null;
     }
 
     public function getHarmonyCount($value) {

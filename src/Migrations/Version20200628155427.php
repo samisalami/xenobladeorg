@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200322134325 extends AbstractMigration
+final class Version20200628155427 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -19,6 +19,7 @@ final class Version20200322134325 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
         $this->addSql('ALTER TABLE xenoblade_sockettype modify slot1 int null;');
         $this->addSql('ALTER TABLE xenoblade_sockettype modify slot2 int null;');
         $this->addSql('ALTER TABLE xenoblade_sockettype modify slot3 int null;');
@@ -29,7 +30,6 @@ final class Version20200322134325 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
     }
 }

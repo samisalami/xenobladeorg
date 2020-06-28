@@ -48,6 +48,13 @@ class XenobladeSockettype
     private $slot3;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="empty_slots", type="integer", nullable=false)
+     */
+    private $emptySlots = 0;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="notfixed", type="boolean", nullable=false, options={"default"="1"})
@@ -144,5 +151,23 @@ class XenobladeSockettype
     public function getEquipRelation(): XenobladeEquipSockettypeR
     {
         return $this->equipRelations->first();
+    }
+
+    /**
+     * @return int
+     */
+    public function getEmptySlots(): int
+    {
+        return $this->emptySlots;
+    }
+
+    /**
+     * @param int $emptySlots
+     * @return XenobladeSockettype
+     */
+    public function setEmptySlots(int $emptySlots): XenobladeSockettype
+    {
+        $this->emptySlots = $emptySlots;
+        return $this;
     }
 }

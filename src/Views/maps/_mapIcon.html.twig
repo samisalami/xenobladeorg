@@ -1,4 +1,4 @@
-{% if not mapPoint is empty %}
+{% if mapPoint and map %}
     <label>
         <img style="cursor:pointer;" src="{{ asset('/images/mapicon_on.png') }}" alt="Karte" />
         <input type="checkbox" class="overlay-trigger"/>

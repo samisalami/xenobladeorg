@@ -1,0 +1,48 @@
+{% extends '_white_box_layout.html.twig' %}
+
+{% block title %}Händler{% endblock %}
+{% block headline %}Händler{% endblock %}
+{% block submenu %}
+    <ul class="submenu-rv">
+        {% include 'items/_submenu.html.twig' %}
+    </ul>
+{% endblock %}
+{% block content %}
+    <style type="text/css">
+        table { display:inline-table; padding:15px 30px 30px 0; margin:5px; width:225px; height:auto; }
+        table tr td {padding:5px;}
+        table tr+tr td {border-bottom:1px #bbb solid;}
+        .tablehead td { font-weight:bold; }
+    </style>
+    Das Inventar der Händler entspricht dem Handlungsfortschritt <strong>nach Mechonis-Kern</strong>!<br/>
+    Alle Technikbücher sind Adeptenbücher.<br/>
+    {% for chapterData in merchantViewData %}
+        <br/><br/>
+        <h2>{{ chapterData.chapter.name }}</h2>
+        {% for merchantData in chapterData.merchantData %}
+            {% set merchant = merchantData.merchant %}
+            <br/>
+            {% include 'maps/_mapIcon.html.twig' with {
+                'map': merchantData.mapPoint.map|default(null),
+                'mapPoint': merchantData.mapPoint,
+                'name': merchant.time,
+                'color': 'yellow'
+            } %}
+            <i><u><a name="merid{{ merchant.merid }}"></a>{{ merchant.location }} - {{ merchant.time }}</u></i><br/><br/>
+            <div style="padding:15px; padding-bottom: 35px; border-top:1px #bbb solid; border-bottom:1px #bbb solid; vertical-align:top;">
+                {% for category, items in merchantData.items %}
+                <table>
+                    <tr class="tablehead"><td><br/>{{ category }}:</td></tr>
+                    {% for itemData in items %}
+                        {% set item = itemData.item %}
+                        <tr>
+                            <td><a href="{{ item|itemLink }}">{{ item.name }} {{ socketSuffix(itemData.socket) }}</a></td>
+                            <td class="alignRight">{{ item.wert ? item.wert : '?' }} G</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

@@ -160,6 +160,10 @@ collection:
     path: item-box/kollektion
     controller: 'App\Controller\CollectionsController::index'
 
+merchants:
+    path: item-box/handler
+    controller: 'App\Controller\MerchantsController::index'
+
 collectionitems:
     path: item-box/sammelitems/{name}
     controller: 'App\Controller\CollectionGearController::index'

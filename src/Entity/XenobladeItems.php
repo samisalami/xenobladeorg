@@ -94,13 +94,6 @@ class XenobladeItems
     /**
      * @var int|null
      *
-     * @ORM\Column(name="sid", type="integer", nullable=true)
-     */
-    private $sid;
-
-    /**
-     * @var int|null
-     *
      * @ORM\Column(name="motid", type="integer", nullable=true)
      */
     private $motid;
@@ -227,18 +220,6 @@ class XenobladeItems
     public function setWert(?int $wert): self
     {
         $this->wert = $wert;
-
-        return $this;
-    }
-
-    public function getSid(): ?int
-    {
-        return $this->sid;
-    }
-
-    public function setSid(?int $sid): self
-    {
-        $this->sid = $sid;
 
         return $this;
     }
