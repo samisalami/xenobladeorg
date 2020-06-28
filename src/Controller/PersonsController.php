@@ -36,7 +36,8 @@ class PersonsController extends AbstractController
                     'chapter' => $chapter,
                     'spoiler' => $spoiler,
                     'story' => false
-                ]
+                ],
+                ['name' => 'asc']
             );
             $groupedPersons[$chapter->getName()] = $persons;
         }
