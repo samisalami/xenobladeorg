@@ -270,6 +270,10 @@ characterguides_sharla:
     defaults:
         character: sharla
 
+skills:
+    path: /fertigkeiten
+    controller: 'App\Controller\SkillsController::index'
+
 colony6:
     path: guides/kolonie-6-ausbau/
     controller: 'App\Controller\Colony6Controller::index'

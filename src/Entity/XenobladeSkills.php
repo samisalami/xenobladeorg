@@ -22,11 +22,12 @@ class XenobladeSkills
     private $sid;
 
     /**
-     * @var int
+     * @var XenobladeCharacters
      *
-     * @ORM\Column(name="charid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeCharacters")
+     * @ORM\JoinColumn(name="charid", referencedColumnName="charid")
      */
-    private $charid;
+    private $character;
 
     /**
      * @var string
@@ -159,14 +160,14 @@ class XenobladeSkills
         return $this->sid;
     }
 
-    public function getCharid(): ?int
+    public function getCharacter(): ?XenobladeCharacters
     {
-        return $this->charid;
+        return $this->character;
     }
 
-    public function setCharid(int $charid): self
+    public function setCharacter(XenobladeCharacters $character): self
     {
-        $this->charid = $charid;
+        $this->character = $character;
 
         return $this;
     }
