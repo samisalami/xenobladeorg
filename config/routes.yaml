@@ -289,3 +289,7 @@ extraskilltrees:
 giftguide:
     path: guides/anleitung-sammelitems-verschenken/
     controller: 'App\Controller\GuidesController::gifts'
+
+harmonymeetings:
+    path: extras/harmonie-gesprache/
+    controller: 'App\Controller\HarmonyMeetingsController::index'

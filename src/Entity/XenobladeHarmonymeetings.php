@@ -22,11 +22,12 @@ class XenobladeHarmonymeetings
     private $hmid;
 
     /**
-     * @var int
+     * @var XenobladeChapters|null
      *
-     * @ORM\Column(name="cid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeChapters")
+     * @ORM\JoinColumn(name="cid", referencedColumnName="cid")
      */
-    private $cid;
+    private $chapter;
 
     /**
      * @var int
@@ -108,14 +109,14 @@ class XenobladeHarmonymeetings
         return $this;
     }
 
-    public function getScid(): ?int
+    public function getChapter(): ?XenobladeChapters
     {
-        return $this->scid;
+        return $this->chapter;
     }
 
-    public function setScid(int $scid): self
+    public function setChapter(XenobladeChapters $chapter): self
     {
-        $this->scid = $scid;
+        $this->chapter = $chapter;
 
         return $this;
     }
