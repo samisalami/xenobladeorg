@@ -11,15 +11,11 @@ class HarmonyMeetingsController extends AbstractController
 
     $harmonyMeetings = $this->getDoctrine()->getRepository(XenobladeHarmonymeetings::class)->findBy(
             [],
-            ['hmid' => 'asc']
+            ['chapter' => 'asc']
         );
 
         return $this->render('/extras/harmony_meetings.html.twig', [
             'harmonyMeetings' => $harmonyMeetings
         ]);
     }
-
-
-
-
 }
