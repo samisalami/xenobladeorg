@@ -138,11 +138,11 @@ maps:
 
 gear:
     path: item-box/ausrustung
-    controller: 'App\Controller\ItemsController::gear'
+    controller: 'App\Controller\GearController::gear'
 
 weapons:
     path: item-box/waffen
-    controller: 'App\Controller\ItemsController::weapons'
+    controller: 'App\Controller\GearController::weapons'
 
 chests:
     path: item-box/truhen
@@ -162,55 +162,55 @@ collection:
 
 collectionitems:
     path: item-box/sammelitems/{name}
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: null
 
 collectionitems_static:
     path: item-box/sammelitems
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: null
 
 collectionitems_shulk:
     path: item-box/sammelitems/shulk
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: shulk
 
 collectionitems_reyn:
     path: item-box/sammelitems/reyn
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: reyn
 
 collectionitems_sharla:
     path: item-box/sammelitems/sharla
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: sharla
 
 collectionitems_dunban:
     path: item-box/sammelitems/dunban
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: dunban
 
 collectionitems_melia:
     path: item-box/sammelitems/melia
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: melia
 
 collectionitems_riki:
     path: item-box/sammelitems/riki
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: riki
 
 collectionitems_person7:
     path: item-box/sammelitems/person 7
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\CollectionGearController::index'
     defaults:
         name: person 7
 

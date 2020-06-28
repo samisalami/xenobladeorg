@@ -18,7 +18,7 @@ use App\Entity\XenobladeCollectioncollectionfieldtypesR;
 use App\Entity\XenobladeWeapons;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ItemsController extends AbstractController
+class GearController extends AbstractController
 {
     public function gear() {
         $orderBy = [
