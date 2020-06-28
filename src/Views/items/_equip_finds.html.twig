@@ -3,7 +3,7 @@
         <strong>Händler:</strong><br/>
         <ul>
             {% for merchant in itemData.finds.merchants %}
-                <li>- {{ merchant.location }} ({{ merchant.chapter.name }})</li>
+                <li><a href="{{ path('merchants') }}#merid{{ merchant.merid }}">{{ merchant.location }} ({{ merchant.chapter.name }})</a></li>
             {% endfor %}
         </ul>
     </div>
