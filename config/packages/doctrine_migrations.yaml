@@ -1,6 +1,8 @@
 doctrine_migrations:
     migrations_paths:
         'App\Migrations': 'src/Migrations'
+        # path for version 2
+        'DoctrineMigrations': 'src/Migrations'
 
     storage:
         table_storage:
