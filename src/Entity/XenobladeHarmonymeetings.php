@@ -22,11 +22,12 @@ class XenobladeHarmonymeetings
     private $hmid;
 
     /**
-     * @var int
+     * @var XenobladeChapters|null
      *
-     * @ORM\Column(name="cid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="XenobladeChapters")
+     * @ORM\JoinColumn(name="cid", referencedColumnName="cid")
      */
-    private $cid;
+    private $chapter;
 
     /**
      * @var int
@@ -55,6 +56,22 @@ class XenobladeHarmonymeetings
      * @ORM\Column(name="persons", type="string", length=255, nullable=false)
      */
     private $persons;
+
+    /**
+     * @var XenobladeCharacters
+     *
+     * @ORM\ManyToOne(targetEntity="XenobladeCharacters")
+     * @ORM\JoinColumn(name="charid1", referencedColumnName="charid")
+     */
+    private $person1;
+
+    /**
+     * @var XenobladeCharacters
+     *
+     * @ORM\ManyToOne(targetEntity="XenobladeCharacters")
+     * @ORM\JoinColumn(name="charid2", referencedColumnName="charid")
+     */
+    private $person2;
 
     /**
      * @var string
@@ -108,14 +125,14 @@ class XenobladeHarmonymeetings
         return $this;
     }
 
-    public function getScid(): ?int
+    public function getChapter(): ?XenobladeChapters
     {
-        return $this->scid;
+        return $this->chapter;
     }
 
-    public function setScid(int $scid): self
+    public function setChapter(XenobladeChapters $chapter): self
     {
-        $this->scid = $scid;
+        $this->chapter = $chapter;
 
         return $this;
     }
@@ -152,6 +169,30 @@ class XenobladeHarmonymeetings
     public function setPersons(string $persons): self
     {
         $this->persons = $persons;
+
+        return $this;
+    }
+
+    public function getPerson1(): ?XenobladeCharacters
+    {
+        return $this->person1;
+    }
+
+    public function setPerson1(XenobladeCharacters $person1): self
+    {
+        $this->person1 = $person1;
+
+        return $this;
+    }
+
+    public function getPerson2(): ?XenobladeCharacters
+    {
+        return $this->person2;
+    }
+
+    public function setPerson2(XenobladeCharacters $person2): self
+    {
+        $this->person2 = $person2;
 
         return $this;
     }
