@@ -11,6 +11,7 @@ use App\Entity\XenobladeHeads;
 use App\Entity\XenobladeItemMissionR;
 use App\Entity\XenobladeJewels;
 use App\Entity\XenobladeLegs;
+use App\Entity\XenobladeSkillbooks;
 use App\Entity\XenobladeSockettype;
 use App\Entity\XenobladeWeapons;
 use Doctrine\ORM\EntityManagerInterface;
@@ -83,6 +84,8 @@ class AppExtension extends AbstractExtension
                 return $this->router->generate('jewels').'#jvid'.$item->getJewelValue()->getJvId();
             case $this->isInstanceof($item, XenobladeWeapons::class):
                 return $this->router->generate('weapons').'#iid'.$item->getIid();
+            case $this->isInstanceof($item, XenobladeSkillbooks::class):
+                return $this->router->generate('skills').'#sid'.$item->getSkill()->getSid();
             default:
                 return '';
         }
