@@ -122,7 +122,7 @@
                         <ul>
                             {% for mission in missions %}
                                 <li>
-                                    <a href="{{ path('missions') }}#mid{{ mission.mid }}">{{ mission.name }} ({{ mission.chapter.name }})</a>
+                                    <a href="{{ path('missions') }}#m{{ mission.mid }}">{{ mission.name }} ({{ mission.chapter.name }})</a>
                                 </li>
                             {% endfor %}
                         </ul>
