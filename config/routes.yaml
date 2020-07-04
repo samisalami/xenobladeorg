@@ -150,11 +150,15 @@ chests:
 
 jewels:
     path: item-box/juwelen
-    controller: 'App\Controller\JewelsController::index'
+    controller: 'App\Controller\ItemBoxController::jewels'
 
 etherveins:
     path: item-box/atheradern
-    controller: 'App\Controller\EtherVeinsController::index'
+    controller: 'App\Controller\ItemBoxController::etherveins'
+
+important_items:
+    path: item-box/wichtiges
+    controller: 'App\Controller\ItemBoxController::important'
 
 collection:
     path: item-box/kollektion
@@ -166,55 +170,55 @@ merchants:
 
 collectionitems:
     path: item-box/sammelitems/{name}
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: null
 
 collectionitems_static:
     path: item-box/sammelitems
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: null
 
 collectionitems_shulk:
     path: item-box/sammelitems/shulk
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: shulk
 
 collectionitems_reyn:
     path: item-box/sammelitems/reyn
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: reyn
 
 collectionitems_sharla:
     path: item-box/sammelitems/sharla
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: sharla
 
 collectionitems_dunban:
     path: item-box/sammelitems/dunban
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: dunban
 
 collectionitems_melia:
     path: item-box/sammelitems/melia
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: melia
 
 collectionitems_riki:
     path: item-box/sammelitems/riki
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: riki
 
 collectionitems_person7:
     path: item-box/sammelitems/person 7
-    controller: 'App\Controller\CollectionItemsController::index'
+    controller: 'App\Controller\ItemBoxController::collectionItems'
     defaults:
         name: person 7
 

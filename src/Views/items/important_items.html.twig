@@ -1,0 +1,40 @@
+{% extends '_layout.html.twig' %}
+
+{% block title %}Wichtiges{% endblock %}
+{% block headline %}Wichtiges{% endblock %}
+{% block submenu %}
+    <ul class="submenu-rv">
+    {% include 'items/_submenu.html.twig' %}
+    </ul>
+{% endblock %}
+{% block content %}
+    <div class="Wichtiges">
+    {% for item in items %}
+        <div class="xc_ItemWrapper">
+            <div class="xc_ItemContent">
+                <div class="xc_ItemContentLeft Important">
+                    <div class="xc_ItemField">
+                        <img height="30" src="{{ asset('/images/importantitem_icon.png') }}" />
+                    </div>
+                    <div class="xc_ItemField">
+                        <a name="iid{{ item.iid }}"></a><span><strong>{{ item.name }}</strong></span>
+                    </div>
+                </div>
+                <div class="xc_ItemContentCenter Important">
+                    {{ item.description }}
+                </div>
+                <div class="xc_ItemContentRight Kristalle">
+                    <div class="xc_ItemArrow">
+                        <img src="{{ asset('/images/arrow_down.png') }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="xc_ItemContentHidden">
+                <div class="xc_ItemField">
+                    {{ item.descriptionHidden|raw }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
