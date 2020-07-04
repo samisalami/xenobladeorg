@@ -7,23 +7,8 @@
                     <li>
                         <a href="{{ itemData.item|itemLink }}">
                             {% if not itemData.item is empty %}
-                                {{ itemData.item.name|raw }}
+                                {{ itemData.item.name|raw }} {{ socketSuffix(itemData.sockettype) }}
                             {% endif %}
-                            {% if not itemData.sockettype is empty %}
-                                {% if itemData.sockettype.notfixed %}
-                                    {% if not itemData.sockettype.slot1 is empty %}
-                                        (1)
-                                    {% endif %}
-                                    {% if not itemData.sockettype.slot2 is empty %}
-                                        (2)
-                                    {% endif %}
-                                    {% if not itemData.sockettype.slot3 is empty %}
-                                        (3)
-                                    {% endif %}
-                                {% else %}
-                                    (V)
-                                {% endif %}
-                        {% endif %}
                         </a>
                     </li>
                 {% endfor %}
