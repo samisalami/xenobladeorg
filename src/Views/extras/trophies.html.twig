@@ -1,0 +1,62 @@
+{% extends '_layout.html.twig' %}
+
+{% block headline %}Trophäen{% endblock %}
+{% block title %}Trophäen{% endblock %}
+
+{% block submenu %}
+    <ul class="submenu-rv">
+        {% include 'extras/_submenu.html.twig' %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+    Es gibt zwei verschiedene Arten von Trophäen: Rekorde und Aufgaben.<br>
+    Aufgaben werden beim NewGame+ zurückgesetzt, aber Rekorde bleiben bestehen.<br>
+    <a href="#aufgaben">Hier geht es zu den Aufgaben<a><br>
+
+    {% for trophies in [records, trials] %}
+
+        {% if trophies[0].type == true %}
+            <h2><a name="aufgaben"></a>Aufgaben</h2>
+        {% endif %}
+        {% if trophies[0].type == false %}
+            <h2><a name="rekorde"></a>Rekorde</h2>
+        {% endif %}
+
+        <table class="guide-table" align="center">
+	        <tr class="tablehead">
+		        <td>
+			        Name:
+		        </td>
+		        <td>
+			        Beschreibung:
+		        </td>
+		        <td>
+			        EP:
+		        </td>
+		        <td>
+			        Hinweise:
+		        </td>
+	        </tr>
+	        {% for trophy in trophies %}
+	        <tr class="{{ loop.index0 is odd ? "odd" : "even" }}" style="{{ loop.last ? "border-bottom:1px #bbb solid;" }}">
+                <td>
+                    <a name="{{ trophy.troid }}"></a>
+			        {{ trophy.name }}
+		        </td>
+		        <td>
+			        {{ trophy.description }}
+		        </td>
+		        <td>
+			        {{ trophy.ep }}
+		        </td>
+		        <td>
+			        {{ trophy.info }}
+		        </td>
+	        </tr>
+	        {% endfor %}
+	    </table>
+	{% endfor %}
+
+{% endblock %}

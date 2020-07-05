@@ -301,3 +301,7 @@ giftguide:
 harmonymeetings:
     path: extras/harmonie-gesprache/
     controller: 'App\Controller\HarmonyMeetingsController::index'
+
+trophies:
+    path: extras/trophaen/
+    controller: 'App\Controller\TrophiesController::index'
