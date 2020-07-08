@@ -5,9 +5,11 @@ use App\Entity\XenobladeArms;
 use App\Entity\XenobladeBodies;
 use App\Entity\XenobladeChapters;
 use App\Entity\XenobladeChestitemsR;
+use App\Entity\XenobladeCollectionItems;
 use App\Entity\XenobladeEquipSockettypeR;
 use App\Entity\XenobladeFeet;
 use App\Entity\XenobladeHeads;
+use App\Entity\XenobladeImportantItems;
 use App\Entity\XenobladeItemMissionR;
 use App\Entity\XenobladeJewels;
 use App\Entity\XenobladeLegs;
@@ -86,6 +88,10 @@ class AppExtension extends AbstractExtension
                 return $this->router->generate('weapons').'#iid'.$item->getIid();
             case $this->isInstanceof($item, XenobladeSkillbooks::class):
                 return $this->router->generate('skills').'#sid'.$item->getSkill()->getSid();
+            case $this->isInstanceof($item, XenobladeCollectionItems::class):
+                return $this->router->generate('collectionitems').'#iid'.$item->getIid();
+            case $this->isInstanceof($item, XenobladeImportantItems::class):
+                return $this->router->generate('important_items').'#iid'.$item->getIid();
             default:
                 return '';
         }

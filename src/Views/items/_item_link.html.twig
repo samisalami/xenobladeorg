@@ -1,7 +1,6 @@
-{% if item is instanceof('\\App\\Entity\\XenobladeCollectionItems') %}
-    <a href="path('collectionitems')#iid{{ item.iid }}" >{{ item.name|raw }}</a>
-{% elseif item is instanceof('\\App\\Entity\\XenobladeJewels') %}
-    <a href="{{ path('jewels') }}#jvid{{ item.jewelValue.jvid }}">{{ item.name|raw }}</a>
+{% set link = item|itemLink  %}
+{% if link is not empty %}
+    <a href="{{ link }}">{{ item.name|raw }}</a>
 {% else %}
-    {{ item.name | raw }}
+    {{ item.name|raw }}
 {% endif %}
