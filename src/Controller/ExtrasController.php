@@ -1,16 +1,17 @@
 <?php
 namespace App\Controller;
 use App\Entity\XenobladeHarmonymeetings;
+use App\Entity\XenobladeTrophies;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HarmonyMeetingsController extends AbstractController
+class ExtrasController extends AbstractController
 {
-    public function index()
+    public function harmonyMeetings()
     {
 
         $harmonyMeetings = $this->getDoctrine()->getRepository(XenobladeHarmonymeetings::class)->findBy(
             [],
-            ['hmid' => 'asc']
+            ['chapter' => 'asc']
         );
 
         // create arrays for the filters
@@ -52,6 +53,25 @@ class HarmonyMeetingsController extends AbstractController
             'harmonyMeetings' => $harmonyMeetings,
             'personFilterList' => $personArray,
             'chapterFilterList' => $chapterArray
+        ]);
+    }
+
+    public function trophies()
+    {
+
+        $trials = $this->getDoctrine()->getRepository(XenobladeTrophies::class)->findBy(
+            ['type' => true],
+            ['prio' => 'ASC']
+        );
+
+        $records = $this->getDoctrine()->getRepository(XenobladeTrophies::class)->findBy(
+            ['type' => false],
+            ['prio' => 'ASC']
+        );
+
+        return $this->render('/extras/trophies.html.twig', [
+            'trials' => $trials,
+            'records' => $records,
         ]);
     }
 }
