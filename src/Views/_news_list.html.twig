@@ -1,0 +1,10 @@
+{% for news in newsList %}
+    <h2>{{ news.title }}</h2>
+    <div class="entry-date">{{ news.entryDate|date('d.m.Y H:i:s') }}</div>
+
+    {{ news.content | raw }}
+
+    <br><br>
+
+     <hr>
+{% endfor %}

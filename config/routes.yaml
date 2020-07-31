@@ -305,3 +305,7 @@ harmonymeetings:
 trophies:
     path: extras/trophaen/
     controller: 'App\Controller\ExtrasController::trophies'
+
+news:
+    path: aktuelles
+    controller: 'App\Controller\NewsController::news'

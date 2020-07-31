@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<news>
+    <entrydate>30.07.2020 12:00:00</entrydate>
+    <author>Pikarobbi</author>
+    <version>1</version>
+    <slug>2020-07-30-Infos-Definitive-Edition</slug>
+    <title>Gesammelte Infos zur Definitive Edition</title>
+    <content><![CDATA[
+    Neben einigen kleineren Optimierungen und natürlich einer grafischen
+    Überarbeitung gibt es ein paar Dinge, die besonders hervorhebenswert sind.
+    So wurden etwa mehr als 90 Lieder des Soundtracks neu überarbeitet. Einen
+    kleinen Vorgeschmack darauf gibt es auf
+    <a href="https://www.nintendo.co.jp/switch/aubqa/index.html">
+    der offiziellen japanischen Seite zum Spiel</a> zu hören.
+    <br>
+    Gaur-Ebene: <br>
+    <audio controls preload="none"><source src="https://www.nintendo.co.jp/switch/aubqa/assets/audio/top/bgm01.mp3" type="audio/mpeg"></audio>
+    <br>
+    Angriff: <br>
+    <audio controls preload="none"><source src="https://www.nintendo.co.jp/switch/aubqa/assets/audio/top/bgm02.mp3" type="audio/mpeg"></audio>
+    <br>
+    Kampfmusik aus der Zusatzstory: <br>
+    <audio controls preload="none"><source src="https://www.nintendo.co.jp/switch/aubqa/assets/audio/top/bgm03.mp3" type="audio/mpeg"></audio>
+    <br>
+    Weitere Hörproben gibt es auch auf Nintendos Twitterkanälen: <a href="https://twitter.com/NintendoDE/status/1253292836985933824">hier</a>
+    und <a href="https://twitter.com/NintendoAmerica/status/1262050243119439873">hier</a>.
+    Falls ihr die Originalversion lieber mögt, habt ihr im Spiel aber auch die
+    Möglichkeit auf diese umzuschalten.
+    <br>
+    <br>
+    Außerdem muss natürlich der neue Epilog erwähnt werden, der für Xenoblade
+    Chronicles-Veteranen wahrscheinlich den größten Reiz an der Definitive
+    Edition darstellt.
+    Das "Die verbundene Zukunft" genannte Zusatzkapitel ist gleich zu Beginn des
+    Spiels vefügbar und dreht sich vor allem um die Charaktere Shulk und Melia.
+    Laut Angaben der Famitsu soll die zusätzliche Spielzeit etwa 12 Stunden
+    betragen.
+    <br>
+    <br>
+    Die Zusatzfeatures der 3DS-Version, wie die Musikgalerie oder
+    die 3D-Charaktermodelle, sind indes nicht enthalten. Dafür ist es dieses
+    Mal möglich sich die Zwischensequenzen jederzeit noch einmal anzuschauen.
+    Darüber hinaus bietet die Definitive Edition einen Time Attack-Modus und
+    einen Casual-Modus, welcher einfachere Kämpfe bietet.
+    <br>
+    <br>
+    <details>
+        <summary>
+            <span style="cursor: pointer; text-decoration: underline; color: #21759B;">
+            Der offizielle Veröffentlichungstrailer
+            <span>
+        </summary>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/CZSrqwvaD1o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </details>
+    <br>
+    Viel Spaß mit der Definitive Edition wünscht euch<br>
+    <em>euer Xenoblade.org-Team</em>
+    <br>
+    <br>
+    <img style="max-height: 20em; max-width: 100%" src="{{ asset('/images/news/DefinitiveEdition_Intro.jpg') }}" title='Bionis und Mechonis erstrahlen in HD' alt='Bionis und Mechonis kämpfen' />
+    <br>
+        ]]>
+    </content>
+</news>
