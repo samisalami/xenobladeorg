@@ -1,4 +1,4 @@
-{% extends '_layout.html.twig' %}
+{% extends '_white_box_layout.html.twig' %}
 {% block headline %}Startseite{% endblock %}
 {% block content %}
     <h2>Willkommen!</h2>
@@ -14,4 +14,5 @@
     </p>
     <br/>
     <hr/>
+    {% include '_news_list.html.twig' with {'newsList': newsList} %}
 {% endblock %}
